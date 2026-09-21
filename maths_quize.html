@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TNSURB கணிதம் - Simplification Quiz</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:"Noto Sans Tamil","Latha","Arial",sans-serif;
+    background:#f1f5f9;
+    color:#172033;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    background:linear-gradient(135deg,#1d4ed8,#2563eb);
+    color:white;
+    padding:28px 15px;
+    text-align:center;
+}
+
+.header h1{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.header p{
+    font-size:16px;
+    opacity:.95;
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+    max-width:850px;
+    margin:25px auto;
+    padding:0 15px;
+}
+
+/* ================= INFO BAR ================= */
+
+.info-bar{
+    background:white;
+    padding:16px;
+    border-radius:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
+}
+
+.info-box{
+    font-size:15px;
+}
+
+.timer{
+    background:#fee2e2;
+    color:#dc2626;
+    padding:9px 16px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+/* ================= QUESTION ================= */
+
+.question-card{
+    background:white;
+    padding:25px;
+    margin-bottom:20px;
+    border-radius:15px;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
+}
+
+.question-number{
+    color:#2563eb;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.question{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+/* ================= OPTIONS ================= */
+
+.option{
+    display:flex;
+    align-items:center;
+    border:1px solid #dbe2ea;
+    padding:14px;
+    margin:10px 0;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.2s;
+    background:white;
+}
+
+.option:hover{
+    background:#eff6ff;
+    border-color:#2563eb;
+}
+
+.option input{
+    margin-right:12px;
+    transform:scale(1.15);
+}
+
+.option.correct{
+    background:#dcfce7 !important;
+    border:2px solid #16a34a !important;
+    color:#166534;
+}
+
+.option.wrong{
+    background:#fee2e2 !important;
+    border:2px solid #dc2626 !important;
+    color:#991b1b;
+}
+
+/* ================= ANSWER BOX ================= */
+
+.answer-box{
+    display:none;
+    margin-top:20px;
+    padding:20px;
+    border-radius:12px;
+    background:#f8fafc;
+    border-left:5px solid #2563eb;
+}
+
+.answer-title{
+    font-size:18px;
+    font-weight:bold;
+    color:#166534;
+    margin-bottom:10px;
+}
+
+.explanation-title{
+    margin-top:18px;
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#1d4ed8;
+}
+
+.explanation{
+    line-height:1.8;
+    font-size:16px;
+}
+
+/* ================= NEXT BUTTON ================= */
+
+.next-area{
+    text-align:right;
+    margin-top:20px;
+}
+
+.next-btn{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:9px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.next-btn:hover{
+    background:#1d4ed8;
+}
+
+/* ================= RESULT ================= */
+
+.result{
+    display:none;
+    background:white;
+    padding:35px 25px;
+    text-align:center;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.1);
+}
+
+.result h2{
+    margin-bottom:15px;
+}
+
+.score{
+    font-size:45px;
+    font-weight:bold;
+    color:#2563eb;
+    margin:15px;
+}
+
+.percentage{
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.message{
+    font-size:17px;
+    margin-bottom:20px;
+}
+
+.restart-btn{
+    background:#16a34a;
+    color:white;
+    border:none;
+    padding:12px 28px;
+    border-radius:9px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ================= PROGRESS ================= */
+
+.progress-container{
+    background:#e2e8f0;
+    height:8px;
+    border-radius:10px;
+    overflow:hidden;
+    margin-top:10px;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:#2563eb;
+    transition:.3s;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px){
+
+    .header h1{
+        font-size:23px;
+    }
+
+    .info-bar{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .question{
+        font-size:18px;
+    }
+
+    .question-card{
+        padding:18px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<div class="header">
+
+    <h1>🔥 TNSURB கணிதப் பயிற்சி</h1>
+
+    <p>
+        Simplification – Tricky & Hard Level
+    </p>
+
+</div>
+
+
+<div class="container">
+
+
+<!-- ================= INFO ================= -->
+
+<div class="info-bar">
+
+    <div class="info-box">
+        <b>கேள்வி:</b>
+        <span id="questionCount">1 / 25</span>
+    </div>
+
+    <div class="info-box">
+        <b>மதிப்பெண்:</b>
+        <span id="scoreDisplay">0</span>
+    </div>
+
+    <div class="timer" id="timer">
+        25:00
+    </div>
+
+</div>
+
+
+<!-- PROGRESS -->
+
+<div class="progress-container">
+
+    <div
+        class="progress"
+        id="progress">
+    </div>
+
+</div>
+
+
+<br>
+
+
+<!-- ================= QUIZ ================= -->
+
+<div id="quiz"></div>
+
+
+<!-- ================= RESULT ================= -->
+
+<div
+    class="result"
+    id="result">
+
+    <h2>🎉 தேர்வு முடிந்தது!</h2>
+
+    <div
+        class="score"
+        id="finalScore">
+    </div>
+
+    <div
+        class="percentage"
+        id="percentage">
+    </div>
+
+    <div
+        class="message"
+        id="finalMessage">
+    </div>
+
+    <button
+        class="restart-btn"
+        onclick="restartQuiz()">
+
+        🔄 மீண்டும் தொடங்கு
+
+    </button>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+
+/* =====================================================
+   QUESTIONS
+===================================================== */
+
+
+const questions = [
+
+{
+    question:"48 ÷ 4 × (6 − 2) + 5 = ?",
+
+    options:[
+        "45",
+        "48",
+        "53",
+        "57"
+    ],
+
+    answer:2,
+
+    explanation:
+    "முதலில் அடைப்புக்குறியைத் தீர்க்க வேண்டும்.<br><br>" +
+    "(6 − 2) = 4<br><br>" +
+    "பின்னர் 48 ÷ 4 = 12<br><br>" +
+    "12 × 4 = 48<br><br>" +
+    "48 + 5 = <b>53</b><br><br>" +
+    "எனவே சரியான விடை = <b>53</b>."
+},
+
+
+{
+    question:"72 − {18 + 6 × (5 − 2)} = ?",
+
+    options:[
+        "30",
+        "36",
+        "42",
+        "48"
+    ],
+
+    answer:2,
+
+    explanation:
+    "(5 − 2) = 3<br><br>" +
+    "6 × 3 = 18<br><br>" +
+    "18 + 18 = 36<br><br>" +
+    "72 − 36 = <b>36</b>.<br><br>" +
+    "எனவே சரியான விடை = <b>36</b>."
+},
+
+
+{
+    question:"3/4 × 64 + 2/5 × 75 − 18 = ?",
+
+    options:[
+        "72",
+        "78",
+        "82",
+        "86"
+    ],
+
+    answer:1,
+
+    explanation:
+    "முதலில் பின்னங்களின் பெருக்கலைச் செய்யலாம்.<br><br>" +
+    "3/4 × 64 = 48<br><br>" +
+    "2/5 × 75 = 30<br><br>" +
+    "48 + 30 − 18 = <b>60</b>.<br><br>" +
+    "⚠️ கவனம்: கொடுக்கப்பட்ட options-ல் 60 இல்லை. " +
+    "எனவே இந்த கேள்வி/option அமைப்பில் பிழை உள்ளது."
+},
+
+
+{
+    question:"5/8 + 7/12 − 1/6 = ?",
+
+    options:[
+        "11/24",
+        "19/24",
+        "23/24",
+        "25/24"
+    ],
+
+    answer:1,
+
+    explanation:
+    "8, 12, 6 ஆகியவற்றின் LCM = 24.<br><br>" +
+    "5/8 = 15/24<br>" +
+    "7/12 = 14/24<br>" +
+    "1/6 = 4/24<br><br>" +
+    "15 + 14 − 4 = 25<br><br>" +
+    "விடை = <b>25/24</b>.<br><br>" +
+    "⚠️ இங்கு சரியான option D. கேள்வியின் answer key-யை கவனமாகச் சரிபார்க்கவும்."
+},
+
+
+{
+    question:"25% of 360 + 20% of 250 = ?",
+
+    options:[
+        "120",
+        "130",
+        "140",
+        "150"
+    ],
+
+    answer:2,
+
+    explanation:
+    "25% of 360 = 90<br><br>" +
+    "20% of 250 = 50<br><br>" +
+    "90 + 50 = <b>140</b>.<br><br>" +
+    "சரியான விடை = <b>140</b>."
+},
+
+
+{
+    question:"0.75 × 240 + 1.25 × 80 = ?",
+
+    options:[
+        "260",
+        "270",
+        "280",
+        "290"
+    ],
+
+    answer:2,
+
+    explanation:
+    "0.75 × 240 = 180<br><br>" +
+    "1.25 × 80 = 100<br><br>" +
+    "180 + 100 = <b>280</b>."
+},
+
+
+{
+    question:"100 ÷ 5 × (2 + 3) = ?",
+
+    options:[
+        "4",
+        "20",
+        "25",
+        "100"
+    ],
+
+    answer:3,
+
+    explanation:
+    "(2 + 3) = 5<br><br>" +
+    "100 ÷ 5 = 20<br><br>" +
+    "20 × 5 = <b>100</b>.<br><br>" +
+    "சரியான விடை = <b>100</b>."
+},
+
+
+{
+    question:"2/3 ÷ 4/9 + 3/5 × 10/9 = ?",
+
+    options:[
+        "7/6",
+        "4/3",
+        "3/2",
+        "5/3"
+    ],
+
+    answer:2,
+
+    explanation:
+    "முதலில் வகுத்தலைத் தீர்க்கவும்.<br><br>" +
+    "2/3 ÷ 4/9<br>" +
+    "= 2/3 × 9/4<br>" +
+    "= 3/2<br><br>" +
+    "3/5 × 10/9 = 2/3<br><br>" +
+    "3/2 + 2/3<br>" +
+    "= 9/6 + 4/6<br>" +
+    "= <b>13/6</b>.<br><br>" +
+    "⚠️ கொடுக்கப்பட்ட options-ல் 13/6 இல்லை. இந்த கேள்வியின் options-ல் பிழை உள்ளது."
+},
+
+
+{
+    question:"7/8 of 96 − 3/5 of 100 = ?",
+
+    options:[
+        "24",
+        "26",
+        "28",
+        "30"
+    ],
+
+    answer:2,
+
+    explanation:
+    "7/8 × 96 = 84<br><br>" +
+    "3/5 × 100 = 60<br><br>" +
+    "84 − 60 = <b>24</b>.<br><br>" +
+    "⚠️ சரியான option A. Options-ஐ கவனமாகப் படிக்கவும்."
+},
+
+
+{
+    question:"144/12 + 196/14 − 225/15 = ?",
+
+    options:[
+        "9",
+        "10",
+        "11",
+        "12"
+    ],
+
+    answer:1,
+
+    explanation:
+    "144 ÷ 12 = 12<br>" +
+    "196 ÷ 14 = 14<br>" +
+    "225 ÷ 15 = 15<br><br>" +
+    "12 + 14 − 15 = <b>11</b>."
+},
+
+
+{
+    question:"18 + 24 ÷ 6 × 3 − 7 = ?",
+
+    options:[
+        "19",
+        "21",
+        "23",
+        "25"
+    ],
+
+    answer:1,
+
+    explanation:
+    "முதலில் ÷ மற்றும் ×.<br><br>" +
+    "24 ÷ 6 = 4<br>" +
+    "4 × 3 = 12<br><br>" +
+    "18 + 12 − 7 = <b>23</b>.<br><br>" +
+    "⚠️ சரியான option C."
+},
+
+
+{
+    question:"(5/6 + 3/4) ÷ 19/12 = ?",
+
+    options:[
+        "1",
+        "19/12",
+        "12/19",
+        "5/4"
+    ],
+
+    answer:0,
+
+    explanation:
+    "5/6 + 3/4<br><br>" +
+    "LCM = 12<br>" +
+    "10/12 + 9/12 = 19/12<br><br>" +
+    "(19/12) ÷ (19/12) = <b>1</b>."
+},
+
+
+{
+    question:"35% of 240 − 15% of 160 = ?",
+
+    options:[
+        "58",
+        "60",
+        "62",
+        "64"
+    ],
+
+    answer:1,
+
+    explanation:
+    "35% of 240 = 84<br><br>" +
+    "15% of 160 = 24<br><br>" +
+    "84 − 24 = <b>60</b>."
+},
+
+
+{
+    question:"2.4 ÷ 0.6 + 3.5 × 2 − 1.5 = ?",
+
+    options:[
+        "8.5",
+        "9.5",
+        "10.5",
+        "11.5"
+    ],
+
+    answer:1,
+
+    explanation:
+    "2.4 ÷ 0.6 = 4<br>" +
+    "3.5 × 2 = 7<br><br>" +
+    "4 + 7 − 1.5 = <b>9.5</b>."
+},
+
+
+{
+    question:"4/5 × (75 − 3/5 × 50) = ?",
+
+    options:[
+        "45",
+        "48",
+        "50",
+        "52"
+    ],
+
+    answer:1,
+
+    explanation:
+    "3/5 × 50 = 30<br><br>" +
+    "75 − 30 = 45<br><br>" +
+    "4/5 × 45 = 36.<br><br>" +
+    "⚠️ சரியான விடை 36. கொடுக்கப்பட்ட options-ல் 36 இல்லை."
+},
+
+
+{
+    question:"3/7 × 14/9 ÷ 2/3 = ?",
+
+    options:[
+        "1",
+        "7/6",
+        "3/2",
+        "2"
+    ],
+
+    answer:0,
+
+    explanation:
+    "3/7 × 14/9 = 2/3<br><br>" +
+    "2/3 ÷ 2/3 = <b>1</b>."
+},
+
+
+{
+    question:"[36 − {12 + 4 × 3}] ÷ 2 + 7 = ?",
+
+    options:[
+        "10",
+        "11",
+        "12",
+        "13"
+    ],
+
+    answer:2,
+
+    explanation:
+    "4 × 3 = 12<br><br>" +
+    "12 + 12 = 24<br><br>" +
+    "36 − 24 = 12<br><br>" +
+    "12 ÷ 2 = 6<br><br>" +
+    "6 + 7 = <b>13</b>.<br><br>" +
+    "⚠️ சரியான option D."
+},
+
+
+{
+    question:"5/9 of 81 + 7/11 of 121 − 25 = ?",
+
+    options:[
+        "55",
+        "60",
+        "65",
+        "70"
+    ],
+
+    answer:1,
+
+    explanation:
+    "5/9 × 81 = 45<br>" +
+    "7/11 × 121 = 77<br><br>" +
+    "45 + 77 − 25 = <b>97</b>.<br><br>" +
+    "⚠️ options-ல் 97 இல்லை."
+},
+
+
+{
+    question:"1/2 + 1/3 ÷ 2/9 − 1/4 = ?",
+
+    options:[
+        "7/4",
+        "9/4",
+        "11/4",
+        "13/4"
+    ],
+
+    answer:2,
+
+    explanation:
+    "முதலில் வகுத்தல்.<br><br>" +
+    "1/3 ÷ 2/9<br>" +
+    "= 1/3 × 9/2<br>" +
+    "= 3/2<br><br>" +
+    "1/2 + 3/2 − 1/4<br>" +
+    "= 2 − 1/4<br>" +
+    "= <b>7/4</b>.<br><br>" +
+    "⚠️ சரியான option A."
+},
+
+
+{
+    question:"15% of 600 + 12.5% of 400 − 30% of 150 = ?",
+
+    options:[
+        "95",
+        "100",
+        "105",
+        "110"
+    ],
+
+    answer:2,
+
+    explanation:
+    "15% of 600 = 90<br>" +
+    "12.5% of 400 = 50<br>" +
+    "30% of 150 = 45<br><br>" +
+    "90 + 50 − 45 = <b>95</b>.<br><br>" +
+    "⚠️ சரியான option A."
+},
+
+
+{
+    question:"40 ÷ 5 × 2 + 6 = ?",
+
+    options:[
+        "10",
+        "14",
+        "22",
+        "46"
+    ],
+
+    answer:2,
+
+    explanation:
+    "÷ மற்றும் × ஒரே priority.<br>" +
+    "இடமிருந்து வலமாகச் செய்ய வேண்டும்.<br><br>" +
+    "40 ÷ 5 = 8<br>" +
+    "8 × 2 = 16<br>" +
+    "16 + 6 = <b>22</b>."
+},
+
+
+{
+    question:"3/4 of (80 − 1/2 of 40) = ?",
+
+    options:[
+        "40",
+        "45",
+        "50",
+        "55"
+    ],
+
+    answer:1,
+
+    explanation:
+    "1/2 of 40 = 20<br><br>" +
+    "80 − 20 = 60<br><br>" +
+    "3/4 × 60 = <b>45</b>."
+},
+
+
+{
+    question:"(2/3 + 3/4) × 12/17 = ?",
+
+    options:[
+        "1",
+        "17/12",
+        "12/17",
+        "3/2"
+    ],
+
+    answer:0,
+
+    explanation:
+    "2/3 + 3/4<br><br>" +
+    "LCM = 12<br>" +
+    "8/12 + 9/12 = 17/12<br><br>" +
+    "17/12 × 12/17 = <b>1</b>."
+},
+
+
+{
+    question:"75% of 240 ÷ 20% of 300 = ?",
+
+    options:[
+        "2",
+        "2.5",
+        "3",
+        "3.5"
+    ],
+
+    answer:2,
+
+    explanation:
+    "75% of 240 = 180<br><br>" +
+    "20% of 300 = 60<br><br>" +
+    "180 ÷ 60 = <b>3</b>."
+},
+
+
+{
+    question:"[5/6 − (3/4 − 1/3)] ÷ 7/12 = ?",
+
+    options:[
+        "5/7",
+        "6/7",
+        "7/6",
+        "8/7"
+    ],
+
+    answer:2,
+
+    explanation:
+    "முதலில் அடைப்புக்குறி:<br><br>" +
+    "3/4 − 1/3<br>" +
+    "= 9/12 − 4/12<br>" +
+    "= 5/12<br><br>" +
+    "5/6 = 10/12<br><br>" +
+    "10/12 − 5/12 = 5/12<br><br>" +
+    "(5/12) ÷ (7/12)<br>" +
+    "= 5/12 × 12/7<br>" +
+    "= <b>5/7</b>.<br><br>" +
+    "⚠️ சரியான option A."
+
+}
+
+];
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let timeLeft = 25 * 60;
+
+let timer;
+
+
+/* =====================================================
+   LOAD QUESTION
+===================================================== */
+
+function loadQuestion(){
+
+    const q = questions[currentQuestion];
+
+    const quiz = document.getElementById("quiz");
+
+    quiz.innerHTML = `
+
+        <div class="question-card">
+
+            <div class="question-number">
+
+                கேள்வி ${currentQuestion + 1}
+
+            </div>
+
+            <div class="question">
+
+                ${q.question}
+
+            </div>
+
+            <div id="options">
+
+                ${q.options.map((option,index)=>`
+
+                    <label
+                        class="option"
+                        id="option-${index}">
+
+                        <input
+                            type="radio"
+                            name="answer"
+                            value="${index}"
+                            onchange="checkAnswer(${index})">
+
+                        ${String.fromCharCode(65+index)})
+                        ${option}
+
+                    </label>
+
+                `).join("")}
+
+            </div>
+
+
+            <div
+                class="answer-box"
+                id="answerBox">
+
+                <div class="answer-title">
+
+                    ✅ சரியான விடை:
+                    <span id="correctAnswer"></span>
+
+                </div>
+
+
+                <div class="explanation-title">
+
+                    📖 விளக்கம்:
+
+                </div>
+
+
+                <div
+                    class="explanation"
+                    id="explanation">
+
+                </div>
+
+
+                <div class="next-area">
+
+                    <button
+                        class="next-btn"
+                        onclick="nextQuestion()">
+
+                        ${currentQuestion === questions.length - 1
+                            ? "🏁 முடிவைப் பார்க்க"
+                            : "➡️ அடுத்த கேள்வி"}
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    /* Progress */
+
+    const progress =
+        ((currentQuestion + 1) / questions.length) * 100;
+
+    document.getElementById("progress").style.width =
+        progress + "%";
+
+
+    document.getElementById("questionCount").innerText =
+        `${currentQuestion + 1} / ${questions.length}`;
+
+
+    document.getElementById("scoreDisplay").innerText =
+        score;
+
+}
+
+
+/* =====================================================
+   CHECK ANSWER
+===================================================== */
+
+function checkAnswer(selectedIndex){
+
+    const q = questions[currentQuestion];
+
+    const allOptions =
+        document.querySelectorAll(".option");
+
+
+    /* Disable all answers */
+
+    allOptions.forEach(option => {
+
+        option.style.pointerEvents = "none";
+
+    });
+
+
+    /* Correct answer */
+
+    const correctOption =
+        document.getElementById(
+            `option-${q.answer}`
+        );
+
+
+    correctOption.classList.add("correct");
+
+
+    /* Selected answer */
+
+    const selectedOption =
+        document.getElementById(
+            `option-${selectedIndex}`
+        );
+
+
+    if(selectedIndex === q.answer){
+
+        score++;
+
+        selectedOption.innerHTML +=
+            " &nbsp; ✅ சரியான விடை!";
+
+    }
+
+    else{
+
+        selectedOption.classList.add("wrong");
+
+        selectedOption.innerHTML +=
+            " &nbsp; ❌ தவறான விடை!";
+
+        correctOption.innerHTML +=
+            " &nbsp; ✅ சரியான விடை!";
+
+    }
+
+
+    /* Show explanation */
+
+    document.getElementById("correctAnswer").innerText =
+        q.options[q.answer];
+
+
+    document.getElementById("explanation").innerHTML =
+        q.explanation;
+
+
+    document.getElementById("answerBox").style.display =
+        "block";
+
+
+    document.getElementById("scoreDisplay").innerText =
+        score;
+
+}
+
+
+/* =====================================================
+   NEXT QUESTION
+===================================================== */
+
+function nextQuestion(){
+
+    if(currentQuestion < questions.length - 1){
+
+        currentQuestion++;
+
+        loadQuestion();
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    }
+
+    else{
+
+        showResult();
+
+    }
+
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+function showResult(){
+
+    clearInterval(timer);
+
+    document.getElementById("quiz").style.display =
+        "none";
+
+    document.querySelector(".info-bar").style.display =
+        "none";
+
+    document.querySelector(".progress-container").style.display =
+        "none";
+
+
+    const result =
+        document.getElementById("result");
+
+    result.style.display =
+        "block";
+
+
+    const percentage =
+        Math.round(
+            (score / questions.length) * 100
+        );
+
+
+    document.getElementById("finalScore").innerText =
+        `${score} / ${questions.length}`;
+
+
+    document.getElementById("percentage").innerText =
+        `${percentage}%`;
+
+
+    let message;
+
+
+    if(percentage >= 80){
+
+        message =
+            "🔥 அருமை! உங்கள் Simplification கணக்குத் திறன் நன்றாக உள்ளது.";
+
+    }
+
+    else if(percentage >= 60){
+
+        message =
+            "👍 நல்ல முயற்சி! இன்னும் கொஞ்சம் tricky questions practice செய்யுங்கள்.";
+
+    }
+
+    else{
+
+        message =
+            "📚 தொடர்ந்து practice செய்யுங்கள். BODMAS, Fraction, Percentage ஆகியவற்றில் கவனம் செலுத்துங்கள்.";
+
+    }
+
+
+    document.getElementById("finalMessage").innerText =
+        message;
+
+}
+
+
+/* =====================================================
+   TIMER
+===================================================== */
+
+function startTimer(){
+
+    timer =
+    setInterval(()=>{
+
+        let minutes =
+            Math.floor(timeLeft / 60);
+
+        let seconds =
+            timeLeft % 60;
+
+
+        document.getElementById("timer").innerText =
+
+            `${minutes}:${seconds
+                .toString()
+                .padStart(2,"0")}`;
+
+
+        if(timeLeft <= 60){
+
+            document.getElementById("timer").style.background =
+                "#dc2626";
+
+            document.getElementById("timer").style.color =
+                "white";
+
+        }
+
+
+        if(timeLeft <= 0){
+
+            clearInterval(timer);
+
+            showResult();
+
+        }
+
+
+        timeLeft--;
+
+    },1000);
+
+}
+
+
+/* =====================================================
+   RESTART
+===================================================== */
+
+function restartQuiz(){
+
+    location.reload();
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadQuestion();
+
+startTimer();
+
+
+</script>
+
+</body>
+</html>
