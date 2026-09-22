@@ -1,1287 +1,814 @@
 <!DOCTYPE html>
 <html lang="ta">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🚔 SI TEST — தமிழ்நாடு SI தேர்வு பயிற்சி தளம்</title>
+  <meta name="description" content="தமிழ்நாடு காவல்துறை SI தேர்வுக்கான கணிதம் மற்றும் பொது அறிவு தினசரி பயிற்சி தளம்.">
+  
+  <!-- Google Fonts: Noto Sans Tamil & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'Noto Sans Tamil', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- React 18 & ReactDOM UMD -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  
+  <!-- Babel Standalone for in-browser JSX parsing -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-<title>TNSURB கணிதம் - Simplification Quiz</title>
-
-<style>
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-body{
-    font-family:"Noto Sans Tamil","Latha","Arial",sans-serif;
-    background:#f1f5f9;
-    color:#172033;
-}
-
-/* ================= HEADER ================= */
-
-.header{
-    background:linear-gradient(135deg,#1d4ed8,#2563eb);
-    color:white;
-    padding:28px 15px;
-    text-align:center;
-}
-
-.header h1{
-    font-size:30px;
-    margin-bottom:8px;
-}
-
-.header p{
-    font-size:16px;
-    opacity:.95;
-}
-
-/* ================= CONTAINER ================= */
-
-.container{
-    max-width:850px;
-    margin:25px auto;
-    padding:0 15px;
-}
-
-/* ================= INFO BAR ================= */
-
-.info-bar{
-    background:white;
-    padding:16px;
-    border-radius:12px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-    box-shadow:0 3px 12px rgba(0,0,0,.07);
-}
-
-.info-box{
-    font-size:15px;
-}
-
-.timer{
-    background:#fee2e2;
-    color:#dc2626;
-    padding:9px 16px;
-    border-radius:8px;
-    font-weight:bold;
-}
-
-/* ================= QUESTION ================= */
-
-.question-card{
-    background:white;
-    padding:25px;
-    margin-bottom:20px;
-    border-radius:15px;
-    box-shadow:0 3px 12px rgba(0,0,0,.07);
-}
-
-.question-number{
-    color:#2563eb;
-    font-weight:bold;
-    margin-bottom:12px;
-}
-
-.question{
-    font-size:20px;
-    font-weight:bold;
-    margin-bottom:20px;
-}
-
-/* ================= OPTIONS ================= */
-
-.option{
-    display:flex;
-    align-items:center;
-    border:1px solid #dbe2ea;
-    padding:14px;
-    margin:10px 0;
-    border-radius:10px;
-    cursor:pointer;
-    transition:.2s;
-    background:white;
-}
-
-.option:hover{
-    background:#eff6ff;
-    border-color:#2563eb;
-}
-
-.option input{
-    margin-right:12px;
-    transform:scale(1.15);
-}
-
-.option.correct{
-    background:#dcfce7 !important;
-    border:2px solid #16a34a !important;
-    color:#166534;
-}
-
-.option.wrong{
-    background:#fee2e2 !important;
-    border:2px solid #dc2626 !important;
-    color:#991b1b;
-}
-
-/* ================= ANSWER BOX ================= */
-
-.answer-box{
-    display:none;
-    margin-top:20px;
-    padding:20px;
-    border-radius:12px;
-    background:#f8fafc;
-    border-left:5px solid #2563eb;
-}
-
-.answer-title{
-    font-size:18px;
-    font-weight:bold;
-    color:#166534;
-    margin-bottom:10px;
-}
-
-.explanation-title{
-    margin-top:18px;
-    margin-bottom:8px;
-    font-weight:bold;
-    color:#1d4ed8;
-}
-
-.explanation{
-    line-height:1.8;
-    font-size:16px;
-}
-
-/* ================= NEXT BUTTON ================= */
-
-.next-area{
-    text-align:right;
-    margin-top:20px;
-}
-
-.next-btn{
-    background:#2563eb;
-    color:white;
-    border:none;
-    padding:12px 25px;
-    border-radius:9px;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.next-btn:hover{
-    background:#1d4ed8;
-}
-
-/* ================= RESULT ================= */
-
-.result{
-    display:none;
-    background:white;
-    padding:35px 25px;
-    text-align:center;
-    border-radius:15px;
-    box-shadow:0 4px 15px rgba(0,0,0,.1);
-}
-
-.result h2{
-    margin-bottom:15px;
-}
-
-.score{
-    font-size:45px;
-    font-weight:bold;
-    color:#2563eb;
-    margin:15px;
-}
-
-.percentage{
-    font-size:22px;
-    font-weight:bold;
-    margin-bottom:15px;
-}
-
-.message{
-    font-size:17px;
-    margin-bottom:20px;
-}
-
-.restart-btn{
-    background:#16a34a;
-    color:white;
-    border:none;
-    padding:12px 28px;
-    border-radius:9px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-/* ================= PROGRESS ================= */
-
-.progress-container{
-    background:#e2e8f0;
-    height:8px;
-    border-radius:10px;
-    overflow:hidden;
-    margin-top:10px;
-}
-
-.progress{
-    height:100%;
-    width:0%;
-    background:#2563eb;
-    transition:.3s;
-}
-
-/* ================= MOBILE ================= */
-
-@media(max-width:600px){
-
-    .header h1{
-        font-size:23px;
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    .info-bar{
-        flex-direction:column;
-        gap:10px;
+    body {
+      font-family: 'Outfit', 'Noto Sans Tamil', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .question{
-        font-size:18px;
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
     }
 
-    .question-card{
-        padding:18px;
+    .animate-shake {
+      animation: shake 0.35s ease-in-out;
     }
 
-}
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-</style>
-
+    .animate-fadeIn {
+      animation: fadeIn 0.25s ease-out forwards;
+    }
+  </style>
 </head>
-
-
-<body>
-
-
-<!-- ================= HEADER ================= -->
-
-<div class="header">
-
-    <h1>🔥 TNSURB கணிதப் பயிற்சி</h1>
-
-    <p>
-        Simplification – Tricky & Hard Level
-    </p>
-
-</div>
-
-
-<div class="container">
-
-
-<!-- ================= INFO ================= -->
-
-<div class="info-bar">
-
-    <div class="info-box">
-        <b>கேள்வி:</b>
-        <span id="questionCount">1 / 25</span>
-    </div>
-
-    <div class="info-box">
-        <b>மதிப்பெண்:</b>
-        <span id="scoreDisplay">0</span>
-    </div>
-
-    <div class="timer" id="timer">
-        25:00
-    </div>
-
-</div>
-
-
-<!-- PROGRESS -->
-
-<div class="progress-container">
-
-    <div
-        class="progress"
-        id="progress">
-    </div>
-
-</div>
-
-
-<br>
-
-
-<!-- ================= QUIZ ================= -->
-
-<div id="quiz"></div>
-
-
-<!-- ================= RESULT ================= -->
-
-<div
-    class="result"
-    id="result">
-
-    <h2>🎉 தேர்வு முடிந்தது!</h2>
-
-    <div
-        class="score"
-        id="finalScore">
-    </div>
-
-    <div
-        class="percentage"
-        id="percentage">
-    </div>
-
-    <div
-        class="message"
-        id="finalMessage">
-    </div>
-
-    <button
-        class="restart-btn"
-        onclick="restartQuiz()">
-
-        🔄 மீண்டும் தொடங்கு
-
-    </button>
-
-</div>
-
-
-</div>
-
-
-<script>
-
-
-/* =====================================================
-   QUESTIONS
-===================================================== */
-
-
-const questions = [
-
-{
-    question:"48 ÷ 4 × (6 − 2) + 5 = ?",
-
-    options:[
-        "45",
-        "48",
-        "53",
-        "57"
-    ],
-
-    answer:2,
-
-    explanation:
-    "முதலில் அடைப்புக்குறியைத் தீர்க்க வேண்டும்.<br><br>" +
-    "(6 − 2) = 4<br><br>" +
-    "பின்னர் 48 ÷ 4 = 12<br><br>" +
-    "12 × 4 = 48<br><br>" +
-    "48 + 5 = <b>53</b><br><br>" +
-    "எனவே சரியான விடை = <b>53</b>."
-},
-
-
-{
-    question:"72 − {18 + 6 × (5 − 2)} = ?",
-
-    options:[
-        "30",
-        "36",
-        "42",
-        "48"
-    ],
-
-    answer:2,
-
-    explanation:
-    "(5 − 2) = 3<br><br>" +
-    "6 × 3 = 18<br><br>" +
-    "18 + 18 = 36<br><br>" +
-    "72 − 36 = <b>36</b>.<br><br>" +
-    "எனவே சரியான விடை = <b>36</b>."
-},
-
-
-{
-    question:"3/4 × 64 + 2/5 × 75 − 18 = ?",
-
-    options:[
-        "72",
-        "78",
-        "82",
-        "86"
-    ],
-
-    answer:1,
-
-    explanation:
-    "முதலில் பின்னங்களின் பெருக்கலைச் செய்யலாம்.<br><br>" +
-    "3/4 × 64 = 48<br><br>" +
-    "2/5 × 75 = 30<br><br>" +
-    "48 + 30 − 18 = <b>60</b>.<br><br>" +
-    "⚠️ கவனம்: கொடுக்கப்பட்ட options-ல் 60 இல்லை. " +
-    "எனவே இந்த கேள்வி/option அமைப்பில் பிழை உள்ளது."
-},
-
-
-{
-    question:"5/8 + 7/12 − 1/6 = ?",
-
-    options:[
-        "11/24",
-        "19/24",
-        "23/24",
-        "25/24"
-    ],
-
-    answer:1,
-
-    explanation:
-    "8, 12, 6 ஆகியவற்றின் LCM = 24.<br><br>" +
-    "5/8 = 15/24<br>" +
-    "7/12 = 14/24<br>" +
-    "1/6 = 4/24<br><br>" +
-    "15 + 14 − 4 = 25<br><br>" +
-    "விடை = <b>25/24</b>.<br><br>" +
-    "⚠️ இங்கு சரியான option D. கேள்வியின் answer key-யை கவனமாகச் சரிபார்க்கவும்."
-},
-
-
-{
-    question:"25% of 360 + 20% of 250 = ?",
-
-    options:[
-        "120",
-        "130",
-        "140",
-        "150"
-    ],
-
-    answer:2,
-
-    explanation:
-    "25% of 360 = 90<br><br>" +
-    "20% of 250 = 50<br><br>" +
-    "90 + 50 = <b>140</b>.<br><br>" +
-    "சரியான விடை = <b>140</b>."
-},
-
-
-{
-    question:"0.75 × 240 + 1.25 × 80 = ?",
-
-    options:[
-        "260",
-        "270",
-        "280",
-        "290"
-    ],
-
-    answer:2,
-
-    explanation:
-    "0.75 × 240 = 180<br><br>" +
-    "1.25 × 80 = 100<br><br>" +
-    "180 + 100 = <b>280</b>."
-},
-
-
-{
-    question:"100 ÷ 5 × (2 + 3) = ?",
-
-    options:[
-        "4",
-        "20",
-        "25",
-        "100"
-    ],
-
-    answer:3,
-
-    explanation:
-    "(2 + 3) = 5<br><br>" +
-    "100 ÷ 5 = 20<br><br>" +
-    "20 × 5 = <b>100</b>.<br><br>" +
-    "சரியான விடை = <b>100</b>."
-},
-
-
-{
-    question:"2/3 ÷ 4/9 + 3/5 × 10/9 = ?",
-
-    options:[
-        "7/6",
-        "4/3",
-        "3/2",
-        "5/3"
-    ],
-
-    answer:2,
-
-    explanation:
-    "முதலில் வகுத்தலைத் தீர்க்கவும்.<br><br>" +
-    "2/3 ÷ 4/9<br>" +
-    "= 2/3 × 9/4<br>" +
-    "= 3/2<br><br>" +
-    "3/5 × 10/9 = 2/3<br><br>" +
-    "3/2 + 2/3<br>" +
-    "= 9/6 + 4/6<br>" +
-    "= <b>13/6</b>.<br><br>" +
-    "⚠️ கொடுக்கப்பட்ட options-ல் 13/6 இல்லை. இந்த கேள்வியின் options-ல் பிழை உள்ளது."
-},
-
-
-{
-    question:"7/8 of 96 − 3/5 of 100 = ?",
-
-    options:[
-        "24",
-        "26",
-        "28",
-        "30"
-    ],
-
-    answer:2,
-
-    explanation:
-    "7/8 × 96 = 84<br><br>" +
-    "3/5 × 100 = 60<br><br>" +
-    "84 − 60 = <b>24</b>.<br><br>" +
-    "⚠️ சரியான option A. Options-ஐ கவனமாகப் படிக்கவும்."
-},
-
-
-{
-    question:"144/12 + 196/14 − 225/15 = ?",
-
-    options:[
-        "9",
-        "10",
-        "11",
-        "12"
-    ],
-
-    answer:1,
-
-    explanation:
-    "144 ÷ 12 = 12<br>" +
-    "196 ÷ 14 = 14<br>" +
-    "225 ÷ 15 = 15<br><br>" +
-    "12 + 14 − 15 = <b>11</b>."
-},
-
-
-{
-    question:"18 + 24 ÷ 6 × 3 − 7 = ?",
-
-    options:[
-        "19",
-        "21",
-        "23",
-        "25"
-    ],
-
-    answer:1,
-
-    explanation:
-    "முதலில் ÷ மற்றும் ×.<br><br>" +
-    "24 ÷ 6 = 4<br>" +
-    "4 × 3 = 12<br><br>" +
-    "18 + 12 − 7 = <b>23</b>.<br><br>" +
-    "⚠️ சரியான option C."
-},
-
-
-{
-    question:"(5/6 + 3/4) ÷ 19/12 = ?",
-
-    options:[
-        "1",
-        "19/12",
-        "12/19",
-        "5/4"
-    ],
-
-    answer:0,
-
-    explanation:
-    "5/6 + 3/4<br><br>" +
-    "LCM = 12<br>" +
-    "10/12 + 9/12 = 19/12<br><br>" +
-    "(19/12) ÷ (19/12) = <b>1</b>."
-},
-
-
-{
-    question:"35% of 240 − 15% of 160 = ?",
-
-    options:[
-        "58",
-        "60",
-        "62",
-        "64"
-    ],
-
-    answer:1,
-
-    explanation:
-    "35% of 240 = 84<br><br>" +
-    "15% of 160 = 24<br><br>" +
-    "84 − 24 = <b>60</b>."
-},
-
-
-{
-    question:"2.4 ÷ 0.6 + 3.5 × 2 − 1.5 = ?",
-
-    options:[
-        "8.5",
-        "9.5",
-        "10.5",
-        "11.5"
-    ],
-
-    answer:1,
-
-    explanation:
-    "2.4 ÷ 0.6 = 4<br>" +
-    "3.5 × 2 = 7<br><br>" +
-    "4 + 7 − 1.5 = <b>9.5</b>."
-},
-
-
-{
-    question:"4/5 × (75 − 3/5 × 50) = ?",
-
-    options:[
-        "45",
-        "48",
-        "50",
-        "52"
-    ],
-
-    answer:1,
-
-    explanation:
-    "3/5 × 50 = 30<br><br>" +
-    "75 − 30 = 45<br><br>" +
-    "4/5 × 45 = 36.<br><br>" +
-    "⚠️ சரியான விடை 36. கொடுக்கப்பட்ட options-ல் 36 இல்லை."
-},
-
-
-{
-    question:"3/7 × 14/9 ÷ 2/3 = ?",
-
-    options:[
-        "1",
-        "7/6",
-        "3/2",
-        "2"
-    ],
-
-    answer:0,
-
-    explanation:
-    "3/7 × 14/9 = 2/3<br><br>" +
-    "2/3 ÷ 2/3 = <b>1</b>."
-},
-
-
-{
-    question:"[36 − {12 + 4 × 3}] ÷ 2 + 7 = ?",
-
-    options:[
-        "10",
-        "11",
-        "12",
-        "13"
-    ],
-
-    answer:2,
-
-    explanation:
-    "4 × 3 = 12<br><br>" +
-    "12 + 12 = 24<br><br>" +
-    "36 − 24 = 12<br><br>" +
-    "12 ÷ 2 = 6<br><br>" +
-    "6 + 7 = <b>13</b>.<br><br>" +
-    "⚠️ சரியான option D."
-},
-
-
-{
-    question:"5/9 of 81 + 7/11 of 121 − 25 = ?",
-
-    options:[
-        "55",
-        "60",
-        "65",
-        "70"
-    ],
-
-    answer:1,
-
-    explanation:
-    "5/9 × 81 = 45<br>" +
-    "7/11 × 121 = 77<br><br>" +
-    "45 + 77 − 25 = <b>97</b>.<br><br>" +
-    "⚠️ options-ல் 97 இல்லை."
-},
-
-
-{
-    question:"1/2 + 1/3 ÷ 2/9 − 1/4 = ?",
-
-    options:[
-        "7/4",
-        "9/4",
-        "11/4",
-        "13/4"
-    ],
-
-    answer:2,
-
-    explanation:
-    "முதலில் வகுத்தல்.<br><br>" +
-    "1/3 ÷ 2/9<br>" +
-    "= 1/3 × 9/2<br>" +
-    "= 3/2<br><br>" +
-    "1/2 + 3/2 − 1/4<br>" +
-    "= 2 − 1/4<br>" +
-    "= <b>7/4</b>.<br><br>" +
-    "⚠️ சரியான option A."
-},
-
-
-{
-    question:"15% of 600 + 12.5% of 400 − 30% of 150 = ?",
-
-    options:[
-        "95",
-        "100",
-        "105",
-        "110"
-    ],
-
-    answer:2,
-
-    explanation:
-    "15% of 600 = 90<br>" +
-    "12.5% of 400 = 50<br>" +
-    "30% of 150 = 45<br><br>" +
-    "90 + 50 − 45 = <b>95</b>.<br><br>" +
-    "⚠️ சரியான option A."
-},
-
-
-{
-    question:"40 ÷ 5 × 2 + 6 = ?",
-
-    options:[
-        "10",
-        "14",
-        "22",
-        "46"
-    ],
-
-    answer:2,
-
-    explanation:
-    "÷ மற்றும் × ஒரே priority.<br>" +
-    "இடமிருந்து வலமாகச் செய்ய வேண்டும்.<br><br>" +
-    "40 ÷ 5 = 8<br>" +
-    "8 × 2 = 16<br>" +
-    "16 + 6 = <b>22</b>."
-},
-
-
-{
-    question:"3/4 of (80 − 1/2 of 40) = ?",
-
-    options:[
-        "40",
-        "45",
-        "50",
-        "55"
-    ],
-
-    answer:1,
-
-    explanation:
-    "1/2 of 40 = 20<br><br>" +
-    "80 − 20 = 60<br><br>" +
-    "3/4 × 60 = <b>45</b>."
-},
-
-
-{
-    question:"(2/3 + 3/4) × 12/17 = ?",
-
-    options:[
-        "1",
-        "17/12",
-        "12/17",
-        "3/2"
-    ],
-
-    answer:0,
-
-    explanation:
-    "2/3 + 3/4<br><br>" +
-    "LCM = 12<br>" +
-    "8/12 + 9/12 = 17/12<br><br>" +
-    "17/12 × 12/17 = <b>1</b>."
-},
-
-
-{
-    question:"75% of 240 ÷ 20% of 300 = ?",
-
-    options:[
-        "2",
-        "2.5",
-        "3",
-        "3.5"
-    ],
-
-    answer:2,
-
-    explanation:
-    "75% of 240 = 180<br><br>" +
-    "20% of 300 = 60<br><br>" +
-    "180 ÷ 60 = <b>3</b>."
-},
-
-
-{
-    question:"[5/6 − (3/4 − 1/3)] ÷ 7/12 = ?",
-
-    options:[
-        "5/7",
-        "6/7",
-        "7/6",
-        "8/7"
-    ],
-
-    answer:2,
-
-    explanation:
-    "முதலில் அடைப்புக்குறி:<br><br>" +
-    "3/4 − 1/3<br>" +
-    "= 9/12 − 4/12<br>" +
-    "= 5/12<br><br>" +
-    "5/6 = 10/12<br><br>" +
-    "10/12 − 5/12 = 5/12<br><br>" +
-    "(5/12) ÷ (7/12)<br>" +
-    "= 5/12 × 12/7<br>" +
-    "= <b>5/7</b>.<br><br>" +
-    "⚠️ சரியான option A."
-
-}
-
-];
-
-
-/* =====================================================
-   VARIABLES
-===================================================== */
-
-let currentQuestion = 0;
-
-let score = 0;
-
-let timeLeft = 25 * 60;
-
-let timer;
-
-
-/* =====================================================
-   LOAD QUESTION
-===================================================== */
-
-function loadQuestion(){
-
-    const q = questions[currentQuestion];
-
-    const quiz = document.getElementById("quiz");
-
-    quiz.innerHTML = `
-
-        <div class="question-card">
-
-            <div class="question-number">
-
-                கேள்வி ${currentQuestion + 1}
-
+<body class="bg-slate-50 text-slate-900 min-h-screen">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useMemo } = React;
+
+    /* =========================================================================
+       1. DATA STRUCTURES & VERIFIED QUESTION BANKS
+       ========================================================================= */
+
+    const SUBJECTS = [
+      {
+        id: "mathematics",
+        nameTamil: "கணிதம்",
+        nameEnglish: "Mathematics",
+        icon: "🧮",
+        description: "BODMAS, பின்னங்கள், இலாபம் நட்டம் மற்றும் சிறப்புத் தொடர்கள்.",
+        topics: [
+          {
+            id: "simplification",
+            nameTamil: "எளிமைப்படுத்துதல்",
+            nameEnglish: "Simplification",
+            icon: "🧮",
+            description: "BODMAS விதி, பின்னங்கள், தசமங்கள் மற்றும் சதவிகிதக் கணக்குகள்.",
+            totalDays: 10,
+            questionsPerDay: 10
+          },
+          {
+            id: "profit-loss",
+            nameTamil: "இலாபம் & நட்டம்",
+            nameEnglish: "Profit & Loss",
+            icon: "💰",
+            description: "CP, SP, இலாப/நட்ட %, தள்ளுபடி மற்றும் குறித்த விலை.",
+            totalDays: 10,
+            questionsPerDay: 10
+          },
+          {
+            id: "special-series",
+            nameTamil: "சிறப்புத் தொடர்",
+            nameEnglish: "Special Series",
+            icon: "🔢",
+            description: "இயல் எண்கள் கூடுதல் (Σn, Σn², Σn³), AP, GP மற்றும் எண் தொடர்.",
+            totalDays: 10,
+            questionsPerDay: 10
+          }
+        ]
+      },
+      {
+        id: "english",
+        nameTamil: "ஆங்கிலம்",
+        nameEnglish: "English",
+        icon: "📘",
+        description: "Prepositions மற்றும் Grammar பயிற்சிகள்.",
+        topics: [
+          {
+            id: "preposition",
+            nameTamil: "முன்னுருபுகள் (Preposition)",
+            nameEnglish: "Preposition",
+            icon: "📝",
+            description: "In, On, At, By, With, Under ஆகியவற்றின் பயன்பாடுகள்.",
+            totalDays: 10,
+            questionsPerDay: 10
+          }
+        ]
+      },
+      {
+        id: "psychology",
+        nameTamil: "உளவியல்",
+        nameEnglish: "Psychology",
+        icon: "🧠",
+        description: "திசைகள் (Direction Sense) மற்றும் Logical Reasoning.",
+        topics: [
+          {
+            id: "direction",
+            nameTamil: "திசைகள் & தூரம்",
+            nameEnglish: "Direction Sense",
+            icon: "🧭",
+            description: "திசைக் கணக்குகள் மற்றும் கோணத் திருப்பங்கள்.",
+            totalDays: 10,
+            questionsPerDay: 10
+          }
+        ]
+      },
+      {
+        id: "chemistry",
+        nameTamil: "வேதியியல்",
+        nameEnglish: "Chemistry",
+        icon: "🧪",
+        description: "பொது அறிவியல் - காற்று மற்றும் வாயுக்கள்.",
+        topics: [
+          {
+            id: "air",
+            nameTamil: "காற்று & வாயுக்கள்",
+            nameEnglish: "Air & Gases",
+            icon: "💨",
+            description: "வளிமண்டல அடுக்குகள் மற்றும் முக்கிய வாயுக்கள்.",
+            totalDays: 10,
+            questionsPerDay: 10
+          }
+        ]
+      }
+    ];
+
+    const DAILY_SCHEDULE = [
+      { id: 1, subjectName: "ஆங்கிலம்", topicName: "Preposition (முன்னுருபுகள்)", topicId: "preposition", icon: "📘" },
+      { id: 2, subjectName: "கணிதம்", topicName: "சிறப்புத் தொடர் (Special Series)", topicId: "special-series", icon: "🔢" },
+      { id: 3, subjectName: "உளவியல்", topicName: "திசைகள் (Direction Sense)", topicId: "direction", icon: "🧠" },
+      { id: 4, subjectName: "வேதியியல்", topicName: "காற்று & வாயுக்கள் (Air)", topicId: "air", icon: "🧪" }
+    ];
+
+    // Simplification Questions
+    const SIMPLIFICATION_DATA = [
+      { id: "s-d1-1", topic: "simplification", day: 1, question: "48 ÷ 4 × (6 − 2) + 5 = ?", options: ["45", "49", "53", "57"], correctAnswer: 2, explanation: "(6 − 2) = 4\n48 ÷ 4 = 12\n12 × 4 = 48\n48 + 5 = 53.\n\nசரியான விடை = 53." },
+      { id: "s-d1-2", topic: "simplification", day: 1, question: "72 − [18 + 6 × (5 − 2)] = ?", options: ["30", "36", "42", "48"], correctAnswer: 1, explanation: "(5 − 2) = 3\n6 × 3 = 18\n18 + 18 = 36\n72 − 36 = 36." },
+      { id: "s-d1-3", topic: "simplification", day: 1, question: "100 ÷ 5 × (2 + 3) = ?", options: ["4", "20", "25", "100"], correctAnswer: 3, explanation: "(2 + 3) = 5\n100 ÷ 5 = 20\n20 × 5 = 100." },
+      { id: "s-d1-4", topic: "simplification", day: 1, question: "40 ÷ 5 × 2 + 6 = ?", options: ["10", "14", "22", "46"], correctAnswer: 2, explanation: "40 ÷ 5 = 8\n8 × 2 = 16\n16 + 6 = 22." },
+      { id: "s-d1-5", topic: "simplification", day: 1, question: "18 + 24 ÷ 6 × 3 − 7 = ?", options: ["19", "21", "23", "25"], correctAnswer: 2, explanation: "24 ÷ 6 = 4\n4 × 3 = 12\n18 + 12 − 7 = 23." },
+      { id: "s-d1-6", topic: "simplification", day: 1, question: "25% of 360 + 20% of 250 = ?", options: ["120", "130", "140", "150"], correctAnswer: 2, explanation: "90 + 50 = 140." },
+      { id: "s-d1-7", topic: "simplification", day: 1, question: "0.75 × 240 + 1.25 × 80 = ?", options: ["260", "270", "280", "290"], correctAnswer: 2, explanation: "180 + 100 = 280." },
+      { id: "s-d1-8", topic: "simplification", day: 1, question: "144/12 + 196/14 − 225/15 = ?", options: ["9", "11", "13", "15"], correctAnswer: 1, explanation: "12 + 14 − 15 = 11." },
+      { id: "s-d1-9", topic: "simplification", day: 1, question: "35% of 240 − 15% of 160 = ?", options: ["56", "60", "64", "68"], correctAnswer: 1, explanation: "84 − 24 = 60." },
+      { id: "s-d1-10", topic: "simplification", day: 1, question: "75% of 240 ÷ (20% of 300) = ?", options: ["2", "2.5", "3", "3.5"], correctAnswer: 2, explanation: "180 ÷ 60 = 3." }
+    ];
+
+    // Profit & Loss Questions
+    const PROFIT_LOSS_DATA = [
+      { id: "pl-d1-1", topic: "profit-loss", day: 1, question: "ஒருவர் ஒரு மிதிவண்டியை ₹1,400க்கு வாங்கி, 15% நட்டத்திற்கு விற்கிறார் எனில் அதன் விற்ற விலை யாது?", options: ["₹1,160", "₹1,190", "₹1,200", "₹1,220"], correctAnswer: 1, explanation: "நட்டம் = ₹210\nவிற்ற விலை = 1400 − 210 = ₹1,190." },
+      { id: "pl-d1-2", topic: "profit-loss", day: 1, question: "ஒரு மேசையின் அடக்க விலை ₹450. அதை ₹540க்கு விற்றால் கிடைக்கும் இலாப சதவீதம் யாது?", options: ["15%", "18%", "20%", "25%"], correctAnswer: 2, explanation: "இலாபம் = ₹90\nஇலாப % = (90 / 450) × 100 = 20%." },
+      { id: "pl-d1-3", topic: "profit-loss", day: 1, question: "ஒரு புத்தகத்தை ₹300க்கு வாங்கி 20% இலாபத்தில் விற்க விரும்பினால், விற்ற விலை என்ன?", options: ["₹340", "₹350", "₹360", "₹380"], correctAnswer: 2, explanation: "இலாபம் = ₹60\nவிற்ற விலை = 300 + 60 = ₹360." },
+      { id: "pl-d1-4", topic: "profit-loss", day: 1, question: "ஒருவர் ஒரு பொருளை ₹800க்கு வாங்கி ₹680க்கு விற்றால் ஏற்படும் நட்ட சதவீதம் என்ன?", options: ["12%", "15%", "16%", "18%"], correctAnswer: 1, explanation: "நட்டம் = ₹120\nநட்ட % = (120/800) × 100 = 15%." },
+      { id: "pl-d1-5", topic: "profit-loss", day: 1, question: "ஒரு நாற்காலியை ₹720க்கு விற்கும்போது 20% இலாபம் கிடைக்கிறது எனில் அதன் அடக்க விலை (CP) என்ன?", options: ["₹580", "₹600", "₹620", "₹640"], correctAnswer: 1, explanation: "120% = ₹720 => CP = ₹600." },
+      { id: "pl-d1-6", topic: "profit-loss", day: 1, question: "ஒரு கைக்கடிகாரம் ₹850க்கு விற்கப்பட்டதில் 15% நட்டம் ஏற்படுகிறது எனில் அடக்க விலை என்ன?", options: ["₹950", "₹1,000", "₹1,050", "₹1,100"], correctAnswer: 1, explanation: "85% = ₹850 => CP = ₹1,000." },
+      { id: "pl-d1-7", topic: "profit-loss", day: 1, question: "ஒரு பொருளை ₹240க்கு விற்றால் 20% நட்டம் ஏற்படுகிறது. 20% இலாபம் பெற விற்ற விலை என்ன?", options: ["₹320", "₹340", "₹360", "₹380"], correctAnswer: 2, explanation: "80% = 240 => CP = 300\n120% = ₹360." },
+      { id: "pl-d1-8", topic: "profit-loss", day: 1, question: "அடக்க விலை மற்றும் விற்ற விலையின் விகிதம் 5 : 6 எனில் இலாப சதவீதம் என்ன?", options: ["15%", "20%", "25%", "30%"], correctAnswer: 1, explanation: "இலாபம் = 1\nஇலாப % = (1/5) × 100 = 20%." },
+      { id: "pl-d1-9", topic: "profit-loss", day: 1, question: "12 பேனாக்களின் அடக்க விலை 8 பேனாக்களின் விற்ற விலைக்குச் சமம் எனில் இலாப % யாது?", options: ["33 1/3%", "40%", "50%", "60%"], correctAnswer: 2, explanation: "SP/CP = 12/8 = 3/2\nஇலாபம் = (1/2) × 100 = 50%." },
+      { id: "pl-d1-10", topic: "profit-loss", day: 1, question: "10% மற்றும் 20% தொடர் தள்ளுபடிகளுக்கு இணையான ஒற்றைத் தள்ளுபடி சதவீதம் யாது?", options: ["25%", "28%", "30%", "32%"], correctAnswer: 1, explanation: "10 + 20 − (10×20/100) = 28%." }
+    ];
+
+    // Special Series Questions
+    const SPECIAL_SERIES_DATA = [
+      { id: "ss-d1-1", topic: "special-series", day: 1, question: "முதல் 20 இயல் எண்களின் கூடுதல் யாது? (1 + 2 + 3 + ... + 20 = ?)", options: ["190", "200", "210", "220"], correctAnswer: 2, explanation: "n(n+1)/2 = (20 × 21)/2 = 210." },
+      { id: "ss-d1-2", topic: "special-series", day: 1, question: "முதல் 50 இயல் எண்களின் கூடுதல் காண்க: (1 + 2 + ... + 50)", options: ["1225", "1250", "1275", "1300"], correctAnswer: 2, explanation: "(50 × 51)/2 = 1275." },
+      { id: "ss-d1-3", topic: "special-series", day: 1, question: "11 + 12 + 13 + ... + 20 இன் மதிப்பு யாது?", options: ["145", "155", "165", "175"], correctAnswer: 1, explanation: "210 − 55 = 155." },
+      { id: "ss-d1-4", topic: "special-series", day: 1, question: "1² + 2² + 3² + ... + 10² இன் மதிப்பு யாது?", options: ["345", "365", "385", "405"], correctAnswer: 2, explanation: "[10 × 11 × 21]/6 = 385." },
+      { id: "ss-d1-5", topic: "special-series", day: 1, question: "1³ + 2³ + 3³ + ... + 10³ இன் மதிப்பு யாது?", options: ["2025", "2500", "3025", "3125"], correctAnswer: 2, explanation: "(55)² = 3025." },
+      { id: "ss-d1-6", topic: "special-series", day: 1, question: "முதல் 10 இரட்டைப்படை எண்களின் கூடுதல் என்ன? (2 + 4 + ... + 20)", options: ["100", "110", "120", "130"], correctAnswer: 1, explanation: "n(n+1) = 10 × 11 = 110." },
+      { id: "ss-d1-7", topic: "special-series", day: 1, question: "முதல் 20 ஒற்றைப்படை எண்களின் கூடுதல் யாது?", options: ["380", "400", "420", "440"], correctAnswer: 1, explanation: "n² = 20² = 400." },
+      { id: "ss-d1-8", topic: "special-series", day: 1, question: "3, 8, 13, 18, ... என்ற கூட்டுத்தொடரின் 15-வது உறுப்பு யாது?", options: ["68", "73", "78", "83"], correctAnswer: 1, explanation: "Tn = a + (n−1)d = 3 + 14(5) = 73." },
+      { id: "ss-d1-9", topic: "special-series", day: 1, question: "விடுபட்ட எண்ணைக் காண்க: 2, 5, 10, 17, 26, ?", options: ["35", "37", "39", "41"], correctAnswer: 1, explanation: "6² + 1 = 37." },
+      { id: "ss-d1-10", topic: "special-series", day: 1, question: "விடுபட்ட எண் யாது? 4, 9, 25, 49, 121, ?", options: ["144", "169", "196", "225"], correctAnswer: 1, explanation: "பகா எண்களின் வர்க்கங்கள்: 13² = 169." }
+    ];
+
+    const OTHER_SUBJECTS_DATA = [
+      // English Prepositions
+      { id: "eng-1", topic: "preposition", day: 1, question: "Choose the correct preposition: 'The SI exam will be conducted _____ Sunday.'", options: ["in", "at", "on", "for"], correctAnswer: 2, explanation: "நாட்களுக்கு முன் 'on' என்ற முன்னுருபு பயன்படும் (e.g. on Sunday)." },
+      
+      // Psychology Direction Sense (திசைகள்) - 10 Questions
+      { id: "psy-1", topic: "direction", day: 1, question: "ஒருவர் வடக்கை நோக்கி 10 மீ நடந்து, வலதுபுறம் திரும்பி 5 மீ நடக்கிறார். மீண்டும் வலதுபுறம் திரும்பி 10 மீ நடந்தால், அவர் புறப்பட்ட இடத்திலிருந்து எந்த திசையில் உள்ளார்?", options: ["வடக்கு", "கிழக்கு", "தெற்கு", "மேற்கு"], correctAnswer: 1, explanation: "1. வடக்கு 10 மீ\n2. வலது 5 மீ (கிழக்கு)\n3. வலது 10 மீ (தெற்கு)\nதொடக்க இடத்திலிருந்து நேர் கிழக்கே 5 மீ தொலைவில் உள்ளார். எனவே திசை = கிழக்கு." },
+      { id: "psy-2", topic: "direction", day: 1, question: "ஒருவர் தனது வீட்டிலிருந்து தெற்கு நோக்கி 4 கிமீ நடந்து, பின் இடதுபுறம் திரும்பி 3 கிமீ நடக்கிறார் எனில், தொடக்கப் புள்ளியிலிருந்து உள்ள குறைந்தபட்ச தூரம் யாது?", options: ["5 கிமீ", "7 கிமீ", "6 கிமீ", "4.5 கிமீ"], correctAnswer: 0, explanation: "பித்தாகரஸ் தேற்றம்: √(4² + 3²) = √(16 + 9) = √25 = 5 கிமீ." },
+      { id: "psy-3", topic: "direction", day: 1, question: "சூரிய உதயத்தின் போது ரவி ஒரு கம்பத்தை நோக்கி நிற்கிறார். கம்பத்தின் நிழல் அவரது வலதுபுறம் விழுகிறது எனில், ரவி நோக்கும் திசை யாது?", options: ["வடக்கு", "தெற்கு", "கிழக்கு", "மேற்கு"], correctAnswer: 1, explanation: "காலையில் நிழல் மேற்கில் விழும். நிழல் வலதுபுறம் இருக்க வேண்டுமானால் அவர் தெற்கு நோக்கி நிற்க வேண்டும்." },
+      { id: "psy-4", topic: "direction", day: 1, question: "மாலையில் சூரிய மறைவின் போது அருணின் நிழல் அவருக்கு நேர் எதிரில் விழுகிறது எனில், அருண் பார்க்கும் திசை யாது?", options: ["கிழக்கு", "மேற்கு", "வடக்கு", "தெற்கு"], correctAnswer: 0, explanation: "மாலையில் நிழல் கிழக்கில் விழும். நிழல் எதிரே உள்ளதால் அவர் கிழக்கு நோக்கி நிற்கிறார்." },
+      { id: "psy-5", topic: "direction", day: 1, question: "ஒருவர் வடகிழக்கு (North-East) நோக்கி நிற்கிறார். அவர் கடிகார முள் திசையில் (Clockwise) 90° திரும்பினால் நோக்கும் திசை யாது?", options: ["தென்கிழக்கு", "தென்மேற்கு", "வடமேற்கு", "கிழக்கு"], correctAnswer: 0, explanation: "வடகிழக்கு (45°) + 90° = 135° = தென்கிழக்கு (South-East)." },
+      { id: "psy-6", topic: "direction", day: 1, question: "ஒருவர் மேற்கை நோக்கி நிற்கிறார். அவர் கடிகார முள் எதிர் திசையில் (Anticlockwise) 135° திரும்பினால் நோக்கும் திசை என்ன?", options: ["தென்கிழக்கு", "தென்மேற்கு", "வடகிழக்கு", "வடமேற்கு"], correctAnswer: 0, explanation: "மேற்கிலிருந்து இடதுபுறம் 135° திரும்பினால் தென்கிழக்கு (South-East)." },
+      { id: "psy-7", topic: "direction", day: 1, question: "A என்பவர் Bக்கு கிழக்கே 6 கிமீ தூரத்திலும், C என்பவர் Bக்கு வடக்கே 8 கிமீ தூரத்திலும் இருந்தால், A மற்றும் Cக்கு இடையேயான தூரம் யாது?", options: ["10 கிமீ", "12 கிமீ", "14 கிமீ", "16 கிமீ"], correctAnswer: 0, explanation: "AC = √(6² + 8²) = √(36 + 64) = √100 = 10 கிமீ." },
+      { id: "psy-8", topic: "direction", day: 1, question: "கடிகாரத்தில் நேரம் 4:30. நிமிட முள் கிழக்கு திசையைக் காட்டினால் மணி முள் எந்த திசையைக் காட்டும்?", options: ["வடகிழக்கு", "தென்கிழக்கு", "தென்மேற்கு", "வடமேற்கு"], correctAnswer: 0, explanation: "6 மணி பகுதி கிழக்கு எனில் 4:30 பகுதி வடகிழக்கு (North-East) திசையைக் காட்டும்." },
+      { id: "psy-9", topic: "direction", day: 1, question: "ஒரு பெண் தெற்கு நோக்கி 12 மீ ஓடி, பின் கிழக்கு நோக்கி 5 மீ ஓடினால், புறப்பட்ட இடத்திலிருந்து உள்ள தூரம் மற்றும் திசை யாது?", options: ["13 மீ, தென்கிழக்கு", "13 மீ, தென்மேற்கு", "17 மீ, தென்கிழக்கு", "15 மீ, கிழக்கு"], correctAnswer: 0, explanation: "தூரம் = √(12² + 5²) = √169 = 13 மீ. திசை = தென்கிழக்கு." },
+      { id: "psy-10", topic: "direction", day: 1, question: "ஒருவர் வடக்கே 5 கிமீ நடந்து, வலது திரும்பி 3 கிமீ, மீண்டும் வலது திரும்பி 5 கிமீ நடந்தால், புறப்பட்ட இடத்திலிருந்து எவ்வளவு தூரத்தில் உள்ளார்?", options: ["3 கிமீ", "5 கிமீ", "8 கிமீ", "13 கிமீ"], correctAnswer: 0, explanation: "வடக்கே 5 சென்று மீண்டும் தெற்கே 5 வந்துவிட்டதால் எஞ்சிய தூரம் 3 கிமீ (கிழக்கு)." },
+
+      // Chemistry Air
+      { id: "chem-1", topic: "air", day: 1, question: "வளிமண்டல காற்றில் அதிக அளவில் காணப்படும் வாயு எது?", options: ["ஆக்ஸிஜன்", "நைட்ரஜன்", "கார்பன் டை ஆக்சைடு", "ஆர்கான்"], correctAnswer: 1, explanation: "காற்றில் நைட்ரஜன் வாயு சுமார் 78.08% அதிக அளவில் உள்ளது." }
+    ];
+
+    /* =========================================================================
+       2. USER'S EXACT CUSTOM DIALOGUES
+       ========================================================================= */
+    const USER_FEEDBACK = {
+      correct: [
+        "wow supper yeruma",
+        "okay correct ah solitiyee",
+        "vera level pooo",
+        "mm supper sathiya seelan"
+      ],
+      wrong: [
+        "Poo oru oru wrong answer ku vj gopi paru munneritey irukangaa? ne wrong answer potutu iruka",
+        "ena padichiyoo therlaiyee,Practice pannu 1 year waste , intha year um wast ahh.",
+        "Ipti paducha epo police agurathu SI sir.",
+        "Enaiiya vitu foreign than poga poriyaa."
+      ]
+    };
+
+    function getUserFeedback(isCorrect) {
+      const list = isCorrect ? USER_FEEDBACK.correct : USER_FEEDBACK.wrong;
+      const idx = Math.floor(Math.random() * list.length);
+      return list[idx];
+    }
+
+    /* =========================================================================
+       3. UTILITIES
+       ========================================================================= */
+    const TAMIL_MONTHS = ["ஜனவரி", "பிப்ரவரி", "மார்ச்", "ஏப்ரல்", "மே", "ஜூன்", "ஜூலை", "ஆகஸ்ட்", "செப்டம்பர்", "அக்டோபர்", "நவம்பர்", "டிசம்பர்"];
+
+    function getFormattedTamilDate(offsetDays = 0) {
+      const d = new Date();
+      if (offsetDays > 0) d.setDate(d.getDate() + offsetDays);
+      return `${d.getDate()} ${TAMIL_MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+    }
+
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+    }
+
+    /* =========================================================================
+       4. MAIN REACT APP COMPONENT (NEAT & CLEAN UI)
+       ========================================================================= */
+    function App() {
+      const [currentView, setCurrentView] = useState("home"); // "home" | "topic" | "test" | "result" | "progress"
+      const [activeTopicId, setActiveTopicId] = useState("simplification");
+      const [activeDay, setActiveDay] = useState(1);
+      
+      // Test states
+      const [testState, setTestState] = useState("instructions");
+      const [currentQIndex, setCurrentQIndex] = useState(0);
+      const [selectedOption, setSelectedOption] = useState(null);
+      const [isAnswerRevealed, setIsAnswerRevealed] = useState(false);
+      const [score, setScore] = useState(0);
+      const [feedbackMsg, setFeedbackMsg] = useState("");
+      const [secondsLeft, setSecondsLeft] = useState(600);
+      const [timerRunning, setTimerRunning] = useState(false);
+      const [lastResult, setLastResult] = useState(null);
+
+      // Get questions
+      const currentQuestions = useMemo(() => {
+        let pool = [];
+        if (activeTopicId === "simplification") pool = SIMPLIFICATION_DATA;
+        else if (activeTopicId === "profit-loss") pool = PROFIT_LOSS_DATA;
+        else if (activeTopicId === "special-series") pool = SPECIAL_SERIES_DATA;
+        else pool = OTHER_SUBJECTS_DATA.filter(q => q.topic === activeTopicId);
+
+        const dayQs = pool.filter(q => q.day === activeDay);
+        return dayQs.length > 0 ? dayQs : pool.slice(0, 10);
+      }, [activeTopicId, activeDay]);
+
+      // Timer
+      useEffect(() => {
+        if (!timerRunning) return;
+        const interval = setInterval(() => {
+          setSecondsLeft(prev => {
+            if (prev <= 1) {
+              clearInterval(interval);
+              finishTest();
+              return 0;
+            }
+            return prev - 1;
+          });
+        }, 1000);
+        return () => clearInterval(interval);
+      }, [timerRunning]);
+
+      const navigateTo = (view, topicId = null, day = null) => {
+        if (topicId) setActiveTopicId(topicId);
+        if (day) setActiveDay(day);
+        setCurrentView(view);
+        setTestState("instructions");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      };
+
+      const startQuiz = () => {
+        setTestState("playing");
+        setCurrentQIndex(0);
+        setSelectedOption(null);
+        setIsAnswerRevealed(false);
+        setScore(0);
+        setFeedbackMsg("");
+        setSecondsLeft(600);
+        setTimerRunning(true);
+      };
+
+      const handleOptionSelect = (index) => {
+        if (isAnswerRevealed) return;
+        const q = currentQuestions[currentQIndex];
+        const isCorrect = index === q.correctAnswer;
+
+        setSelectedOption(index);
+        setIsAnswerRevealed(true);
+        if (isCorrect) setScore(s => s + 1);
+
+        const msg = getUserFeedback(isCorrect);
+        setFeedbackMsg(msg);
+      };
+
+      const handleNextQuestion = () => {
+        if (currentQIndex < currentQuestions.length - 1) {
+          setCurrentQIndex(prev => prev + 1);
+          setSelectedOption(null);
+          setIsAnswerRevealed(false);
+          setFeedbackMsg("");
+        } else {
+          finishTest();
+        }
+      };
+
+      const finishTest = () => {
+        setTimerRunning(false);
+        setLastResult({
+          topicId: activeTopicId,
+          day: activeDay,
+          score,
+          total: currentQuestions.length,
+          percentage: Math.round((score / currentQuestions.length) * 100)
+        });
+        setCurrentView("result");
+      };
+
+      const currentTopic = useMemo(() => {
+        for (const sub of SUBJECTS) {
+          const t = sub.topics.find(top => top.id === activeTopicId);
+          if (t) return { ...t, subjectNameTamil: sub.nameTamil };
+        }
+        return SUBJECTS[0].topics[0];
+      }, [activeTopicId]);
+
+      const mathSubject = SUBJECTS.find(s => s.id === "mathematics");
+      const otherSubjects = SUBJECTS.filter(s => s.id !== "mathematics");
+
+      return (
+        <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+          
+          {/* Top Header */}
+          <header className="bg-slate-900 text-white sticky top-0 z-50 shadow-sm border-b border-slate-800">
+            <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+              <div 
+                className="flex items-center space-x-3 cursor-pointer"
+                onClick={() => navigateTo("home")}
+              >
+                <span className="text-2xl">🚔</span>
+                <div>
+                  <div className="flex items-center space-x-2">
+                    <span className="font-extrabold text-base sm:text-lg tracking-tight">SI TEST</span>
+                    <span className="bg-blue-500/20 text-blue-300 text-[10px] px-2 py-0.5 rounded-full font-bold">TNSURB</span>
+                  </div>
+                  <p className="text-[11px] text-slate-400">தமிழ்நாடு SI தேர்வு பயிற்சி</p>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <button
+                  onClick={() => navigateTo("home")}
+                  className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-colors ${
+                    currentView === "home" ? "bg-blue-600 text-white" : "text-slate-300 hover:text-white"
+                  }`}
+                >
+                  முகப்பு
+                </button>
+                <button
+                  onClick={() => navigateTo("progress")}
+                  className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-colors ${
+                    currentView === "progress" ? "bg-blue-600 text-white" : "text-slate-300 hover:text-white"
+                  }`}
+                >
+                  📊 முன்னேற்றம்
+                </button>
+              </div>
             </div>
+          </header>
 
-            <div class="question">
-
-                ${q.question}
-
-            </div>
-
-            <div id="options">
-
-                ${q.options.map((option,index)=>`
-
-                    <label
-                        class="option"
-                        id="option-${index}">
-
-                        <input
-                            type="radio"
-                            name="answer"
-                            value="${index}"
-                            onchange="checkAnswer(${index})">
-
-                        ${String.fromCharCode(65+index)})
-                        ${option}
-
-                    </label>
-
-                `).join("")}
-
-            </div>
-
-
-            <div
-                class="answer-box"
-                id="answerBox">
-
-                <div class="answer-title">
-
-                    ✅ சரியான விடை:
-                    <span id="correctAnswer"></span>
-
+          <main className="flex-1 max-w-6xl w-full mx-auto px-4 py-8">
+            
+            {/* ================= 1. HOME VIEW ================= */}
+            {currentView === "home" && (
+              <div className="space-y-8 animate-fadeIn">
+                
+                {/* Hero Header with 12-Hour Rotating Motivational Quote */}
+                <div className="text-center max-w-2xl mx-auto py-2">
+                  <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    தமிழில் தினசரி <span className="text-blue-600">SI தேர்வு பயிற்சி</span>
+                  </h1>
+                  
+                  {/* Dynamic 12-Hour Quote Banner */}
+                  <div className="mt-4 bg-gradient-to-r from-blue-50 via-indigo-50 to-amber-50 border border-blue-200/70 p-4 sm:p-5 rounded-2xl shadow-sm text-center">
+                    <p className="text-sm sm:text-base text-slate-800 font-medium leading-relaxed">
+                      💬 {(() => {
+                        const quotes = [
+                          { line1: "இன்று புத்தகம் திறக்குற அந்த 1 மணி நேரம்…", line2: "நாளைக்கு உன் வாழ்க்கையை திறக்குற சாவியா இருக்கலாம்." },
+                          { line1: "வாய்ப்பு வரும்னு காத்திருக்காதே…", line2: "நீ தயாரா இருந்தா வாய்ப்பு வந்ததும் பிடிச்சுக்கலாம்." },
+                          { line1: "உன் வாழ்க்கையை மாற்ற யாராவது வருவாங்கன்னு காத்திருக்காதே…", line2: "நீயே உன் வாழ்க்கையை மாற்ற ஆரம்பிச்சுடு." },
+                          { line1: "கனவு பெரியதா இருந்தா பரவாயில்லை…", line2: "அதுக்காக தினமும் கொடுக்குற உழைப்பு அதைவிட பெரியதா இருக்கணும்." },
+                          { line1: "ஒரு நாள் motivation-ல வாழ்க்கை மாறாது…", line2: "தினமும் கொஞ்சம் கொஞ்சமா உன்னை நீ மாற்றிக்கிட்டே இரு." },
+                          { line1: "சத்தம் போட்டு கனவு காணாதே… அமைதியா உழை.", line2: "ஒருநாள் உன் RESULT தான் உனக்காக சத்தம் போடும்." }
+                        ];
+                        const slot = Math.floor(Date.now() / (12 * 60 * 60 * 1000));
+                        const q = quotes[slot % quotes.length];
+                        return (
+                          <span>
+                            {q.line1} <strong className="text-blue-700 block sm:inline font-extrabold">{q.line2}</strong> 🚔🔥
+                          </span>
+                        );
+                      })()}
+                    </p>
+                  </div>
                 </div>
 
+                {/* Mathematics Section */}
+                <div>
+                  <div className="mb-4">
+                    <h2 className="text-xl sm:text-2xl font-bold text-slate-900 flex items-center space-x-2">
+                      <span>🧮</span>
+                      <span>கணிதம் — Mathematics</span>
+                    </h2>
+                    <p className="text-xs text-slate-500">எளிமைப்படுத்துதல், இலாபம் & நட்டம், சிறப்புத் தொடர் வினாக்கள்</p>
+                  </div>
 
-                <div class="explanation-title">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    {mathSubject?.topics.map(topic => (
+                      <div
+                        key={topic.id}
+                        className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:border-blue-500 transition-colors flex flex-col justify-between"
+                      >
+                        <div>
+                          <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl mb-3">
+                            {topic.icon}
+                          </div>
+                          <h3 className="text-lg font-bold text-slate-900">{topic.nameTamil}</h3>
+                          <p className="text-xs font-semibold text-slate-400 uppercase mb-2">{topic.nameEnglish}</p>
+                          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">{topic.description}</p>
+                        </div>
 
-                    📖 விளக்கம்:
-
+                        <button
+                          onClick={() => navigateTo("topic", topic.id)}
+                          className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-blue-600 text-white font-bold text-xs sm:text-sm transition-colors"
+                        >
+                          தேர்வை தொடங்கு →
+                        </button>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
+                {/* Other Subjects */}
+                <div>
+                  <h2 className="text-lg font-bold text-slate-900 mb-3 flex items-center space-x-2">
+                    <span>📚</span>
+                    <span>மற்ற பாடங்கள் (Other Subjects)</span>
+                  </h2>
 
-                <div
-                    class="explanation"
-                    id="explanation">
-
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    {otherSubjects.map(sub => {
+                      const firstTopic = sub.topics[0];
+                      return (
+                        <div
+                          key={sub.id}
+                          onClick={() => firstTopic && navigateTo("topic", firstTopic.id)}
+                          className="bg-white rounded-xl p-4 border border-slate-200 hover:border-blue-400 cursor-pointer transition-colors"
+                        >
+                          <div className="flex items-center space-x-2.5 mb-2">
+                            <span className="text-2xl">{sub.icon}</span>
+                            <div>
+                              <h4 className="text-sm font-bold text-slate-900">{sub.nameTamil}</h4>
+                              <p className="text-[11px] text-slate-500">{sub.nameEnglish}</p>
+                            </div>
+                          </div>
+                          <p className="text-xs text-slate-600">{firstTopic?.nameTamil}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
 
+              </div>
+            )}
 
-                <div class="next-area">
+            {/* ================= 2. TOPIC 10-DAY SCHEDULE VIEW ================= */}
+            {currentView === "topic" && (
+              <div className="space-y-6 animate-fadeIn">
+                <button
+                  onClick={() => navigateTo("home")}
+                  className="inline-flex items-center space-x-1.5 text-xs sm:text-sm font-bold text-slate-600 hover:text-blue-600"
+                >
+                  <span>←</span>
+                  <span>முகப்புக்கு திரும்பு</span>
+                </button>
+
+                <div className="bg-slate-900 text-white rounded-2xl p-6 shadow-sm">
+                  <div className="flex items-center space-x-3 mb-1">
+                    <span className="text-3xl">{currentTopic.icon}</span>
+                    <h1 className="text-2xl sm:text-3xl font-extrabold">{currentTopic.nameTamil}</h1>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-400">{currentTopic.nameEnglish} — 10-நாள் தினசரி தேர்வு அட்டவணை</p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(d => (
+                    <div
+                      key={d}
+                      className="bg-white rounded-xl p-4 border border-slate-200 shadow-sm flex flex-col justify-between"
+                    >
+                      <div>
+                        <div className="flex justify-between items-center mb-1">
+                          <span className="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">நாள் {d}</span>
+                          <span className="text-[10px] text-slate-400">10 வினாக்கள்</span>
+                        </div>
+                        <p className="text-xs text-slate-500 my-2 font-medium">{getFormattedTamilDate(d - 1)}</p>
+                      </div>
+
+                      <button
+                        onClick={() => navigateTo("test", activeTopicId, d)}
+                        className="w-full py-2 rounded-lg bg-slate-900 hover:bg-blue-600 text-white text-xs font-bold transition-colors mt-2"
+                      >
+                        தொடங்கு →
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* ================= 3. TEST VIEW ================= */}
+            {currentView === "test" && (
+              <div className="max-w-2xl mx-auto py-4 animate-fadeIn">
+                {testState === "instructions" ? (
+                  <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+                    <div className="border-b border-slate-100 pb-4">
+                      <span className="text-xs font-bold text-blue-600 uppercase">தேர்வு தொடக்கம்</span>
+                      <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mt-1">
+                        {currentTopic?.nameTamil} — நாள் {activeDay}
+                      </h2>
+                      <p className="text-xs text-slate-500 mt-1">📅 {getFormattedTamilDate(activeDay - 1)} • ⏱ 10 நிமிடங்கள்</p>
+                    </div>
+
+                    <div>
+                      <h3 className="text-sm font-bold text-slate-800 mb-3">விதிமுறைகள்:</h3>
+                      <ul className="space-y-2 text-xs sm:text-sm text-slate-600">
+                        <li>• 10 கொள்குறி வினாக்கள் (MCQ).</li>
+                        <li>• சரியான பதில் கிளிக் செய்தவுடன் உடனடி விளக்கம் காட்டப்படும்.</li>
+                        <li>• தவறான பதில் கொடுத்தாலும் சரியான பதிலும் விளக்கமும் காட்டப்படும்.</li>
+                      </ul>
+                    </div>
 
                     <button
-                        class="next-btn"
-                        onclick="nextQuestion()">
-
-                        ${currentQuestion === questions.length - 1
-                            ? "🏁 முடிவைப் பார்க்க"
-                            : "➡️ அடுத்த கேள்வி"}
-
+                      onClick={startQuiz}
+                      className="w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm sm:text-base shadow transition-colors"
+                    >
+                      🚔 தேர்வை தொடங்குகிறேன் →
                     </button>
+                  </div>
+                ) : (
+                  <div className="space-y-5">
+                    {/* Quiz Top Bar */}
+                    <div className="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+                      <span className="font-bold text-xs sm:text-sm text-slate-800">
+                        {currentTopic?.nameTamil} • நாள் {activeDay}
+                      </span>
+                      <div className="flex items-center space-x-3 text-xs sm:text-sm font-bold">
+                        <span className="text-blue-600">மதிப்பெண்: {score}</span>
+                        <span className="font-mono bg-slate-100 px-2 py-0.5 rounded border">⏱ {formatTime(secondsLeft)}</span>
+                      </div>
+                    </div>
 
+                    {/* Progress Bar */}
+                    <div>
+                      <div className="flex justify-between text-xs font-bold text-slate-500 mb-1">
+                        <span>கேள்வி {currentQIndex + 1} / {currentQuestions.length}</span>
+                        <span>{Math.round(((currentQIndex + 1) / currentQuestions.length) * 100)}%</span>
+                      </div>
+                      <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                        <div className="bg-blue-600 h-full transition-all" style={{ width: `${Math.round(((currentQIndex + 1) / currentQuestions.length) * 100)}%` }}></div>
+                      </div>
+                    </div>
+
+                    {/* Question Card */}
+                    {currentQuestions[currentQIndex] && (
+                      <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-sm">
+                        <span className="text-xs font-bold text-blue-600 block mb-2">கேள்வி {currentQIndex + 1}</span>
+                        <h3 className="text-base sm:text-xl font-bold text-slate-900 leading-relaxed">
+                          {currentQuestions[currentQIndex].question}
+                        </h3>
+                      </div>
+                    )}
+
+                    {/* Options */}
+                    {currentQuestions[currentQIndex] && (
+                      <div className="space-y-2.5">
+                        {currentQuestions[currentQIndex].options.map((opt, idx) => {
+                          const isSelected = selectedOption === idx;
+                          const isCorrect = idx === currentQuestions[currentQIndex].correctAnswer;
+                          const letters = ["A", "B", "C", "D"];
+
+                          let btnStyle = "bg-white border-slate-200 text-slate-800 hover:border-blue-400";
+                          if (isAnswerRevealed) {
+                            if (isCorrect) btnStyle = "bg-emerald-50 border-emerald-500 text-emerald-950 font-bold";
+                            else if (isSelected && !isCorrect) btnStyle = "bg-rose-50 border-rose-500 text-rose-950 font-bold animate-shake";
+                            else btnStyle = "bg-slate-50 border-slate-200 text-slate-400";
+                          }
+
+                          return (
+                            <button
+                              key={idx}
+                              onClick={() => handleOptionSelect(idx)}
+                              disabled={isAnswerRevealed}
+                              className={`w-full text-left p-3.5 rounded-xl border flex items-center justify-between transition-colors ${btnStyle}`}
+                            >
+                              <div className="flex items-center space-x-3">
+                                <span className="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center font-bold text-xs">
+                                  {letters[idx]}
+                                </span>
+                                <span className="text-sm sm:text-base font-medium">{opt}</span>
+                              </div>
+                              {isAnswerRevealed && isCorrect && <span className="text-emerald-600 font-bold text-xs">✓ சரி</span>}
+                              {isAnswerRevealed && isSelected && !isCorrect && <span className="text-rose-600 font-bold text-xs">✕ தவறு</span>}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* Feedback & Solution Banner */}
+                    {isAnswerRevealed && (
+                      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden animate-fadeIn">
+                        {/* Custom Dialog Header */}
+                        <div className={`p-4 text-white font-extrabold text-sm sm:text-base ${
+                          selectedOption === currentQuestions[currentQIndex].correctAnswer ? "bg-emerald-600" : "bg-rose-600"
+                        }`}>
+                          <div className="flex items-center space-x-2">
+                            <span>{selectedOption === currentQuestions[currentQIndex].correctAnswer ? "✅" : "⚠️"}</span>
+                            <span>{feedbackMsg}</span>
+                          </div>
+                        </div>
+
+                        {/* Explanation Text */}
+                        <div className="p-4 sm:p-5 bg-slate-50 space-y-3">
+                          <div className="text-xs sm:text-sm font-semibold text-slate-700 bg-white p-3 rounded-lg border border-slate-200">
+                            <strong>சரியான விடை:</strong> {["A", "B", "C", "D"][currentQuestions[currentQIndex].correctAnswer]} — {currentQuestions[currentQIndex].options[currentQuestions[currentQIndex].correctAnswer]}
+                          </div>
+
+                          <div className="text-xs sm:text-sm text-slate-800 bg-white p-3.5 rounded-lg border border-slate-200 whitespace-pre-line leading-relaxed">
+                            <strong className="text-blue-700 block mb-1">விளக்கம் (Solution):</strong>
+                            {currentQuestions[currentQIndex].explanation}
+                          </div>
+
+                          <div className="text-right pt-2">
+                            <button
+                              onClick={handleNextQuestion}
+                              className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow transition-colors"
+                            >
+                              {currentQIndex === currentQuestions.length - 1 ? "🏁 முடிவை காண்க" : "அடுத்த கேள்வி →"}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* ================= 4. RESULT VIEW ================= */}
+            {currentView === "result" && lastResult && (
+              <div className="max-w-md mx-auto py-6 animate-fadeIn">
+                <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm text-center space-y-5">
+                  <span className="text-4xl block">🎉</span>
+                  <h2 className="text-2xl font-black text-slate-900">தேர்வு முடிந்தது!</h2>
+                  
+                  <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 grid grid-cols-2 gap-3">
+                    <div>
+                      <span className="text-[11px] text-slate-500 font-bold uppercase block">மதிப்பெண்</span>
+                      <span className="text-2xl font-black text-blue-600">{lastResult.score} / {lastResult.total}</span>
+                    </div>
+                    <div>
+                      <span className="text-[11px] text-slate-500 font-bold uppercase block">சதவீதம்</span>
+                      <span className="text-2xl font-black text-purple-600">{lastResult.percentage}%</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2 pt-2">
+                    <button
+                      onClick={() => navigateTo("test", activeTopicId, activeDay)}
+                      className="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl text-xs font-bold border transition-colors"
+                    >
+                      🔄 மீண்டும் முயற்சி செய்
+                    </button>
+                    <button
+                      onClick={() => navigateTo("home")}
+                      className="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition-colors"
+                    >
+                      🏠 முகப்புக்கு திரும்பு
+                    </button>
+                  </div>
                 </div>
+              </div>
+            )}
 
-            </div>
+            {/* ================= 5. PROGRESS VIEW ================= */}
+            {currentView === "progress" && (
+              <div className="max-w-3xl mx-auto py-6 animate-fadeIn space-y-5">
+                <button
+                  onClick={() => navigateTo("home")}
+                  className="inline-flex items-center space-x-1.5 text-xs sm:text-sm font-bold text-slate-600 hover:text-blue-600"
+                >
+                  <span>←</span>
+                  <span>முகப்புக்கு திரும்பு</span>
+                </button>
+
+                <h1 className="text-2xl font-bold text-slate-900">📊 பாடவாரியான முன்னேற்றம்</h1>
+
+                <div className="space-y-3">
+                  {SUBJECTS.map(sub => (
+                    <div key={sub.id} className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                      <h3 className="font-bold text-sm text-slate-900 mb-2 flex items-center space-x-2">
+                        <span>{sub.icon}</span>
+                        <span>{sub.nameTamil}</span>
+                      </h3>
+                      <div className="space-y-2">
+                        {sub.topics.map(t => (
+                          <div key={t.id} className="flex justify-between items-center text-xs p-2 bg-slate-50 rounded-lg">
+                            <span className="font-semibold text-slate-700">{t.nameTamil}</span>
+                            <button
+                              onClick={() => navigateTo("topic", t.id)}
+                              className="px-3 py-1 bg-slate-900 hover:bg-blue-600 text-white rounded-lg font-bold"
+                            >
+                              பயிற்சி →
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+          </main>
+
+          <footer className="bg-slate-900 text-slate-400 py-6 text-center text-xs border-t border-slate-800">
+            <p className="font-bold text-slate-300">🚔 தமிழ்நாடு காவல்துறை SI தேர்வு பயிற்சி தளம்</p>
+          </footer>
 
         </div>
-
-    `;
-
-
-    /* Progress */
-
-    const progress =
-        ((currentQuestion + 1) / questions.length) * 100;
-
-    document.getElementById("progress").style.width =
-        progress + "%";
-
-
-    document.getElementById("questionCount").innerText =
-        `${currentQuestion + 1} / ${questions.length}`;
-
-
-    document.getElementById("scoreDisplay").innerText =
-        score;
-
-}
-
-
-/* =====================================================
-   CHECK ANSWER
-===================================================== */
-
-function checkAnswer(selectedIndex){
-
-    const q = questions[currentQuestion];
-
-    const allOptions =
-        document.querySelectorAll(".option");
-
-
-    /* Disable all answers */
-
-    allOptions.forEach(option => {
-
-        option.style.pointerEvents = "none";
-
-    });
-
-
-    /* Correct answer */
-
-    const correctOption =
-        document.getElementById(
-            `option-${q.answer}`
-        );
-
-
-    correctOption.classList.add("correct");
-
-
-    /* Selected answer */
-
-    const selectedOption =
-        document.getElementById(
-            `option-${selectedIndex}`
-        );
-
-
-    if(selectedIndex === q.answer){
-
-        score++;
-
-        selectedOption.innerHTML +=
-            " &nbsp; ✅ சரியான விடை!";
-
+      );
     }
 
-    else{
-
-        selectedOption.classList.add("wrong");
-
-        selectedOption.innerHTML +=
-            " &nbsp; ❌ தவறான விடை!";
-
-        correctOption.innerHTML +=
-            " &nbsp; ✅ சரியான விடை!";
-
-    }
-
-
-    /* Show explanation */
-
-    document.getElementById("correctAnswer").innerText =
-        q.options[q.answer];
-
-
-    document.getElementById("explanation").innerHTML =
-        q.explanation;
-
-
-    document.getElementById("answerBox").style.display =
-        "block";
-
-
-    document.getElementById("scoreDisplay").innerText =
-        score;
-
-}
-
-
-/* =====================================================
-   NEXT QUESTION
-===================================================== */
-
-function nextQuestion(){
-
-    if(currentQuestion < questions.length - 1){
-
-        currentQuestion++;
-
-        loadQuestion();
-
-        window.scrollTo({
-            top:0,
-            behavior:"smooth"
-        });
-
-    }
-
-    else{
-
-        showResult();
-
-    }
-
-}
-
-
-/* =====================================================
-   RESULT
-===================================================== */
-
-function showResult(){
-
-    clearInterval(timer);
-
-    document.getElementById("quiz").style.display =
-        "none";
-
-    document.querySelector(".info-bar").style.display =
-        "none";
-
-    document.querySelector(".progress-container").style.display =
-        "none";
-
-
-    const result =
-        document.getElementById("result");
-
-    result.style.display =
-        "block";
-
-
-    const percentage =
-        Math.round(
-            (score / questions.length) * 100
-        );
-
-
-    document.getElementById("finalScore").innerText =
-        `${score} / ${questions.length}`;
-
-
-    document.getElementById("percentage").innerText =
-        `${percentage}%`;
-
-
-    let message;
-
-
-    if(percentage >= 80){
-
-        message =
-            "🔥 அருமை! உங்கள் Simplification கணக்குத் திறன் நன்றாக உள்ளது.";
-
-    }
-
-    else if(percentage >= 60){
-
-        message =
-            "👍 நல்ல முயற்சி! இன்னும் கொஞ்சம் tricky questions practice செய்யுங்கள்.";
-
-    }
-
-    else{
-
-        message =
-            "📚 தொடர்ந்து practice செய்யுங்கள். BODMAS, Fraction, Percentage ஆகியவற்றில் கவனம் செலுத்துங்கள்.";
-
-    }
-
-
-    document.getElementById("finalMessage").innerText =
-        message;
-
-}
-
-
-/* =====================================================
-   TIMER
-===================================================== */
-
-function startTimer(){
-
-    timer =
-    setInterval(()=>{
-
-        let minutes =
-            Math.floor(timeLeft / 60);
-
-        let seconds =
-            timeLeft % 60;
-
-
-        document.getElementById("timer").innerText =
-
-            `${minutes}:${seconds
-                .toString()
-                .padStart(2,"0")}`;
-
-
-        if(timeLeft <= 60){
-
-            document.getElementById("timer").style.background =
-                "#dc2626";
-
-            document.getElementById("timer").style.color =
-                "white";
-
-        }
-
-
-        if(timeLeft <= 0){
-
-            clearInterval(timer);
-
-            showResult();
-
-        }
-
-
-        timeLeft--;
-
-    },1000);
-
-}
-
-
-/* =====================================================
-   RESTART
-===================================================== */
-
-function restartQuiz(){
-
-    location.reload();
-
-}
-
-
-/* =====================================================
-   START
-===================================================== */
-
-loadQuestion();
-
-startTimer();
-
-
-</script>
-
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
 </body>
 </html>
