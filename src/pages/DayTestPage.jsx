@@ -18,7 +18,7 @@ import { soundFx } from "../utils/audioUtils.js";
 import { toggleBookmark, isBookmarked as checkIsBookmarked } from "../utils/storageUtils.js";
 import { getDateForDay, formatTime } from "../utils/dateUtils.js";
 
-export function DayTestPage({ topicId, day, onFinishTest, onBack }) {
+export function DayTestPage({ topicId, day, level = null, onFinishTest, onBack }) {
   const [topic, setTopic] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -43,17 +43,24 @@ export function DayTestPage({ topicId, day, onFinishTest, onBack }) {
   const [bookmarkedMap, setBookmarkedMap] = useState({});
   const [startTime, setStartTime] = useState(null);
 
+  const activeLevel = level ? parseInt(level, 10) : (day === 2 ? 1 : null);
+
+  // Test duration in minutes
+  const testDurationMinutes = day === 2 
+    ? (activeLevel === 5 ? 30 : activeLevel >= 3 ? 25 : 20)
+    : 10;
+
   useEffect(() => {
     async function loadTest() {
       setLoading(true);
       const top = await quizService.getTopicById(topicId);
-      const qs = await quizService.getQuestions(topicId, day);
+      const qs = await quizService.getQuestions(topicId, day, activeLevel);
       setTopic(top);
       setQuestions(qs);
       setLoading(false);
     }
     loadTest();
-  }, [topicId, day]);
+  }, [topicId, day, activeLevel]);
 
   // Start Test Action
   const handleStartTest = () => {
@@ -135,14 +142,19 @@ export function DayTestPage({ topicId, day, onFinishTest, onBack }) {
       userAnswers
     };
 
-    // Save to persistence service
-    quizService.saveTestResult(topicId, day, resultData);
+    // Save to persistence service (Level or General)
+    if (activeLevel) {
+      quizService.saveLevelResult(topicId, day, activeLevel, resultData);
+    } else {
+      quizService.saveTestResult(topicId, day, resultData);
+    }
 
     // Transition to Result Screen
     if (onFinishTest) {
       onFinishTest({
         topic,
         day,
+        level: activeLevel,
         score,
         totalQuestions: questions.length,
         timeSpent: formatTime(timeSpentSeconds),
@@ -204,11 +216,11 @@ export function DayTestPage({ topicId, day, onFinishTest, onBack }) {
             <div className="flex items-center space-x-3 mb-2">
               <span className="text-2xl sm:text-3xl">🚔</span>
               <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight">
-                SI கணிதப் பயிற்சி
+                {activeLevel ? `SI மாதிரித் தேர்வு — நிலை ${activeLevel}` : "SI கணிதப் பயிற்சி"}
               </h2>
             </div>
             <p className="text-sm sm:text-base text-blue-200 font-semibold">
-              {topic?.nameTamil} — நாள் {day}
+              {topic?.nameTamil} — நாள் {day} {activeLevel ? `(Level ${activeLevel} / 5)` : ""}
             </p>
           </div>
 
@@ -229,13 +241,13 @@ export function DayTestPage({ topicId, day, onFinishTest, onBack }) {
             <div className="bg-white p-3.5 rounded-2xl border border-slate-200">
               <span className="text-[11px] font-bold text-slate-400 uppercase block">நிலை</span>
               <span className="text-xs sm:text-sm font-bold text-amber-700 mt-1 block">
-                {day >= 7 ? "Hard" : day >= 4 ? "Tricky" : "Medium"}
+                {activeLevel ? `Level ${activeLevel}` : day >= 7 ? "Hard" : day >= 4 ? "Tricky" : "Medium"}
               </span>
             </div>
             <div className="bg-white p-3.5 rounded-2xl border border-slate-200">
               <span className="text-[11px] font-bold text-slate-400 uppercase block">நேரம்</span>
               <span className="text-base sm:text-lg font-extrabold text-emerald-600 mt-0.5 block">
-                10 நிமிடம்
+                {testDurationMinutes} நிமிடம்
               </span>
             </div>
           </div>
@@ -304,7 +316,7 @@ export function DayTestPage({ topicId, day, onFinishTest, onBack }) {
               {topic?.nameTamil}
             </span>
             <span className="bg-blue-100 text-blue-800 font-bold text-xs px-2.5 py-0.5 rounded-full border border-blue-200">
-              நாள் {day}
+              நாள் {day} {activeLevel ? `• Level ${activeLevel}` : ""}
             </span>
           </div>
           <span className="text-xs text-slate-500 font-medium">
@@ -316,7 +328,7 @@ export function DayTestPage({ topicId, day, onFinishTest, onBack }) {
         <div className="flex items-center space-x-3 self-end sm:self-center">
           <StreakBadge streak={streak} />
           <Timer
-            durationMinutes={10}
+            durationMinutes={testDurationMinutes}
             onTimeUp={handleCompleteTest}
             isRunning={testState === "testing"}
           />

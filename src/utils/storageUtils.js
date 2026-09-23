@@ -7,6 +7,7 @@ const STORAGE_KEY = "siQuizProgress";
 
 const defaultProgress = {
   completedTests: {}, // e.g. "simplification-day-1": { score: 8, total: 10, percentage: 80, date: "...", timeSpent: "07:32" }
+  completedLevels: {}, // e.g. "simplification-day-2-level-1": { score: 23, total: 25, percentage: 92, date: "..." }
   topicProgress: {
     simplification: { completedDays: 0, totalScore: 0, maxPossible: 100 },
     "profit-loss": { completedDays: 0, totalScore: 0, maxPossible: 100 },
@@ -22,7 +23,12 @@ export function loadProgress() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return defaultProgress;
-    return { ...defaultProgress, ...JSON.parse(raw) };
+    const parsed = JSON.parse(raw);
+    return { 
+      ...defaultProgress, 
+      ...parsed,
+      completedLevels: parsed.completedLevels || {}
+    };
   } catch (e) {
     console.error("Error reading progress from localStorage:", e);
     return defaultProgress;
@@ -69,6 +75,55 @@ export function saveTestResult(topicId, day, resultData) {
   } catch (e) {
     console.error("Error saving test result to localStorage:", e);
   }
+}
+
+export function isLevelUnlocked(topicId, day, level) {
+  const levelNum = parseInt(level, 10);
+  if (levelNum <= 1) return true; // Level 1 is always unlocked
+
+  const progress = loadProgress();
+  // Check if previous level (levelNum - 1) is completed
+  const prevLevelKey = `${topicId}-day-${day}-level-${levelNum - 1}`;
+  const prevDirectKey = `day-${day}-level-${levelNum - 1}`;
+  return !!(progress.completedLevels[prevLevelKey] || progress.completedLevels[prevDirectKey]);
+}
+
+export function saveLevelResult(topicId, day, level, resultData) {
+  if (typeof window === "undefined") return;
+  try {
+    const progress = loadProgress();
+    const levelKey = `${topicId}-day-${day}-level-${level}`;
+
+    const existing = progress.completedLevels[levelKey];
+    if (!existing || resultData.score > existing.score) {
+      progress.completedLevels[levelKey] = {
+        ...resultData,
+        level,
+        day,
+        topicId,
+        timestamp: new Date().toISOString()
+      };
+    }
+
+    // Also update general test record if all levels completed or for tracking
+    saveTestResult(topicId, day, resultData);
+
+    if (resultData.maxStreak > (progress.streakRecord || 0)) {
+      progress.streakRecord = resultData.maxStreak;
+    }
+    progress.lastPlayed = new Date().toISOString();
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+    return progress;
+  } catch (e) {
+    console.error("Error saving level result to localStorage:", e);
+  }
+}
+
+export function getLevelResult(topicId, day, level) {
+  const progress = loadProgress();
+  const levelKey = `${topicId}-day-${day}-level-${level}`;
+  return progress.completedLevels[levelKey] || null;
 }
 
 export function toggleBookmark(questionId) {

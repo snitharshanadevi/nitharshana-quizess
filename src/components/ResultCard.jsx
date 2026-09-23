@@ -11,6 +11,7 @@ const OPTION_LETTERS = ["A", "B", "C", "D"];
 export function ResultCard({
   topic,
   day,
+  level,
   score,
   totalQuestions,
   timeSpent,
@@ -18,36 +19,44 @@ export function ResultCard({
   questions,
   onRetry,
   onNextDay,
+  onNextLevel,
+  onGoToLevels,
   onGoHome
 }) {
   const [showReview, setShowReview] = useState(false);
   const percentage = Math.round((score / totalQuestions) * 100);
   const wrongCount = totalQuestions - score;
+  const isLevelTest = !!level;
+  const isLastLevel = level === 5;
 
   // Rank determination
   let rankTitle = "SI தேர்ச்சி தயார்";
-  let rankBadge = "🌟 Sub-Inspector Level";
+  let rankBadge = isLevelTest ? `🌟 Level ${level} Completed` : "🌟 Sub-Inspector Level";
   let rankMessage = "🔥 அருமையான முயற்சி! உங்கள் கணித வேகம் நன்றாக உள்ளது.";
   let rankColor = "from-blue-600 to-indigo-700";
 
   if (percentage === 100) {
     rankTitle = "🏆 DSP Level - Perfect Score!";
-    rankBadge = "⭐⭐⭐ DSP Grade";
-    rankMessage = "🏆 செம்ம Performance SI சார்! 100% துல்லியம்! நிச்சயமாக காக்கி சட்டை உறுதி!";
+    rankBadge = isLevelTest ? `⭐⭐⭐ Level ${level} Master` : "⭐⭐⭐ DSP Grade";
+    rankMessage = isLevelTest
+      ? `🏆 செம்ம Performance! Level ${level}-ல் 100% துல்லியம்! அடுத்த Level தயாராக உள்ளது!`
+      : "🏆 செம்ம Performance SI சார்! 100% துல்லியம்! நிச்சயமாக காக்கி சட்டை உறுதி!";
     rankColor = "from-amber-500 to-yellow-600";
   } else if (percentage >= 80) {
     rankTitle = "👮‍♂️ SI Rank Confirmed!";
-    rankBadge = "⭐⭐ Inspector Level";
-    rankMessage = "🔥 நல்ல Performance! இதே வேகத்தில் தொடர்ந்து பயிற்சி செய்யுங்கள்.";
+    rankBadge = isLevelTest ? `⭐⭐ Level ${level} Cleared` : "⭐⭐ Inspector Level";
+    rankMessage = isLevelTest 
+      ? `🔥 சிறந்த மதிப்பெண்! அடுத்த Level Unlock செய்யப்பட்டுள்ளது.` 
+      : "🔥 நல்ல Performance! இதே வேகத்தில் தொடர்ந்து பயிற்சி செய்யுங்கள்.";
     rankColor = "from-emerald-600 to-teal-700";
   } else if (percentage >= 50) {
     rankTitle = "📚 தீவிர பயிற்சி தேவை";
-    rankBadge = "⭐ Cadet Level";
-    rankMessage = "👍 நல்ல முயற்சி! தவறான கேள்விகளின் விளக்கங்களை படித்து மீண்டும் எழுதுங்கள்.";
+    rankBadge = isLevelTest ? `⭐ Level ${level} Passed` : "⭐ Cadet Level";
+    rankMessage = "👍 நல்ல முயற்சி! தவறான கேள்விகளின் விளக்கங்களை படித்துவிட்டு அடுத்த நிலைக்குச் செல்லுங்கள்.";
     rankColor = "from-blue-600 to-slate-700";
   } else {
     rankTitle = "🚨 அடிப்படை பயிற்சி அவசியம்";
-    rankBadge = "⚠️ Trainee Level";
+    rankBadge = isLevelTest ? `⚠️ Level ${level} Attempted` : "⚠️ Trainee Level";
     rankMessage = "தப்பு! ஒழுங்கா படி எருமை 😂🔥 இன்னும் பத்தாது, வெறி வேண்டும் SI சார்!";
     rankColor = "from-rose-600 to-red-700";
   }
@@ -60,17 +69,34 @@ export function ResultCard({
         
         {/* Banner */}
         <div className={`bg-gradient-to-r ${rankColor} p-6 sm:p-8 text-white text-center relative`}>
-          <span className="text-4xl sm:text-5xl block mb-2">🎉</span>
+          <span className="text-4xl sm:text-5xl block mb-2">
+            {isLastLevel ? "🎖️" : "🎉"}
+          </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-            தேர்வு முடிந்தது!
+            {isLevelTest ? `நிலை ${level} தேர்வு முடிந்தது!` : "தேர்வு முடிந்தது!"}
           </h2>
           <p className="text-sm sm:text-base text-white/90 font-medium mt-1">
-            {topic?.nameTamil} — நாள் {day}
+            {topic?.nameTamil} — நாள் {day} {isLevelTest ? `(Level ${level})` : ""}
           </p>
           <div className="mt-3 inline-block bg-white/20 backdrop-blur-md px-4 py-1 rounded-full text-xs sm:text-sm font-bold border border-white/30">
             {rankBadge}
           </div>
         </div>
+
+        {/* Level Unlock Notification Banner */}
+        {isLevelTest && !isLastLevel && (
+          <div className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-4 py-3 text-center text-xs sm:text-sm font-black flex items-center justify-center space-x-2 shadow-inner">
+            <span>🔓</span>
+            <span>வாழ்த்துகள்! அடுத்த நிலை (Level {level + 1}) Unlock செய்யப்பட்டுள்ளது!</span>
+          </div>
+        )}
+
+        {isLevelTest && isLastLevel && (
+          <div className="bg-gradient-to-r from-amber-500 to-yellow-600 text-white px-4 py-3 text-center text-xs sm:text-sm font-black flex items-center justify-center space-x-2 shadow-inner">
+            <span>🏆</span>
+            <span>அபார சாதனை! நாள் 2-ன் அனைத்து 5 நிலைகளையும் வெற்றிகரமாக முடித்துவிட்டீர்கள்! SI தேர்ச்சி உறுதி!</span>
+          </div>
+        )}
 
         {/* Score & Analytics Grid */}
         <div className="p-6 sm:p-8">
@@ -121,25 +147,48 @@ export function ResultCard({
             </p>
           </div>
 
-          {/* Buttons Row */}
+          {/* Action Buttons Row */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <button
               onClick={onRetry}
-              className="py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm flex items-center justify-center space-x-2 border border-slate-300 transition-colors"
+              className="py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs sm:text-sm flex items-center justify-center space-x-2 border border-slate-300 transition-colors"
             >
-              <span>🔄 மீண்டும் முயற்சி செய்</span>
+              <span>🔄 மீண்டும் எழுதுக</span>
             </button>
+
+            {isLevelTest && !isLastLevel && (
+              <button
+                onClick={onNextLevel}
+                className="py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center space-x-2 shadow-md hover:shadow-lg transition-colors"
+              >
+                <span>🔓 அடுத்த Level {level + 1}</span>
+                <span>→</span>
+              </button>
+            )}
+
+            {isLevelTest && isLastLevel && (
+              <button
+                onClick={onGoToLevels}
+                className="py-3 px-4 rounded-xl bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center space-x-2 shadow-md hover:shadow-lg transition-colors"
+              >
+                <span>📋 Levels பட்டியல்</span>
+              </button>
+            )}
+
+            {!isLevelTest && (
+              <button
+                onClick={onNextDay}
+                className="py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center space-x-2 shadow-md hover:shadow-lg transition-colors"
+              >
+                <span>➡️ அடுத்த நாள் Test</span>
+              </button>
+            )}
+
             <button
-              onClick={onNextDay}
-              className="py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm flex items-center justify-center space-x-2 shadow-md hover:shadow-lg transition-colors"
+              onClick={isLevelTest ? onGoToLevels : onGoHome}
+              className="py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm flex items-center justify-center space-x-2 transition-colors"
             >
-              <span>➡️ அடுத்த நாள் Test</span>
-            </button>
-            <button
-              onClick={onGoHome}
-              className="py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm flex items-center justify-center space-x-2 transition-colors"
-            >
-              <span>🏠 முகப்புக்கு திரும்பு</span>
+              <span>{isLevelTest ? "📋 Levels அட்டவணை" : "🏠 முகப்பு"}</span>
             </button>
           </div>
 

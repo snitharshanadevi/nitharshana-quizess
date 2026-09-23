@@ -9,19 +9,32 @@ import { Header } from "./components/Header.jsx";
 import { Home } from "./pages/Home.jsx";
 import { TopicPage } from "./pages/TopicPage.jsx";
 import { DayTestPage } from "./pages/DayTestPage.jsx";
+import { LevelSelectionView } from "./components/LevelSelectionView.jsx";
 import { ResultCard } from "./components/ResultCard.jsx";
 import { ProgressPage } from "./pages/ProgressPage.jsx";
+import { quizService } from "./services/quizService.js";
 
 export function App() {
-  const [currentView, setCurrentView] = useState("home"); // "home" | "topic" | "test" | "result" | "progress"
+  const [currentView, setCurrentView] = useState("home"); // "home" | "topic" | "levels" | "test" | "result" | "progress"
   const [activeTopicId, setActiveTopicId] = useState("simplification");
   const [activeDay, setActiveDay] = useState(1);
+  const [activeLevel, setActiveLevel] = useState(1);
+  const [dayLevelsList, setDayLevelsList] = useState([]);
+  const [activeTopicObj, setActiveTopicObj] = useState(null);
   const [lastResultData, setLastResultData] = useState(null);
   const [isMuted, setIsMuted] = useState(false);
 
-  // Parse URL Hash for deep linking (e.g. #/topic/simplification, #/test/simplification/1)
+  // Load levels helper
+  const loadLevels = async (topicId, day) => {
+    const top = await quizService.getTopicById(topicId);
+    const lvls = await quizService.getDayLevels(topicId, day);
+    setActiveTopicObj(top);
+    setDayLevelsList(lvls);
+  };
+
+  // Parse URL Hash for deep linking (e.g. #/topic/simplification, #/levels/simplification/2, #/test/simplification/2/1)
   useEffect(() => {
-    const handleHashChange = () => {
+    const handleHashChange = async () => {
       const hash = window.location.hash.replace("#/", "");
       if (!hash || hash === "home") {
         setCurrentView("home");
@@ -31,10 +44,31 @@ export function App() {
         const [, topicId] = hash.split("/");
         setActiveTopicId(topicId);
         setCurrentView("topic");
-      } else if (hash.startsWith("test/")) {
+      } else if (hash.startsWith("levels/")) {
         const [, topicId, dayStr] = hash.split("/");
+        const dayNum = parseInt(dayStr, 10) || 2;
         setActiveTopicId(topicId);
-        setActiveDay(parseInt(dayStr, 10) || 1);
+        setActiveDay(dayNum);
+        await loadLevels(topicId, dayNum);
+        setCurrentView("levels");
+      } else if (hash.startsWith("test/")) {
+        const parts = hash.split("/");
+        const topicId = parts[1];
+        const dayNum = parseInt(parts[2], 10) || 1;
+        const levelNum = parts[3] ? parseInt(parts[3], 10) : (dayNum === 2 ? 1 : null);
+
+        setActiveTopicId(topicId);
+        setActiveDay(dayNum);
+        setActiveLevel(levelNum);
+
+        // If Day 2 and no explicit level provided in direct link, redirect to levels selection
+        if (dayNum === 2 && !parts[3]) {
+          await loadLevels(topicId, dayNum);
+          setCurrentView("levels");
+          window.location.hash = `#/levels/${topicId}/${dayNum}`;
+          return;
+        }
+
         setCurrentView("test");
       }
     };
@@ -45,24 +79,54 @@ export function App() {
   }, []);
 
   // Safe Navigation Helper
-  const navigateTo = (view, topicId = null, day = null) => {
+  const navigateTo = async (view, topicId = null, day = null, level = null) => {
+    const tId = topicId || activeTopicId;
+    const dNum = day !== null ? day : activeDay;
+
     if (view === "home") {
       window.location.hash = "#/home";
       setCurrentView("home");
     } else if (view === "progress") {
       window.location.hash = "#/progress";
       setCurrentView("progress");
-    } else if (view === "topic" && topicId) {
-      setActiveTopicId(topicId);
-      window.location.hash = `#/topic/${topicId}`;
+    } else if (view === "topic" && tId) {
+      setActiveTopicId(tId);
+      window.location.hash = `#/topic/${tId}`;
       setCurrentView("topic");
-    } else if (view === "test" && topicId && day) {
-      setActiveTopicId(topicId);
-      setActiveDay(day);
-      window.location.hash = `#/test/${topicId}/${day}`;
+    } else if (view === "levels" && tId && dNum) {
+      setActiveTopicId(tId);
+      setActiveDay(dNum);
+      await loadLevels(tId, dNum);
+      window.location.hash = `#/levels/${tId}/${dNum}`;
+      setCurrentView("levels");
+    } else if (view === "test" && tId && dNum) {
+      setActiveTopicId(tId);
+      setActiveDay(dNum);
+      if (dNum === 2) {
+        const lvl = level || 1;
+        setActiveLevel(lvl);
+        window.location.hash = `#/test/${tId}/${dNum}/${lvl}`;
+      } else {
+        setActiveLevel(null);
+        window.location.hash = `#/test/${tId}/${dNum}`;
+      }
       setCurrentView("test");
     }
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Handler when user selects a day from TopicPage
+  const handleSelectDay = (dayNum) => {
+    if (dayNum === 2 || quizService.hasLevels(activeTopicId, dayNum)) {
+      navigateTo("levels", activeTopicId, dayNum);
+    } else {
+      navigateTo("test", activeTopicId, dayNum);
+    }
+  };
+
+  // Handler when user selects a level from LevelSelectionView
+  const handleSelectLevel = (levelNum) => {
+    navigateTo("test", activeTopicId, activeDay, levelNum);
   };
 
   // Handler when user finishes a test
@@ -74,13 +138,31 @@ export function App() {
 
   // Handler for retry
   const handleRetryTest = () => {
-    navigateTo("test", activeTopicId, activeDay);
+    if (activeDay === 2 && lastResultData?.level) {
+      navigateTo("test", activeTopicId, activeDay, lastResultData.level);
+    } else {
+      navigateTo("test", activeTopicId, activeDay);
+    }
+  };
+
+  // Handler for next level test
+  const handleNextLevelTest = () => {
+    const nextLvl = (lastResultData?.level || 1) + 1;
+    if (nextLvl <= 5) {
+      navigateTo("test", activeTopicId, activeDay, nextLvl);
+    } else {
+      navigateTo("levels", activeTopicId, activeDay);
+    }
   };
 
   // Handler for next day test
   const handleNextDayTest = () => {
     const nextDay = activeDay < 10 ? activeDay + 1 : 1;
-    navigateTo("test", activeTopicId, nextDay);
+    if (nextDay === 2) {
+      navigateTo("levels", activeTopicId, nextDay);
+    } else {
+      navigateTo("test", activeTopicId, nextDay);
+    }
   };
 
   return (
@@ -106,8 +188,18 @@ export function App() {
         {currentView === "topic" && (
           <TopicPage
             topicId={activeTopicId}
-            onSelectDay={(day) => navigateTo("test", activeTopicId, day)}
+            onSelectDay={handleSelectDay}
             onBack={() => navigateTo("home")}
+          />
+        )}
+
+        {currentView === "levels" && (
+          <LevelSelectionView
+            topic={activeTopicObj}
+            day={activeDay}
+            levels={dayLevelsList}
+            onSelectLevel={handleSelectLevel}
+            onBack={() => navigateTo("topic", activeTopicId)}
           />
         )}
 
@@ -115,8 +207,15 @@ export function App() {
           <DayTestPage
             topicId={activeTopicId}
             day={activeDay}
+            level={activeLevel}
             onFinishTest={handleFinishTest}
-            onBack={() => navigateTo("topic", activeTopicId)}
+            onBack={() => {
+              if (activeDay === 2) {
+                navigateTo("levels", activeTopicId, activeDay);
+              } else {
+                navigateTo("topic", activeTopicId);
+              }
+            }}
           />
         )}
 
@@ -124,6 +223,7 @@ export function App() {
           <ResultCard
             topic={lastResultData.topic}
             day={lastResultData.day}
+            level={lastResultData.level}
             score={lastResultData.score}
             totalQuestions={lastResultData.totalQuestions}
             timeSpent={lastResultData.timeSpent}
@@ -131,6 +231,8 @@ export function App() {
             questions={lastResultData.questions}
             onRetry={handleRetryTest}
             onNextDay={handleNextDayTest}
+            onNextLevel={handleNextLevelTest}
+            onGoToLevels={() => navigateTo("levels", activeTopicId, activeDay)}
             onGoHome={() => navigateTo("home")}
           />
         )}
@@ -150,7 +252,7 @@ export function App() {
             🚔 தமிழ்நாடு காவல்துறை SI தேர்வுக்கான கணிதம் மற்றும் பொது அறிவு பயிற்சி தளம்
           </p>
           <p className="text-slate-500">
-            தினசரி பயிற்சி • துல்லியமான விடைகள் • எளிய முறை விளக்கங்கள் (Step-by-Step Tamil Solutions)
+            தினசரி பயிற்சி • 5 நிலைகள் கொண்ட முந்தைய ஆண்டு வினாத்தாள்கள் • எளிய முறை விளக்கங்கள் (Step-by-Step Tamil Solutions)
           </p>
         </div>
       </footer>
