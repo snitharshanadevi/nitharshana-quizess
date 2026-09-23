@@ -210,23 +210,25 @@ export const quizService = {
         allTopicQuestions = [];
     }
 
-    // Day 1 Progressive 5-Level Questions (10 questions per level)
-    if (dayNum === 1 && levelNum) {
-      // Level 1 -> Day 1 questions, Level 2 -> Day 2 questions, ..., Level 5 -> Day 5 questions
-      let levelQuestions = allTopicQuestions.filter(q => q.day === levelNum);
-      if (levelQuestions.length === 0) {
-        // Slice from topic questions if specific day not available
-        const start = (levelNum - 1) * 10;
-        levelQuestions = allTopicQuestions.slice(start, start + 10);
+    // Progressive 5-Level Questions (10 distinct questions per level)
+    if (levelNum) {
+      let levelQuestions = allTopicQuestions.filter(q => q.level === levelNum || q.day === levelNum);
+      if (levelQuestions.length >= 10) {
+        return levelQuestions.slice(0, 10);
       }
-      return levelQuestions.length > 0 ? levelQuestions : allTopicQuestions.slice(0, 10);
+      // Unique slice based on level offset so zero duplicates occur
+      const start = ((levelNum - 1) * 10) % Math.max(allTopicQuestions.length, 1);
+      const sliced = allTopicQuestions.slice(start, start + 10);
+      if (sliced.length > 0) return sliced;
     }
 
     // Standard Single-Day filter
     let dayQuestions = allTopicQuestions.filter(q => q.day === dayNum);
 
     if (dayQuestions.length === 0 && allTopicQuestions.length > 0) {
-      dayQuestions = allTopicQuestions.slice(0, 10);
+      const start = ((dayNum - 1) * 10) % Math.max(allTopicQuestions.length, 1);
+      dayQuestions = allTopicQuestions.slice(start, start + 10);
+      if (dayQuestions.length === 0) dayQuestions = allTopicQuestions.slice(0, 10);
     }
 
     return dayQuestions;
