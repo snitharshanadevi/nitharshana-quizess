@@ -1,7 +1,8 @@
 /**
  * Home.jsx
  * Dashboard page showing the SI preparation hero banner,
- * Daily Schedule card, Mathematics topic cards, and upcoming subjects.
+ * Daily Schedule card, Category filter tabs, and Topic Cards for ALL subjects
+ * (Mathematics, Psychology, English, Chemistry) with rich themes and progress tracking.
  */
 
 import React, { useState, useEffect } from "react";
@@ -13,6 +14,7 @@ export function Home({ onSelectTopic, navigateTo }) {
   const [subjectsList, setSubjectsList] = useState([]);
   const [schedule, setSchedule] = useState([]);
   const [userProgress, setUserProgress] = useState(null);
+  const [selectedSubjectFilter, setSelectedSubjectFilter] = useState("all");
 
   useEffect(() => {
     async function loadData() {
@@ -26,14 +28,28 @@ export function Home({ onSelectTopic, navigateTo }) {
     loadData();
   }, []);
 
-  const mathSubject = subjectsList.find(s => s.id === "mathematics");
-  const otherSubjects = subjectsList.filter(s => s.id !== "mathematics");
+  const filteredSubjects = selectedSubjectFilter === "all" 
+    ? subjectsList 
+    : subjectsList.filter(s => s.id === selectedSubjectFilter);
+
+  const getSubjectBadgeStyle = (subjectId) => {
+    switch (subjectId) {
+      case "psychology":
+        return "bg-purple-100 text-purple-800 border-purple-200";
+      case "english":
+        return "bg-sky-100 text-sky-800 border-sky-200";
+      case "chemistry":
+        return "bg-emerald-100 text-emerald-800 border-emerald-200";
+      default:
+        return "bg-blue-100 text-blue-800 border-blue-200";
+    }
+  };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 animate-fadeIn">
       
       {/* Hero Section with 12-Hour Rotating Motivational Quote */}
-      <div className="text-center max-w-2xl mx-auto mb-10">
+      <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
         <div className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-200/80 px-4 py-1.5 rounded-full text-blue-800 text-xs sm:text-sm font-bold mb-4 shadow-sm">
           <span>🚔</span>
           <span>SI TEST PREPARATION 2026</span>
@@ -67,89 +83,86 @@ export function Home({ onSelectTopic, navigateTo }) {
         </div>
       </div>
 
-      {/* Main Mathematics Section */}
-      <div className="mb-12">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 pb-3 border-b border-slate-200 gap-2">
-          <div>
-            <div className="flex items-center space-x-2">
-              <span className="text-2xl">🧮</span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-                கணிதம் — Mathematics
-              </h2>
-            </div>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1">
-              எளிமைப்படுத்துதல், இலாபம் & நட்டம், மற்றும் சிறப்புத் தொடர்கள் வினாத் தொகுப்புகள்
-            </p>
-          </div>
-          <span className="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full border border-emerald-200 w-fit">
-            10-நாள் முழுத் தேர்வு தயார்
-          </span>
-        </div>
+      {/* Daily Schedule Card Banner */}
+      {schedule && schedule.length > 0 && (
+        <DailyScheduleCard
+          schedule={schedule}
+          onSelectTopic={onSelectTopic}
+        />
+      )}
 
-        {/* Mathematics Topic Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {mathSubject?.topics.map(topic => (
-            <TopicCard
-              key={topic.id}
-              topic={topic}
-              onSelectTopic={onSelectTopic}
-              progressInfo={userProgress?.topicProgress?.[topic.id]}
-            />
+      {/* Subject Filter Tabs / Navigation Pills */}
+      <div className="mb-10">
+        <div className="flex items-center space-x-2 overflow-x-auto pb-2 scrollbar-none">
+          <button
+            onClick={() => setSelectedSubjectFilter("all")}
+            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${
+              selectedSubjectFilter === "all"
+                ? "bg-slate-900 text-white shadow-md"
+                : "bg-white text-slate-600 hover:bg-slate-100 border border-slate-200"
+            }`}
+          >
+            🌟 அனைத்து பாடங்கள் (All Subjects)
+          </button>
+          {subjectsList.map(sub => (
+            <button
+              key={sub.id}
+              onClick={() => setSelectedSubjectFilter(sub.id)}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer flex items-center space-x-1.5 ${
+                selectedSubjectFilter === sub.id
+                  ? "bg-blue-600 text-white shadow-md"
+                  : "bg-white text-slate-700 hover:bg-slate-100 border border-slate-200"
+              }`}
+            >
+              <span>{sub.icon}</span>
+              <span>{sub.nameTamil} ({sub.nameEnglish})</span>
+            </button>
           ))}
         </div>
       </div>
 
-      {/* Upcoming Subjects Section (Scalable Architecture) */}
-      <div>
-        <div className="flex items-center space-x-2 mb-6 pb-3 border-b border-slate-200">
-          <span className="text-2xl">📚</span>
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
-              மற்ற பாடங்கள் — Other Subjects
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-500">
-              ஆங்கிலம், உளவியல் மற்றும் பொது அறிவியல் பகுதிகள்
-            </p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {otherSubjects.map(sub => {
-            const firstTopic = sub.topics[0];
-            return (
-              <div
-                key={sub.id}
-                onClick={() => firstTopic && onSelectTopic(firstTopic.id)}
-                className="bg-white rounded-2xl p-6 border border-slate-200 hover:border-blue-400 hover:shadow-lg transition-all cursor-pointer group flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-3xl">{sub.icon}</span>
-                    <span className="bg-slate-100 text-slate-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-slate-200">
-                      {sub.badge}
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
-                    {sub.nameTamil} ({sub.nameEnglish})
-                  </h3>
-                  <p className="text-xs font-bold text-blue-600 mt-1 mb-2">
-                    பாடத் தலைப்பு: {firstTopic?.nameTamil}
-                  </p>
-                  <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                    {sub.description}
-                  </p>
+      {/* Render All Subject Sections with Full Topic Cards */}
+      <div className="space-y-12">
+        {filteredSubjects.map(subject => (
+          <section key={subject.id} className="relative">
+            
+            {/* Subject Section Header */}
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 pb-3 border-b border-slate-200 gap-3">
+              <div>
+                <div className="flex items-center space-x-2.5">
+                  <span className="text-2xl sm:text-3xl">{subject.icon}</span>
+                  <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
+                    {subject.nameTamil} — {subject.nameEnglish}
+                  </h2>
                 </div>
-
-                <button className="w-full py-2.5 px-4 rounded-xl bg-slate-100 group-hover:bg-blue-600 group-hover:text-white text-slate-800 font-bold text-xs flex items-center justify-center space-x-1.5 transition-colors">
-                  <span>பயிற்சியைத் தொடங்கு</span>
-                  <span>→</span>
-                </button>
+                <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                  {subject.description}
+                </p>
               </div>
-            );
-          })}
-        </div>
+
+              <span className={`text-xs font-bold px-3 py-1 rounded-full border w-fit ${getSubjectBadgeStyle(subject.id)}`}>
+                {subject.badge}
+              </span>
+            </div>
+
+            {/* Subject Topic Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {subject.topics.map(topic => (
+                <TopicCard
+                  key={topic.id}
+                  topic={topic}
+                  themeKey={subject.id}
+                  onSelectTopic={onSelectTopic}
+                  progressInfo={userProgress?.topicProgress?.[topic.id]}
+                />
+              ))}
+            </div>
+
+          </section>
+        ))}
       </div>
 
     </div>
   );
 }
+

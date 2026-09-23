@@ -181,8 +181,10 @@ export const quizService = {
     const dayNum = parseInt(day, 10);
     const levelNum = level ? parseInt(level, 10) : null;
 
-    // Day 2 Level-based Questions (130 Questions Bank)
-    if (dayNum === 2) {
+    const isMathTopic = ["simplification", "profit-loss", "special-series"].includes(topicId);
+
+    // Day 2 Level-based Questions for Mathematics (130 Questions Bank)
+    if (dayNum === 2 && isMathTopic) {
       if (levelNum) {
         return day2Questions.filter(q => q.level === levelNum);
       }
