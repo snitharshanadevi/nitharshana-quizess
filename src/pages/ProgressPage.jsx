@@ -46,7 +46,7 @@ export function ProgressPage({ onSelectTopic, onBack }) {
           </button>
           <h1 className="text-2xl sm:text-3xl font-black text-slate-900 flex items-center space-x-2">
             <span>📊</span>
-            <span>உங்கள் SI தேர்வு முன்னேற்றம்</span>
+            <span>உங்கள் தேர்வு முன்னேற்றம்</span>
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 mt-1">
             பாடவாரியான பயிற்சி நிலைகள் மற்றும் தேர்வு முடிவுகள்

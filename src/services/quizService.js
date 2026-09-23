@@ -7,7 +7,7 @@
 import { subjects, dailySchedule } from "../data/subjects.js";
 import { simplificationQuestions } from "../data/simplification.js";
 import { profitLossQuestions } from "../data/profitLoss.js";
-import { specialSeriesQuestions } from "../data/specialSeries.js";
+import { specialSeriesQuestions, specialSeriesLevelMeta } from "../data/specialSeries.js";
 import { otherSubjectsQuestions } from "../data/otherSubjects.js";
 import { day2LevelsMeta, day2Questions } from "../data/day2Levels.js";
 import { loadProgress, saveTestResult as persistResult, isLevelUnlocked, saveLevelResult as persistLevelResult, getLevelResult } from "../utils/storageUtils.js";
@@ -43,7 +43,7 @@ export const day1LevelsMeta = [
     badge: "Tricky Core",
     questionCount: 10,
     durationMinutes: 12,
-    description: "SI தேர்வில் கேட்கப்படும் ட்ரிக்கியான வினாக்கள் மற்றும் Shortcut முறைகள்."
+    description: "போட்டித் தேர்வில் கேட்கப்படும் ட்ரிக்கியான வினாக்கள் மற்றும் Shortcut முறைகள்."
   },
   {
     level: 4,
@@ -57,13 +57,13 @@ export const day1LevelsMeta = [
   },
   {
     level: 5,
-    titleTamil: "நிலை 5: SI இறுதி மாதிரி முழுத் தேர்வு",
-    titleEnglish: "Level 5: Master SI Exam Simulation",
-    difficulty: "தேர்வுத்தரம் (Master SI)",
+    titleTamil: "நிலை 5: மாஸ்டர் இறுதி மாதிரி முழுத் தேர்வு",
+    titleEnglish: "Level 5: Master Exam Simulation",
+    difficulty: "தேர்வுத்தரம் (Master)",
     badge: "Grand Master",
     questionCount: 10,
     durationMinutes: 15,
-    description: "TNUSRB SI அசல் தேர்வுத் தரம் வாய்ந்த இறுதி மாதிரித் தேர்வு."
+    description: "முழு தேர்வுத் தரம் வாய்ந்த இறுதி மாதிரித் தேர்வு."
   }
 ];
 
@@ -94,10 +94,11 @@ export const quizService = {
   },
 
   /**
-   * Check if a specific day has structured 5 levels (e.g. Day 1, Day 2)
+   * Check if a specific day or topic has structured 5 levels
    */
   hasLevels(topicId, day) {
     const dayNum = parseInt(day, 10);
+    if (topicId === "special-series") return true;
     return dayNum === 1 || dayNum === 2;
   },
 
@@ -106,7 +107,13 @@ export const quizService = {
    */
   async getDayLevels(topicId, day) {
     const dayNum = parseInt(day, 10);
-    const metaList = dayNum === 2 ? day2LevelsMeta : day1LevelsMeta;
+    let metaList = day1LevelsMeta;
+
+    if (topicId === "special-series") {
+      metaList = specialSeriesLevelMeta;
+    } else if (dayNum === 2) {
+      metaList = day2LevelsMeta;
+    }
 
     return metaList.map(levelMeta => {
       const isUnlocked = isLevelUnlocked(topicId, dayNum, levelMeta.level);
@@ -144,7 +151,11 @@ export const quizService = {
       let hasLevels = false;
       let questionCount = topic.questionsPerDay || 10;
 
-      if (day === 1) {
+      if (topicId === "special-series") {
+        hasLevels = true;
+        difficulty = "5 Levels (125 வினாக்கள்)";
+        questionCount = "125 (5 Levels × 25)";
+      } else if (day === 1) {
         hasLevels = true;
         difficulty = "5 Levels (50 வினாக்கள்)";
         questionCount = "50 (5 Levels)";
@@ -163,7 +174,7 @@ export const quizService = {
         date: getDateForDay(day),
         questionCount,
         hasLevels,
-        durationMinutes: day === 2 ? "20-30 நிமிடம்/Level" : day === 1 ? "10-15 நிமிடம்/Level" : 10,
+        durationMinutes: topicId === "special-series" ? "20-30 நிமிடம்/Level" : day === 2 ? "20-30 நிமிடம்/Level" : day === 1 ? "10-15 நிமிடம்/Level" : 10,
         difficulty,
         status: completedInfo ? "Completed" : "Available",
         score: completedInfo ? completedInfo.score : null,
@@ -181,10 +192,20 @@ export const quizService = {
     const dayNum = parseInt(day, 10);
     const levelNum = level ? parseInt(level, 10) : null;
 
-    const isMathTopic = ["simplification", "profit-loss", "special-series"].includes(topicId);
+    // Special Series: 125 Questions across 5 Levels (25 per level)
+    if (topicId === "special-series") {
+      if (levelNum) {
+        return specialSeriesQuestions.filter(q => q.level === levelNum);
+      }
+      // If no level specified, default to level 1 (or map day to level)
+      const mappedLevel = Math.min(Math.max(dayNum, 1), 5);
+      return specialSeriesQuestions.filter(q => q.level === mappedLevel);
+    }
 
-    // Day 2 Level-based Questions for Mathematics (130 Questions Bank)
-    if (dayNum === 2 && isMathTopic) {
+    const isMathTopic = ["simplification", "profit-loss"].includes(topicId);
+
+    // Day 2 Level-based Questions for Simplification & General Mock (130 Questions Bank)
+    if (dayNum === 2 && topicId === "simplification") {
       if (levelNum) {
         return day2Questions.filter(q => q.level === levelNum);
       }
@@ -200,9 +221,6 @@ export const quizService = {
       case "profit-loss":
         allTopicQuestions = profitLossQuestions;
         break;
-      case "special-series":
-        allTopicQuestions = specialSeriesQuestions;
-        break;
       case "preposition":
       case "direction":
       case "air":
@@ -212,7 +230,7 @@ export const quizService = {
         allTopicQuestions = [];
     }
 
-    // Progressive 5-Level Questions (10 distinct questions per level)
+    // Progressive 5-Level Questions
     if (levelNum) {
       let levelQuestions = allTopicQuestions.filter(q => q.level === levelNum || q.day === levelNum);
       if (levelQuestions.length >= 10) {

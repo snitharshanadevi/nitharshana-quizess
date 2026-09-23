@@ -25,19 +25,19 @@ export function Header({ currentView, navigateTo, isMuted, setIsMuted }) {
             onClick={() => navigateTo("home")}
           >
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-amber-500 flex items-center justify-center shadow-lg transform group-hover:scale-105 transition-transform">
-              <span className="text-xl sm:text-2xl">🚔</span>
+              <span className="text-xl sm:text-2xl">⚡</span>
             </div>
             <div>
               <div className="flex items-center space-x-2">
                 <span className="font-extrabold text-base sm:text-xl tracking-tight text-white">
-                  SI TEST
+                  projectA
                 </span>
                 <span className="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] sm:text-xs px-2 py-0.5 rounded-full font-semibold">
-                  TNSURB
+                  PRO
                 </span>
               </div>
               <p className="text-[11px] sm:text-xs text-slate-400 font-medium">
-                தமிழ்நாடு SI தேர்வு பயிற்சி
+                போட்டித் தேர்வு பயிற்சி தளம்
               </p>
             </div>
           </div>

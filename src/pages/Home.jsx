@@ -51,12 +51,12 @@ export function Home({ onSelectTopic, navigateTo }) {
       {/* Hero Section with 12-Hour Rotating Motivational Quote */}
       <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
         <div className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-200/80 px-4 py-1.5 rounded-full text-blue-800 text-xs sm:text-sm font-bold mb-4 shadow-sm">
-          <span>🚔</span>
-          <span>SI TEST PREPARATION 2026</span>
+          <span>⚡</span>
+          <span>projectA EXAM PREPARATION PLATFORM</span>
         </div>
         
         <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-4">
-          தமிழில் தினசரி <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-amber-500">SI தேர்வு பயிற்சி</span>
+          தமிழில் தினசரி <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-amber-500">முழு மாதிரித் தேர்வுப் பயிற்சி</span>
         </h1>
 
         {/* 12-Hour Dynamic Motivational Quote Banner */}

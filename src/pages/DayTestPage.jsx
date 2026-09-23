@@ -47,7 +47,7 @@ export function DayTestPage({ topicId, day, level = null, onFinishTest, onBack }
   const activeLevel = level ? parseInt(level, 10) : null;
 
   // Test duration in minutes
-  const testDurationMinutes = day === 2 
+  const testDurationMinutes = (topicId === "special-series" || day === 2)
     ? (activeLevel === 5 ? 30 : activeLevel >= 3 ? 25 : 20)
     : 10;
 

@@ -94,7 +94,7 @@ export function ResultCard({
         {isLevelTest && isLastLevel && (
           <div className="bg-gradient-to-r from-amber-500 to-yellow-600 text-white px-4 py-3 text-center text-xs sm:text-sm font-black flex items-center justify-center space-x-2 shadow-inner">
             <span>🏆</span>
-            <span>அபார சாதனை! நாள் 2-ன் அனைத்து 5 நிலைகளையும் வெற்றிகரமாக முடித்துவிட்டீர்கள்! SI தேர்ச்சி உறுதி!</span>
+            <span>அபார சாதனை! அனைத்து 5 நிலைகளையும் வெற்றிகரமாக முடித்துவிட்டீர்கள்! முழு தேர்ச்சி உறுதி!</span>
           </div>
         )}
 

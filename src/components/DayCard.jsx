@@ -56,7 +56,7 @@ export function DayCard({ day, onSelectDay }) {
 
         {hasLevels && (
           <div className="mt-2 text-[11px] bg-indigo-100 text-indigo-900 px-2.5 py-1 rounded-lg font-bold flex items-center justify-between border border-indigo-200">
-            <span>🔥 TNUSRB SI PYQs</span>
+            <span>🎯 projectA Master</span>
             <span>5 Levels</span>
           </div>
         )}

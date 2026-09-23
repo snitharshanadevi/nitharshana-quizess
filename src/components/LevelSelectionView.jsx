@@ -36,15 +36,15 @@ export function LevelSelectionView({ topic, day, levels, onSelectLevel, onBack }
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-2">
             <div className="inline-flex items-center space-x-2 bg-blue-500/20 border border-blue-400/30 px-3 py-1 rounded-full text-blue-300 text-xs font-bold">
-              <span>🚔</span>
-              <span>{day === 2 ? "TNUSRB SI PREVIOUS YEAR PAPERS • 5 LEVELS" : "TNUSRB SI 5-STAGE PROGRESSION • 5 LEVELS"}</span>
+              <span>🎯</span>
+              <span>{topic?.id === "special-series" ? "projectA SPECIAL SERIES MASTER • 5 LEVELS (125 வினாக்கள்)" : "projectA 5-STAGE PROGRESSION • 5 LEVELS"}</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-black tracking-tight">
-              நாள் {day} : {topic?.nameTamil} 5-நிலை பயிற்சித் தொகுப்பு
+              {topic?.id === "special-series" ? `${topic?.nameTamil} 5-நிலை முழு பயிற்சி (125 வினாக்கள்)` : `நாள் ${day} : ${topic?.nameTamil} 5-நிலை பயிற்சித் தொகுப்பு`}
             </h1>
             <p className="text-xs sm:text-sm text-indigo-200 max-w-2xl leading-relaxed">
-              {day === 2 
-                ? "அசல் TNUSRB SI தேர்வுத் தாள்கள் (Adda247, Shishya, 2023/2022/2019/2015) மற்றும் பாடத்திட்டத்தின் அடிப்படையில் உருவாக்கப்பட்ட 130 வினாக்கள்."
+              {topic?.id === "special-series"
+                ? "எளிய நிலை முதல் Tricky நிலை வரை 5 நிலைகளில் வகைப்படுத்தப்பட்ட 125 பிரத்யேக வினாக்கள். முந்தைய Level-ஐ முடித்து அடுத்த Level-ஐ Unlock செய்யவும்!"
                 : "அடிப்படை முதல் தேர்வு மாதிரி வரை 5 நிலைகளில் வகைப்படுத்தப்பட்ட வினாக்கள். முந்தைய Level-ஐ முடித்து அடுத்த Level-ஐ Unlock செய்யவும்!"
               }
             </p>

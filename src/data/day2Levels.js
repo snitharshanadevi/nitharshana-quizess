@@ -1390,7 +1390,7 @@ export const day2Questions = [
     day: 2,
     level: 5,
     questionNumber: 1,
-    question: "TNUSRB SI அசல் வினா: இந்திய அரசியலமைப்பின் 21A சரத்து எதனை உறுதி செய்கிறது?",
+    question: "இந்திய அரசியலமைப்பின் 21A சரத்து எதனை உறுதி செய்கிறது?",
     options: ["பேச்சுரிமை", "இலவச மற்றும் கட்டாயக் கல்வி (6-14 வயது)", "சம வேலைக்கு சம ஊதியம்", "மத சுதந்திரம்"],
     correctAnswer: 1,
     explanation: {
@@ -1403,7 +1403,7 @@ export const day2Questions = [
     day: 2,
     level: 5,
     questionNumber: 2,
-    question: "TNUSRB SI கணித வினா: (a + b) = 10 மற்றும் ab = 21 எனில் (a² + b²) மதிப்பு யாது?",
+    question: "(a + b) = 10 மற்றும் ab = 21 எனில் (a² + b²) மதிப்பு யாது?",
     options: ["58", "79", "100", "42"],
     correctAnswer: 0,
     explanation: {

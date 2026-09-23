@@ -19,7 +19,7 @@ export const otherSubjectsQuestions = [
     day: 1,
     level: 1,
     questionNumber: 1,
-    question: "Choose the correct preposition: 'The TNUSRB SI physical test will be conducted _____ 6:00 AM.'",
+    question: "Choose the correct preposition: 'The physical fitness test will be conducted _____ 6:00 AM.'",
     options: ["in", "on", "at", "by"],
     correctAnswer: 2, // at
     explanation: {
@@ -176,7 +176,7 @@ export const otherSubjectsQuestions = [
     day: 2,
     level: 2,
     questionNumber: 1,
-    question: "Fill in the blank: 'She is capable _____ passing the TNUSRB SI physical test easily.'",
+    question: "Fill in the blank: 'She is capable _____ passing the competitive physical test easily.'",
     options: ["for", "of", "to", "in"],
     correctAnswer: 1, // of
     explanation: {

@@ -56,6 +56,22 @@ export function AnswerFeedback({
           </div>
         </div>
 
+        {/* Shortcut Box if available */}
+        {(question.shortcut?.tamil || question.shortcut) && (
+          <div className="bg-amber-50/80 p-4 rounded-xl border border-amber-200 text-amber-900 text-xs sm:text-sm font-semibold leading-relaxed">
+            <span className="font-bold text-amber-800 block mb-1">⚡ Shortcut:</span>
+            <div>{question.shortcut?.tamil || question.shortcut}</div>
+          </div>
+        )}
+
+        {/* Tricky Trap / Caution Box if available */}
+        {(question.trickyPoint?.tamil || question.trickyPoint) && (
+          <div className="bg-rose-50/80 p-4 rounded-xl border border-rose-200 text-rose-900 text-xs sm:text-sm font-semibold leading-relaxed">
+            <span className="font-bold text-rose-800 block mb-1">⚠️ கவனிக்க (Exam Trap):</span>
+            <div>{question.trickyPoint?.tamil || question.trickyPoint}</div>
+          </div>
+        )}
+
         {/* Next Button */}
         <div className="pt-2 text-right">
           <button
