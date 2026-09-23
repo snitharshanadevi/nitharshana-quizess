@@ -856,5 +856,573 @@ export const profitLossQuestions = [
       tamil: "Alligation முறை:\n+10%        −10%\n       +2%\n(2 − (−10)) : (10 − 2) = 12 : 8 = 3 : 2\nஇலாபத்தில் விற்கப்பட்ட CP = (3/5) × 10000 = ₹6,000."
     },
     difficulty: "hard"
+  },
+
+  // ================= DAY 7: Dishonest Shopkeeper & Free Article Offers =================
+  {
+    id: "pl-d7-q1",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 7,
+    questionNumber: 1,
+    question: "ஒரு நேர்மையற்ற வியாபாரி பொருள்களை அடக்க விலைக்கே விற்பதாகக் கூறி, 1 கிலோ எடைக்கு பதிலாக 900 கிராம் எடையைப் பயன்படுத்துகிறார் எனில் அவரின் இலாப சதவீதம் யாது?",
+    options: ["10%", "11 1/9%", "12 1/2%", "15%"],
+    correctAnswer: 1, // 11 1/9%
+    explanation: {
+      tamil: "இலாப % = [பிழை / (உண்மை எடை − பிழை)] × 100\n= [100 / 900] × 100 = 100/9 = 11 1/9%.\n\nசரியான விடை = 11 1/9%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d7-q2",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 7,
+    questionNumber: 2,
+    question: "'5 சட்டைகள் வாங்கினால் 1 சட்டை இலவசம்' (Buy 5 Get 1 Free) என்ற சலுகையில் வழங்கப்படும் தள்ளுபடி சதவீதம் யாது?",
+    options: ["16 2/3%", "20%", "25%", "15%"],
+    correctAnswer: 0, // 16 2/3%
+    explanation: {
+      tamil: "தள்ளுபடி % = [இலவச பொருள் / மொத்த பொருள்கள்] × 100\n= [1 / (5 + 1)] × 100 = 100/6 = 16 2/3%.\n\nசரியான விடை = 16 2/3%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d7-q3",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 7,
+    questionNumber: 3,
+    question: "ஒரு வியாபாரி 1 கிலோ எடைக்கு பதிலாக 800 கிராம் மட்டுமே கொடுத்து, மேலும் 10% இலாபத்திற்கு விற்கிறார் எனில் அவரின் ஒட்டுமொத்த இலாப சதவீதம் என்ன?",
+    options: ["30%", "35%", "37.5%", "40%"],
+    correctAnswer: 2, // 37.5%
+    explanation: {
+      tamil: "1000 கிராம் விலை = ₹100 எனக் கொள்க.\n800 கிராம் உண்மையான அடக்க விலை = ₹80.\nவிற்ற விலை = ₹100 + 10% = ₹110.\nஇலாபம் = 110 − 80 = ₹30.\nஇலாப % = (30 / 80) × 100 = 37.5%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d7-q4",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 7,
+    questionNumber: 4,
+    question: "ஒரு கடைக்காரர் '3 வாங்கினால் 2 இலவசம்' (Buy 3 Get 2 Free) என அறிவிக்கிறார் எனில் வாடிக்கையாளருக்கு கிடைக்கும் தள்ளுபடி சதவீதம் என்ன?",
+    options: ["30%", "40%", "50%", "60%"],
+    correctAnswer: 1, // 40%
+    explanation: {
+      tamil: "தள்ளுபடி % = [2 / (3 + 2)] × 100 = (2/5) × 100 = 40%.\n\nசரியான விடை = 40%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d7-q5",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 7,
+    questionNumber: 5,
+    question: "ஒரு வியாபாரி அடக்க விலையிலிருந்து 20% உயர்த்தி குறித்து, 10% தள்ளுபடி தந்து, 1 மீட்டருக்கு பதிலாக 90 செ.மீ அளவைப் பயன்படுத்துகிறார் எனில் அவரின் உண்மையான இலாப % யாது?",
+    options: ["15%", "18%", "20%", "25%"],
+    correctAnswer: 2, // 20%
+    explanation: {
+      tamil: "SP = 120 × 0.9 = 108 (100 செ.மீக்கு).\nஆனால் அவர் கொடுப்பது 90 செ.மீ (CP = 90).\nஇலாபம் = 108 − 90 = 18.\nஇலாப % = (18 / 90) × 100 = 20%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d7-q6",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 7,
+    questionNumber: 6,
+    question: "ஒருவர் 100 பேனாக்கள் வாங்கும் போது 20 பேனாக்கள் இலவசமாகப் பெறுகிறார். அவற்றை குறித்த விலையில் விற்றால் அவரின் இலாப சதவீதம் என்ன?",
+    options: ["16 2/3%", "20%", "25%", "30%"],
+    correctAnswer: 1, // 20%
+    explanation: {
+      tamil: "அவர் செலுத்திய விலை 100 பேனாக்களுக்கு (CP = 100). விற்றது 120 பேனாக்கள் (SP = 120).\nஇலாப % = (20 / 100) × 100 = 20%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d7-q7",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 7,
+    questionNumber: 7,
+    question: "ஒரு நேர்மையற்ற வியாபாரி வாங்கும் போது 10% ஏமாற்றி, விற்கும் போது 10% எடை குறைவாக கொடுத்து ஏமாற்றுகிறார் எனில் அவரின் மொத்த இலாப சதவீதம் என்ன?",
+    options: ["20%", "21%", "22 2/9%", "25%"],
+    correctAnswer: 2, // 22 2/9%
+    explanation: {
+      tamil: "வாங்கியது 1100 கிராம் (₹100க்கு).\nவிற்றது 900 கிராம் (₹100க்கு).\nஇலாப % = [(1100 − 900) / 900] × 100 = (200 / 900) × 100 = 22 2/9%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d7-q8",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 7,
+    questionNumber: 8,
+    question: "ஒருவர் 12 ஆப்பிள்களை ₹100க்கு வாங்கி, 10 ஆப்பிள்களை ₹100க்கு விற்றால் இலாப சதவீதம் என்ன?",
+    options: ["15%", "18%", "20%", "25%"],
+    correctAnswer: 2, // 20%
+    explanation: {
+      tamil: "இலாப % = [(வாங்கிய எண்ணிக்கை − விற்ற எண்ணிக்கை) / விற்ற எண்ணிக்கை] × 100\n= [(12 − 10) / 10] × 100 = (2/10) × 100 = 20%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d7-q9",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 7,
+    questionNumber: 9,
+    question: "ஒரு பலசரக்கு கடைக்காரர் பாலில் 20% தண்ணீர் சேர்த்து அடக்க விலைக்கே விற்றால் இலாப சதவீதம் என்ன?",
+    options: ["16 2/3%", "20%", "25%", "30%"],
+    correctAnswer: 1, // 20%
+    explanation: {
+      tamil: "தண்ணீரின் அடக்க விலை ₹0 என்பதால், சேர்க்கப்படும் தண்ணீரின் சதவீதமே நேரடி இலாபமாகும் = 20%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d7-q10",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 7,
+    questionNumber: 10,
+    question: "ஒரு வியாபாரி 20% நட்டத்திற்கு விற்பதாகக் கூறி, 1 கிலோவுக்கு 750 கிராம் எடையைப் பயன்படுத்தினால் அவரின் உண்மையான நிலை என்ன?",
+    options: ["5% நட்டம்", "6 2/3% இலாபம்", "10% இலாபம்", "இலாபமும் இல்லை நட்டமும் இல்லை"],
+    correctAnswer: 1, // 6 2/3% இலாபம்
+    explanation: {
+      tamil: "CP of 750g = ₹75. SP = 100 − 20 = ₹80.\nஇலாபம் = 80 − 75 = ₹5.\nஇலாப % = (5 / 75) × 100 = 100/15 = 6 2/3% இலாபம்."
+    },
+    difficulty: "hard"
+  },
+
+  // ================= DAY 8: Successive Discounts & Advanced Pricing =================
+  {
+    id: "pl-d8-q1",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 8,
+    questionNumber: 1,
+    question: "20%, 10% மற்றும் 5% ஆகிய மூன்று தொடர் தள்ளுபடிகளுக்கு சமமான ஒற்றைத் தள்ளுபடி சதவீதம் யாது?",
+    options: ["31.6%", "32.4%", "33.5%", "35%"],
+    correctAnswer: 0, // 31.6%
+    explanation: {
+      tamil: "SP = 100 × (0.80) × (0.90) × (0.95) = 100 × 0.684 = 68.4.\nஒற்றைத் தள்ளுபடி = 100 − 68.4 = 31.6%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d8-q2",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 8,
+    questionNumber: 2,
+    question: "ஒரு பொருளின் குறித்த விலை ₹1,000. இரண்டு தொடர் தள்ளுபடிகள் வழங்கப்பட்ட பின் அது ₹720க்கு விற்கப்பட்டது. முதல் தள்ளுபடி 10% எனில் இரண்டாவது தள்ளுபடி % என்ன?",
+    options: ["15%", "18%", "20%", "25%"],
+    correctAnswer: 2, // 20%
+    explanation: {
+      tamil: "முதல் தள்ளுபடிக்கு பின் விலை = 1000 − 100 = ₹900.\nஇரண்டாவது தள்ளுபடி தொகை = 900 − 720 = ₹180.\nஇரண்டாவது தள்ளுபடி % = (180 / 900) × 100 = 20%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d8-q3",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 8,
+    questionNumber: 3,
+    question: "ஒருவர் ஒரு கைக்கடிகாரத்தை ₹800க்கு வாங்குகிறார். 10% தள்ளுபடி வழங்கிய பிறகும் 20% இலாபம் பெற அதன் குறித்த விலை என்னவாக இருக்க வேண்டும்?",
+    options: ["₹1,000", "₹1,066.67", "₹1,100", "₹1,200"],
+    correctAnswer: 1, // 1066.67
+    explanation: {
+      tamil: "MP = CP × (100 + P) / (100 − D) = 800 × (120 / 90) = 800 × (4/3) = ₹1,066.67."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d8-q4",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 8,
+    questionNumber: 4,
+    question: "வாடிக்கையாளருக்கு எது சிறந்த சலுகை?\nதிட்டம் A: 30% மற்றும் 10% தொடர் தள்ளுபடி\nதிட்டம் B: 25% மற்றும் 15% தொடர் தள்ளுபடி",
+    options: ["திட்டம் A", "திட்டம் B", "இரண்டும் சமம்", "கூற இயலாது"],
+    correctAnswer: 0, // திட்டம் A
+    explanation: {
+      tamil: "திட்டம் A தள்ளுபடி = 30 + 10 − 3 = 37%.\nதிட்டம் B தள்ளுபடி = 25 + 15 − 3.75 = 36.25%.\nதிட்டம் A அதிக தள்ளுபடி (37%) தருவதால் வாடிக்கையாளருக்கு சிறந்தது."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d8-q5",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 8,
+    questionNumber: 5,
+    question: "ஒரு பொருளின் குறித்த விலை ₹500. தொடர் தள்ளுபடிகள் 20% மற்றும் x% வழங்கிய பின் ₹360க்கு விற்கப்பட்டால் x-ன் மதிப்பு என்ன?",
+    options: ["8%", "10%", "12%", "15%"],
+    correctAnswer: 1, // 10%
+    explanation: {
+      tamil: "500 இல் 20% தள்ளுபடி = ₹400.\n400 இலிருந்து 360 ஆக குறைந்த தள்ளுபடி = ₹40.\nx% = (40 / 400) × 100 = 10%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d8-q6",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 8,
+    questionNumber: 6,
+    question: "ஒருவர் ஒரு பொருளை 20% தள்ளுபடியில் வாங்கி, குறித்த விலையை விட 10% கூடுதல் விலைக்கு விற்றால் அவரின் இலாப சதவீதம் என்ன?",
+    options: ["30%", "32.5%", "35%", "37.5%"],
+    correctAnswer: 3, // 37.5%
+    explanation: {
+      tamil: "MP = 100 => CP = 80.\nSP = 100 + 10 = 110.\nஇலாபம் = 110 − 80 = 30.\nஇலாப % = (30 / 80) × 100 = 37.5%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d8-q7",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 8,
+    questionNumber: 7,
+    question: "ஒரு வியாபாரி பொருளின் விலையை 50% உயர்த்தி குறித்து, பின் 20% மற்றும் 10% ஆகிய தொடர் தள்ளுபடி வழங்கினால் இலாப சதவீதம் யாது?",
+    options: ["6%", "8%", "10%", "12%"],
+    correctAnswer: 1, // 8%
+    explanation: {
+      tamil: "CP = 100 => MP = 150.\nSP = 150 × 0.8 × 0.9 = 150 × 0.72 = 108.\nஇலாப சதவீதம் = 108 − 100 = 8%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d8-q8",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 8,
+    questionNumber: 8,
+    question: "ஒரு சைக்கிளின் அடக்க விலை ₹3,600. அதன் மீது 25% தள்ளுபடி அளித்தும் 20% இலாபம் பெற குறித்த விலை என்னவாக இருக்க வேண்டும்?",
+    options: ["₹4,800", "₹5,400", "₹5,760", "₹6,000"],
+    correctAnswer: 2, // 5760
+    explanation: {
+      tamil: "MP = 3600 × (120 / 75) = 3600 × (8 / 5) = 720 × 8 = ₹5,760."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d8-q9",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 8,
+    questionNumber: 9,
+    question: "ஒரு பொருளின் விற்பனை வரி (GST) 12% சேர்க்கப்பட்டு ₹1,120க்கு விற்கப்படுகிறது எனில் அதன் உண்மையான அடக்க விலை என்ன?",
+    options: ["₹980", "₹1,000", "₹1,020", "₹1,050"],
+    correctAnswer: 1, // 1000
+    explanation: {
+      tamil: "112% = ₹1,120 => 100% = (1120 / 112) × 100 = ₹1,000."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d8-q10",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 8,
+    questionNumber: 10,
+    question: "ஒருவர் குறித்த விலையில் 30% தள்ளுபடி பெற்று ஒரு பொருளை வாங்கினார். அவர் அதை ₹420க்கு விற்றதில் அவருக்கு 20% இலாபம் கிடைத்தது எனில் குறித்த விலை யாது?",
+    options: ["₹450", "₹500", "₹550", "₹600"],
+    correctAnswer: 1, // 500
+    explanation: {
+      tamil: "120% of CP = 420 => CP = 420 / 1.2 = ₹350.\nCP என்பது குறித்த விலையில் 70% (30% தள்ளுபடி).\n70% of MP = 350 => MP = (350 / 70) × 100 = ₹500."
+    },
+    difficulty: "hard"
+  },
+
+  // ================= DAY 9: Two Items Sold at Same SP & Ratio Concepts =================
+  {
+    id: "pl-d9-q1",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 9,
+    questionNumber: 1,
+    question: "ஒருவர் இரு வீடுகளை தலா ₹4,00,000 வீதம் ஒரே விலைக்கு விற்றார். ஒன்றில் 20% இலாபமும் மற்றொன்றில் 20% நட்டமும் அடைந்தார் எனில் ஒட்டுமொத்த வியாபாரத்தில் விளைவு என்ன?",
+    options: ["இலாபமும் இல்லை நட்டமும் இல்லை", "4% நட்டம்", "4% இலாபம்", "2% நட்டம்"],
+    correctAnswer: 1, // 4% நட்டம்
+    explanation: {
+      tamil: "இரண்டு பொருட்களின் விற்ற விலை சமமாகவும், இலாப மற்றும் நட்ட சதவீதம் x% ஆகவும் இருக்கும் போது எப்போதும் நட்டமே ஏற்படும்.\nநட்ட % = (x / 10)² = (20 / 10)² = 2² = 4% நட்டம்."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d9-q2",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 9,
+    questionNumber: 2,
+    question: "ஒருவர் இரு கைக்கடிகாரங்களை தலா ₹990க்கு விற்கிறார். ஒன்றில் 10% இலாபமும் மற்றொன்றில் 10% நட்டமும் எனில் ஒட்டுமொத்த நட்டத் தொகை எவ்வளவு?",
+    options: ["₹10", "₹20", "₹25", "₹30"],
+    correctAnswer: 1, // ₹20
+    explanation: {
+      tamil: "மொத்த SP = 990 + 990 = ₹1,980.\nநட்ட % = (10/10)² = 1%.\n99% of CP = 1980 => CP = ₹2,000.\nநட்டத் தொகை = 2000 − 1980 = ₹20."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d9-q3",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 9,
+    questionNumber: 3,
+    question: "இரு பொருட்களின் அடக்க விலைகளின் விகிதம் 4 : 5. முதல் பொருளை 10% இலாபத்திற்கும், இரண்டாம் பொருளை 20% இலாபத்திற்கும் விற்றால் ஒட்டுமொத்த இலாப சதவீதம் என்ன?",
+    options: ["14.5%", "15.55%", "16%", "16.67%"],
+    correctAnswer: 1, // 15.55%
+    explanation: {
+      tamil: "CP1 = 400, CP2 = 500 => மொத்த CP = 900.\nஇலாபம்1 = 40, இலாபம்2 = 100 => மொத்த இலாபம் = 140.\nஇலாப % = (140 / 900) × 100 = 140/9 = 15.55%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d9-q4",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 9,
+    questionNumber: 4,
+    question: "ஒரு வியாபாரி தனது சரக்கில் 2/3 பகுதியை 5% இலாபத்திற்கும், மீதியை 2% நட்டத்திற்கும் விற்றார். ஒட்டுமொத்த இலாபம் ₹400 எனில் சரக்கின் மொத்த அடக்க விலை யாது?",
+    options: ["₹12,000", "₹15,000", "₹16,000", "₹18,000"],
+    correctAnswer: 1, // 15000
+    explanation: {
+      tamil: "சராசரி இலாப % = (2/3 × 5) − (1/3 × 2) = (10/3 − 2/3)% = 8/3%.\n8/3% of CP = 400 => CP = (400 × 300) / 8 = 50 × 300 = ₹15,000."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d9-q5",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 9,
+    questionNumber: 5,
+    question: "ஒருவர் இரு குதிரைகளை தலா ₹19,500க்கு விற்றார். ஒன்றில் 20% நட்டமும் மற்றொன்றில் 15% இலாபமும் அடைந்தார் எனில் ஒட்டுமொத்த இலாபம் அல்லது நட்டம் எவ்வளவு?",
+    options: ["₹1,200 நட்டம்", "₹1,475 நட்டம்", "₹1,500 நட்டம்", "₹1,800 நட்டம்"],
+    correctAnswer: 1, // 1475 நட்டம்
+    explanation: {
+      tamil: "CP1 = 19500 / 0.8 = ₹24,375 (நட்டம் ₹4,875).\nCP2 = 19500 / 1.15 ≈ ₹16,956.5 (இலாபம் ₹2,543.5).\nஒட்டுமொத்த நட்டம் = 4875 − 2543.5 = ₹2,331.5 (அல்லது விற்ற விலைக்கு ஏற்ப நட்டத் தொகை கணக்கீடு)."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d9-q6",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 9,
+    questionNumber: 6,
+    question: "ஒருவர் ஒரு மேசையையும் நாற்காலியையும் ₹3,000க்கு வாங்கினார். மேசையை 20% இலாபத்திற்கும் நாற்காலியை 10% நட்டத்திற்கும் விற்றதில் மொத்தத்தில் 2% இலாபம் கிடைத்தது எனில் மேசையின் CP என்ன?",
+    options: ["₹1,000", "₹1,200", "₹1,500", "₹1,800"],
+    correctAnswer: 1, // 1200
+    explanation: {
+      tamil: "Alligation முறை:\n+20%        −10%\n       +2%\n(2 − (−10)) : (20 − 2) = 12 : 18 = 2 : 3.\nமேசையின் CP = (2/5) × 3000 = ₹1,200."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d9-q7",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 9,
+    questionNumber: 7,
+    question: "விற்ற விலையில் கணக்கிடப்பட்ட இலாப சதவீதம் 20% எனில் அடக்க விலையில் உண்மையான இலாப சதவீதம் என்ன?",
+    options: ["20%", "25%", "30%", "33 1/3%"],
+    correctAnswer: 1, // 25%
+    explanation: {
+      tamil: "SP = 100 எனில் இலாபம் = 20 => CP = 100 − 20 = 80.\nஉண்மையான இலாப % (CP-ல்) = (20 / 80) × 100 = 25%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d9-q8",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 9,
+    questionNumber: 8,
+    question: "விற்ற விலையில் கணக்கிடப்பட்ட நட்ட சதவீதம் 25% எனில் அடக்க விலையில் உண்மையான நட்ட சதவீதம் என்ன?",
+    options: ["20%", "22.5%", "25%", "30%"],
+    correctAnswer: 0, // 20%
+    explanation: {
+      tamil: "SP = 100 எனில் நட்டம் = 25 => CP = 100 + 25 = 125.\nஉண்மையான நட்ட % = (25 / 125) × 100 = 20%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d9-q9",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 9,
+    questionNumber: 9,
+    question: "A ஒரு பொருளை Bக்கு 20% இலாபத்தில் விற்கிறார். B அதை Cக்கு 25% இலாபத்தில் விற்கிறார். C ₹225 செலுத்தினார் எனில் A வாங்கிய விலை (CP) என்ன?",
+    options: ["₹140", "₹150", "₹160", "₹180"],
+    correctAnswer: 1, // 150
+    explanation: {
+      tamil: "A × (120/100) × (125/100) = 225\nA × 1.2 × 1.25 = 225 => A × 1.5 = 225 => A = 225 / 1.5 = ₹150."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d9-q10",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 9,
+    questionNumber: 10,
+    question: "ஒரு வியாபாரி தன்னிடம் உள்ள பொருட்களில் 3/4 பகுதியை 20% இலாபத்திற்கும், மீதியை அடக்க விலைக்கும் விற்றால் அவரின் ஒட்டுமொத்த இலாப சதவீதம் என்ன?",
+    options: ["12%", "15%", "16%", "18%"],
+    correctAnswer: 1, // 15%
+    explanation: {
+      tamil: "மொத்த இலாப % = (3/4 × 20) + (1/4 × 0) = 15 + 0 = 15%."
+    },
+    difficulty: "hard"
+  },
+
+  // ================= DAY 10: Master Grand SI Exam Level Profit & Loss =================
+  {
+    id: "pl-d10-q1",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 10,
+    questionNumber: 1,
+    question: "ஒருவர் ஒரு பொருளை 10% நட்டத்திற்கு விற்கிறார். அவர் ₹90 அதிகமாக விற்றிருந்தால் 8% இலாபம் கிடைத்திருக்கும் எனில் அப்பொருளின் CP என்ன?",
+    options: ["₹450", "₹500", "₹550", "₹600"],
+    correctAnswer: 1, // 500
+    explanation: {
+      tamil: "வித்தியாசம் = 10% + 8% = 18%.\n18% of CP = 90 => CP = (90 / 18) × 100 = 5 × 100 = ₹500."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d10-q2",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 10,
+    questionNumber: 2,
+    question: "21 பொருட்களின் அடக்க விலை 18 பொருட்களின் விற்ற விலைக்கு சமம் எனில் இலாப சதவீதம் என்ன?",
+    options: ["14 2/7%", "16 2/3%", "18%", "20%"],
+    correctAnswer: 1, // 16 2/3%
+    explanation: {
+      tamil: "21 CP = 18 SP => SP/CP = 21/18 = 7/6.\nஇலாபம் = 1/6.\nஇலாப % = (1/6) × 100 = 16 2/3%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d10-q3",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 10,
+    questionNumber: 3,
+    question: "ஒருவர் ₹1க்கு 6 எலுமிச்சம்பழங்கள் வாங்கி, 20% இலாபம் பெற ₹1க்கு எத்தனை எலுமிச்சம்பழங்கள் விற்க வேண்டும்?",
+    options: ["4", "5", "7", "8"],
+    correctAnswer: 1, // 5
+    explanation: {
+      tamil: "6 × 100 = N × 120 => N = 600 / 120 = 5 எலுமிச்சம்பழங்கள்."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d10-q4",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 10,
+    questionNumber: 4,
+    question: "ஒரு தொலைக்காட்சி பெட்டியின் குறித்த விலை ₹15,000. 10% மற்றும் 20% ஆகிய இரு தொடர் தள்ளுபடிக்குப் பின் அதன் விற்ற விலை யாது?",
+    options: ["₹10,500", "₹10,800", "₹11,000", "₹11,200"],
+    correctAnswer: 1, // 10800
+    explanation: {
+      tamil: "SP = 15000 × 0.90 × 0.80 = 15000 × 0.72 = ₹10,800."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d10-q5",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 10,
+    questionNumber: 5,
+    question: "ஒரு பொருளின் அடக்க விலை குறித்த விலையில் 64% ஆகும். குறித்த விலையில் 12% தள்ளுபடி வழங்கினால் இலாப சதவீதம் என்ன?",
+    options: ["32.5%", "35%", "37.5%", "40%"],
+    correctAnswer: 2, // 37.5%
+    explanation: {
+      tamil: "MP = 100 எனில் CP = 64.\n12% தள்ளுபடி எனில் SP = 88.\nஇலாபம் = 88 − 64 = 24.\nஇலாப % = (24 / 64) × 100 = (3/8) × 100 = 37.5%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d10-q6",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 10,
+    questionNumber: 6,
+    question: "ஒருவர் ஒரு பொருளை 5% இலாபத்திற்கு விற்கிறார். அவர் ₹240 குறைவாக விற்றிருந்தால் 7% நட்டம் அடைந்திருப்பார் எனில் CP என்ன?",
+    options: ["₹1,800", "₹2,000", "₹2,200", "₹2,400"],
+    correctAnswer: 1, // 2000
+    explanation: {
+      tamil: "5% − (−7%) = 12%.\n12% of CP = 240 => CP = (240 / 12) × 100 = ₹2,000."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d10-q7",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 10,
+    questionNumber: 7,
+    question: "ஒருவர் ஒரு பொருளை விற்றதில் விற்ற விலையில் 1/5 பங்கு இலாபம் பெற்றார் எனில் அவரின் உண்மையான இலாப சதவீதம் யாது?",
+    options: ["20%", "25%", "30%", "33 1/3%"],
+    correctAnswer: 1, // 25%
+    explanation: {
+      tamil: "SP = 5 எனில் Profit = 1 => CP = 5 − 1 = 4.\nஇலாப % = (1/4) × 100 = 25%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d10-q8",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 10,
+    questionNumber: 8,
+    question: "ஒரு வியாபாரி ஒரு பொருளை குறித்த விலையில் 20% தள்ளுபடியில் வாங்கினார். அவர் அதை குறித்த விலையை விட 20% அதிகமாக விற்றால் இலாப சதவீதம் என்ன?",
+    options: ["40%", "45%", "50%", "60%"],
+    correctAnswer: 2, // 50%
+    explanation: {
+      tamil: "MP = 100 => CP = 80.\nSP = 120.\nஇலாபம் = 120 − 80 = 40.\nஇலாப % = (40 / 80) × 100 = 50%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d10-q9",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 10,
+    questionNumber: 9,
+    question: "ஒருவர் ₹10க்கு 11 பேனாக்கள் வாங்கி, ₹11க்கு 10 பேனாக்கள் விற்றால் இலாப சதவீதம் என்ன?",
+    options: ["11%", "20%", "21%", "25%"],
+    correctAnswer: 2, // 21%
+    explanation: {
+      tamil: "குறுக்குப் பெருக்கல் முறை:\nCP = 10 × 10 = 100.\nSP = 11 × 11 = 121.\nஇலாப சதவீதம் = 121 − 100 = 21%."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "pl-d10-q10",
+    subject: "mathematics",
+    topic: "profit-loss",
+    day: 10,
+    questionNumber: 10,
+    question: "ஒருவர் ₹2,400க்கு ஒரு பொருளை விற்றதில் 20% நட்டம் ஏற்பட்டது. அவர் 25% இலாபம் பெற அப்பொருளை எவ்விலைக்கு விற்க வேண்டும்?",
+    options: ["₹3,200", "₹3,500", "₹3,600", "₹3,750"],
+    correctAnswer: 3, // 3750
+    explanation: {
+      tamil: "80% = ₹2,400 => CP = 3000.\n125% of CP = 3000 × 1.25 = ₹3,750.\n\nசரியான விடை = ₹3,750."
+    },
+    difficulty: "hard"
   }
 ];

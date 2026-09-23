@@ -1,10 +1,7 @@
 /**
  * quizService.js
- * Data service layer that abstracts test questions, subjects, and results.
- * Currently serves data from local verified JS repositories.
- * 
- * FUTURE ASP.NET CORE API READY:
- * Replace local returns with `fetch('/api/...')` when connecting to backend.
+ * Data service layer that abstracts test questions, subjects, levels, and results.
+ * Supports progressive 5-Level sequential unlocking for Day 1 and Day 2.
  */
 
 import { subjects, dailySchedule } from "../data/subjects.js";
@@ -15,6 +12,60 @@ import { otherSubjectsQuestions } from "../data/otherSubjects.js";
 import { day2LevelsMeta, day2Questions } from "../data/day2Levels.js";
 import { loadProgress, saveTestResult as persistResult, isLevelUnlocked, saveLevelResult as persistLevelResult, getLevelResult } from "../utils/storageUtils.js";
 import { getDateForDay } from "../utils/dateUtils.js";
+
+// Standard 5-Level Structure for Day 1
+export const day1LevelsMeta = [
+  {
+    level: 1,
+    titleTamil: "நிலை 1: அடிப்படை வினாக்கள் & விதிகள்",
+    titleEnglish: "Level 1: Foundation & Core Rules",
+    difficulty: "அடிப்படை (Easy)",
+    badge: "Foundation",
+    questionCount: 10,
+    durationMinutes: 10,
+    description: "அடிப்படை சூத்திரங்கள், முக்கிய விதிகள் மற்றும் நேரடி வினாக்கள்."
+  },
+  {
+    level: 2,
+    titleTamil: "நிலை 2: நடுத்தர பயன்பாட்டு வினாக்கள்",
+    titleEnglish: "Level 2: Moderate Applications",
+    difficulty: "நடுத்தரம் (Moderate)",
+    badge: "Concepts",
+    questionCount: 10,
+    durationMinutes: 10,
+    description: "பயிற்சிக் கணக்குகள், 2-படி தீர்வுகள் மற்றும் கருத்து வினாக்கள்."
+  },
+  {
+    level: 3,
+    titleTamil: "நிலை 3: தந்திரமான & குறுக்குவழி வினாக்கள்",
+    titleEnglish: "Level 3: Tricky & Shortcut Speed Math",
+    difficulty: "தந்திரமானது (Tricky)",
+    badge: "Tricky Core",
+    questionCount: 10,
+    durationMinutes: 12,
+    description: "SI தேர்வில் கேட்கப்படும் ட்ரிக்கியான வினாக்கள் மற்றும் Shortcut முறைகள்."
+  },
+  {
+    level: 4,
+    titleTamil: "நிலை 4: உயர் கடினத்தன்மை வினாக்கள்",
+    titleEnglish: "Level 4: Advanced High-Difficulty Challenge",
+    difficulty: "கடினம் (Hard)",
+    badge: "Advanced",
+    questionCount: 10,
+    durationMinutes: 15,
+    description: "சிக்கலான கணக்குகள், தீவிர யோசனை தேவைப்படும் வினாக்கள்."
+  },
+  {
+    level: 5,
+    titleTamil: "நிலை 5: SI இறுதி மாதிரி முழுத் தேர்வு",
+    titleEnglish: "Level 5: Master SI Exam Simulation",
+    difficulty: "தேர்வுத்தரம் (Master SI)",
+    badge: "Grand Master",
+    questionCount: 10,
+    durationMinutes: 15,
+    description: "TNUSRB SI அசல் தேர்வுத் தரம் வாய்ந்த இறுதி மாதிரித் தேர்வு."
+  }
+];
 
 export const quizService = {
   /**
@@ -43,21 +94,21 @@ export const quizService = {
   },
 
   /**
-   * Check if a specific day has structured levels (e.g. Day 2)
+   * Check if a specific day has structured 5 levels (e.g. Day 1, Day 2)
    */
   hasLevels(topicId, day) {
     const dayNum = parseInt(day, 10);
-    return dayNum === 2; // Day 2 has 5 progressive levels
+    return dayNum === 1 || dayNum === 2;
   },
 
   /**
-   * Get the 5 levels configuration for Day 2 with unlocked and completion status
+   * Get the 5 levels configuration with unlocked and completion status
    */
   async getDayLevels(topicId, day) {
     const dayNum = parseInt(day, 10);
-    if (dayNum !== 2) return [];
+    const metaList = dayNum === 2 ? day2LevelsMeta : day1LevelsMeta;
 
-    return day2LevelsMeta.map(levelMeta => {
+    return metaList.map(levelMeta => {
       const isUnlocked = isLevelUnlocked(topicId, dayNum, levelMeta.level);
       const result = getLevelResult(topicId, dayNum, levelMeta.level);
 
@@ -93,7 +144,11 @@ export const quizService = {
       let hasLevels = false;
       let questionCount = topic.questionsPerDay || 10;
 
-      if (day === 2) {
+      if (day === 1) {
+        hasLevels = true;
+        difficulty = "5 Levels (50 வினாக்கள்)";
+        questionCount = "50 (5 Levels)";
+      } else if (day === 2) {
         hasLevels = true;
         difficulty = "5 Levels (130 PYQ வினாக்கள்)";
         questionCount = "130 (5 Levels)";
@@ -108,7 +163,7 @@ export const quizService = {
         date: getDateForDay(day),
         questionCount,
         hasLevels,
-        durationMinutes: day === 2 ? "20-30 நிமிடம்/Level" : 10,
+        durationMinutes: day === 2 ? "20-30 நிமிடம்/Level" : day === 1 ? "10-15 நிமிடம்/Level" : 10,
         difficulty,
         status: completedInfo ? "Completed" : "Available",
         score: completedInfo ? completedInfo.score : null,
@@ -126,12 +181,11 @@ export const quizService = {
     const dayNum = parseInt(day, 10);
     const levelNum = level ? parseInt(level, 10) : null;
 
-    // Day 2 Level-based Questions
+    // Day 2 Level-based Questions (130 Questions Bank)
     if (dayNum === 2) {
       if (levelNum) {
         return day2Questions.filter(q => q.level === levelNum);
       }
-      // If no specific level is requested, default to Level 1
       return day2Questions.filter(q => q.level === 1);
     }
 
@@ -156,10 +210,21 @@ export const quizService = {
         allTopicQuestions = [];
     }
 
-    // Filter questions for the selected day
+    // Day 1 Progressive 5-Level Questions (10 questions per level)
+    if (dayNum === 1 && levelNum) {
+      // Level 1 -> Day 1 questions, Level 2 -> Day 2 questions, ..., Level 5 -> Day 5 questions
+      let levelQuestions = allTopicQuestions.filter(q => q.day === levelNum);
+      if (levelQuestions.length === 0) {
+        // Slice from topic questions if specific day not available
+        const start = (levelNum - 1) * 10;
+        levelQuestions = allTopicQuestions.slice(start, start + 10);
+      }
+      return levelQuestions.length > 0 ? levelQuestions : allTopicQuestions.slice(0, 10);
+    }
+
+    // Standard Single-Day filter
     let dayQuestions = allTopicQuestions.filter(q => q.day === dayNum);
 
-    // Fallback: If day questions don't reach 10, fill from general topic pool
     if (dayQuestions.length === 0 && allTopicQuestions.length > 0) {
       dayQuestions = allTopicQuestions.slice(0, 10);
     }

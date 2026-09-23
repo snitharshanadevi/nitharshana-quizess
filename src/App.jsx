@@ -61,8 +61,8 @@ export function App() {
         setActiveDay(dayNum);
         setActiveLevel(levelNum);
 
-        // If Day 2 and no explicit level provided in direct link, redirect to levels selection
-        if (dayNum === 2 && !parts[3]) {
+        // If day has levels and no explicit level provided in direct link, redirect to levels selection
+        if (quizService.hasLevels(topicId, dayNum) && !parts[3]) {
           await loadLevels(topicId, dayNum);
           setCurrentView("levels");
           window.location.hash = `#/levels/${topicId}/${dayNum}`;
@@ -102,7 +102,7 @@ export function App() {
     } else if (view === "test" && tId && dNum) {
       setActiveTopicId(tId);
       setActiveDay(dNum);
-      if (dNum === 2) {
+      if (quizService.hasLevels(tId, dNum)) {
         const lvl = level || 1;
         setActiveLevel(lvl);
         window.location.hash = `#/test/${tId}/${dNum}/${lvl}`;
@@ -117,7 +117,7 @@ export function App() {
 
   // Handler when user selects a day from TopicPage
   const handleSelectDay = (dayNum) => {
-    if (dayNum === 2 || quizService.hasLevels(activeTopicId, dayNum)) {
+    if (quizService.hasLevels(activeTopicId, dayNum)) {
       navigateTo("levels", activeTopicId, dayNum);
     } else {
       navigateTo("test", activeTopicId, dayNum);
@@ -138,7 +138,7 @@ export function App() {
 
   // Handler for retry
   const handleRetryTest = () => {
-    if (activeDay === 2 && lastResultData?.level) {
+    if (lastResultData?.level) {
       navigateTo("test", activeTopicId, activeDay, lastResultData.level);
     } else {
       navigateTo("test", activeTopicId, activeDay);
@@ -158,7 +158,7 @@ export function App() {
   // Handler for next day test
   const handleNextDayTest = () => {
     const nextDay = activeDay < 10 ? activeDay + 1 : 1;
-    if (nextDay === 2) {
+    if (quizService.hasLevels(activeTopicId, nextDay)) {
       navigateTo("levels", activeTopicId, nextDay);
     } else {
       navigateTo("test", activeTopicId, nextDay);
@@ -210,7 +210,7 @@ export function App() {
             level={activeLevel}
             onFinishTest={handleFinishTest}
             onBack={() => {
-              if (activeDay === 2) {
+              if (quizService.hasLevels(activeTopicId, activeDay)) {
                 navigateTo("levels", activeTopicId, activeDay);
               } else {
                 navigateTo("topic", activeTopicId);

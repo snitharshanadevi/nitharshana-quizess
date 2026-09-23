@@ -16,32 +16,37 @@ export function LevelSelectionView({ topic, day, levels, onSelectLevel, onBack }
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 animate-fadeIn">
       
       {/* Back button & Breadcrumb */}
-      <div className="mb-6 flex items-center justify-between">
-        <button
-          onClick={onBack}
-          className="inline-flex items-center space-x-2 text-sm font-bold text-slate-600 hover:text-blue-600 transition-colors"
-        >
-          <span>←</span>
-          <span>நாள் அட்டவணைக்குத் திரும்பு</span>
-        </button>
-        <span className="text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center space-x-3">
+          <button
+            onClick={onBack}
+            className="inline-flex items-center space-x-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-xs sm:text-sm font-bold text-slate-700 hover:text-blue-600 hover:border-blue-300 shadow-sm transition-all"
+          >
+            <span>←</span>
+            <span>நாள் அட்டவணைக்குத் திரும்பு</span>
+          </button>
+        </div>
+        <span className="text-xs font-bold text-blue-700 bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-200">
           {topic?.nameTamil} &gt; நாள் {day} (5 Levels)
         </span>
       </div>
 
-      {/* Hero Banner for Day 2 Levels */}
+      {/* Hero Banner for Levels */}
       <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-xl mb-8 relative overflow-hidden">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-2">
             <div className="inline-flex items-center space-x-2 bg-blue-500/20 border border-blue-400/30 px-3 py-1 rounded-full text-blue-300 text-xs font-bold">
               <span>🚔</span>
-              <span>TNUSRB SI PREVIOUS YEAR PAPERS • 5 LEVELS</span>
+              <span>{day === 2 ? "TNUSRB SI PREVIOUS YEAR PAPERS • 5 LEVELS" : "TNUSRB SI 5-STAGE PROGRESSION • 5 LEVELS"}</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-black tracking-tight">
-              நாள் {day} : SI 5-நிலை முழு தேர்வுத் தொகுப்பு
+              நாள் {day} : {topic?.nameTamil} 5-நிலை பயிற்சித் தொகுப்பு
             </h1>
             <p className="text-xs sm:text-sm text-indigo-200 max-w-2xl leading-relaxed">
-              அசல் TNUSRB SI தேர்வுத் தாள்கள் (Adda247, Shishya, 2023/2022/2019/2015) மற்றும் பாடத்திட்டத்தின் அடிப்படையில் உருவாக்கப்பட்ட 130 வினாக்கள். ஒவ்வொரு Level-ஐயும் முடித்து அடுத்த Level-ஐ Unlock செய்யவும்!
+              {day === 2 
+                ? "அசல் TNUSRB SI தேர்வுத் தாள்கள் (Adda247, Shishya, 2023/2022/2019/2015) மற்றும் பாடத்திட்டத்தின் அடிப்படையில் உருவாக்கப்பட்ட 130 வினாக்கள்."
+                : "அடிப்படை முதல் தேர்வு மாதிரி வரை 5 நிலைகளில் வகைப்படுத்தப்பட்ட வினாக்கள். முந்தைய Level-ஐ முடித்து அடுத்த Level-ஐ Unlock செய்யவும்!"
+              }
             </p>
           </div>
 

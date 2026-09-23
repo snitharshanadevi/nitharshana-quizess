@@ -39,11 +39,12 @@ export function DayTestPage({ topicId, day, level = null, onFinishTest, onBack }
   const [consecutiveWrong, setConsecutiveWrong] = useState(0);
   const [currentFeedback, setCurrentFeedback] = useState(null);
   
-  // Bookmarks
+  // Bookmarks & Exit Modal
   const [bookmarkedMap, setBookmarkedMap] = useState({});
   const [startTime, setStartTime] = useState(null);
+  const [showExitModal, setShowExitModal] = useState(false);
 
-  const activeLevel = level ? parseInt(level, 10) : (day === 2 ? 1 : null);
+  const activeLevel = level ? parseInt(level, 10) : null;
 
   // Test duration in minutes
   const testDurationMinutes = day === 2 
@@ -310,18 +311,28 @@ export function DayTestPage({ topicId, day, level = null, onFinishTest, onBack }
       
       {/* Top Test Navigation & Stats Bar */}
       <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <div className="flex items-center space-x-2">
-            <span className="font-extrabold text-slate-900 text-base sm:text-lg">
-              {topic?.nameTamil}
-            </span>
-            <span className="bg-blue-100 text-blue-800 font-bold text-xs px-2.5 py-0.5 rounded-full border border-blue-200">
-              நாள் {day} {activeLevel ? `• Level ${activeLevel}` : ""}
+        <div className="flex items-center space-x-3">
+          <button
+            onClick={() => setShowExitModal(true)}
+            className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-colors flex items-center space-x-1"
+            title="தேர்விலிருந்து வெளியேறு"
+          >
+            <span>←</span>
+            <span className="hidden sm:inline">பின்செல்</span>
+          </button>
+          <div>
+            <div className="flex items-center space-x-2">
+              <span className="font-extrabold text-slate-900 text-base sm:text-lg">
+                {topic?.nameTamil}
+              </span>
+              <span className="bg-blue-100 text-blue-800 font-bold text-xs px-2.5 py-0.5 rounded-full border border-blue-200">
+                நாள் {day} {activeLevel ? `• Level ${activeLevel}` : ""}
+              </span>
+            </div>
+            <span className="text-xs text-slate-500 font-medium">
+              மதிப்பெண்: <strong className="text-blue-600 font-bold">{score}</strong> / {questions.length}
             </span>
           </div>
-          <span className="text-xs text-slate-500 font-medium">
-            மதிப்பெண்: <strong className="text-blue-600 font-bold">{score}</strong> / {questions.length}
-          </span>
         </div>
 
         {/* Right Stats Controls: Streak & Timer */}
@@ -334,6 +345,33 @@ export function DayTestPage({ topicId, day, level = null, onFinishTest, onBack }
           />
         </div>
       </div>
+
+      {/* Exit Confirmation Modal */}
+      {showExitModal && (
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 animate-fadeIn">
+          <div className="bg-white rounded-3xl p-6 sm:p-7 max-w-sm w-full border border-slate-200 shadow-2xl space-y-4 text-center">
+            <span className="text-3xl block">⚠️</span>
+            <h3 className="text-lg font-bold text-slate-900">தேர்விலிருந்து வெளியேறவா?</h3>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              தற்போது வெளியேறினால் உங்கள் இந்த தேர்வு முயற்சி மற்றும் மதிப்பெண்கள் சேமிக்கப்படாது.
+            </p>
+            <div className="flex space-x-2 pt-2">
+              <button
+                onClick={() => setShowExitModal(false)}
+                className="flex-1 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs transition-colors"
+              >
+                தொடர்க (Stay)
+              </button>
+              <button
+                onClick={onBack}
+                className="flex-1 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs transition-colors"
+              >
+                வெளியேறு (Exit)
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Progress Bar */}
       <div className="mb-6">

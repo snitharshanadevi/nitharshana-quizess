@@ -219,10 +219,19 @@
     ];
 
     const OTHER_SUBJECTS_DATA = [
-      // English Prepositions
-      { id: "eng-1", topic: "preposition", day: 1, question: "Choose the correct preposition: 'The SI exam will be conducted _____ Sunday.'", options: ["in", "at", "on", "for"], correctAnswer: 2, explanation: "நாட்களுக்கு முன் 'on' என்ற முன்னுருபு பயன்படும் (e.g. on Sunday)." },
+      // ================= English Prepositions (முன்னுருபுகள்) =================
+      { id: "eng-1", topic: "preposition", day: 1, question: "Choose the correct preposition: 'The TNUSRB SI physical test will be conducted _____ 6:00 AM.'", options: ["in", "on", "at", "by"], correctAnswer: 2, explanation: "குறிப்பிட்ட நேரத்தைக் குறிக்கும் போது 'at' பயன்படும் (at 6:00 AM)." },
+      { id: "eng-2", topic: "preposition", day: 1, question: "Fill in the blank: 'The Sub-Inspector is senior _____ all the constables in the station.'", options: ["than", "to", "from", "with"], correctAnswer: 1, explanation: "Senior, Junior, Superior, Inferior ஆகியவற்றுக்கு பின் 'to' மட்டுமே வர வேண்டும்." },
+      { id: "eng-3", topic: "preposition", day: 1, question: "Choose the correct preposition: 'He has been preparing for the Tamil Nadu SI examination _____ 2022.'", options: ["for", "since", "from", "in"], correctAnswer: 1, explanation: "குறிப்பிட்ட ஆரம்ப ஆண்டைக் குறிக்க Present Perfect Continuous-ல் 'since' பயன்படும்." },
+      { id: "eng-4", topic: "preposition", day: 1, question: "Select the correct option: 'The police officer distributed the duty charts _____ the four team members.'", options: ["between", "among", "amidst", "within"], correctAnswer: 1, explanation: "இரண்டிற்கும் மேற்பட்ட நபர்களுக்கு மத்தியில் பகிரும் போது 'among' பயன்படும்." },
+      { id: "eng-5", topic: "preposition", day: 1, question: "Choose the correct preposition: 'The candidate jumped _____ the river to save the drowning boy.'", options: ["in", "into", "onto", "inside"], correctAnswer: 1, explanation: "வெளியிலிருந்து உள்ளே செல்லும் இயக்கத்தை (Motion inside) குறிக்க 'into' வரும்." },
+      { id: "eng-6", topic: "preposition", day: 1, question: "Select the correct preposition: 'He died _____ cholera during the epidemic.'", options: ["from", "of", "with", "by"], correctAnswer: 1, explanation: "ஒரு குறிப்பிட்ட நோயினால் இறப்பதை குறிக்க 'died of [disease]' பயன்படும்." },
+      { id: "eng-7", topic: "preposition", day: 1, question: "Fill in the blank: 'The new police station was inaugurated _____ Chennai.'", options: ["at", "in", "on", "by"], correctAnswer: 1, explanation: "பெரிய நகரங்கள், மாவட்டங்களுக்கு முன் 'in' பயன்படும் (in Chennai)." },
+      { id: "eng-8", topic: "preposition", day: 1, question: "Choose the correct preposition: 'She is proficient _____ English and Tamil.'", options: ["at", "in", "with", "about"], correctAnswer: 1, explanation: "ஒரு மொழியில் புலமை பெற்றிருப்பதை குறிக்க 'proficient in' பயன்படும்." },
+      { id: "eng-9", topic: "preposition", day: 1, question: "Fill in the blank: 'The thief entered the house _____ the window while everyone was asleep.'", options: ["through", "across", "along", "over"], correctAnswer: 0, explanation: "ஜன்னல் அல்லது துளை வழியாக நுழைவதைக் குறிக்க 'through' பயன்படும்." },
+      { id: "eng-10", topic: "preposition", day: 1, question: "Choose the correct sentence with proper preposition usage:", options: ["He congratulated me for my success in the SI exam.", "He congratulated me on my success in the SI exam.", "He congratulated me with my success in the SI exam.", "He congratulated me at my success in the SI exam."], correctAnswer: 1, explanation: "Congratulate என்ற வார்த்தைக்கு பின் 'on' மட்டுமே வர வேண்டும்." },
       
-      // Psychology Direction Sense (திசைகள்) - 10 Questions
+      // ================= Psychology Direction Sense (திசைகள் & தூரம்) =================
       { id: "psy-1", topic: "direction", day: 1, question: "ஒருவர் வடக்கை நோக்கி 10 மீ நடந்து, வலதுபுறம் திரும்பி 5 மீ நடக்கிறார். மீண்டும் வலதுபுறம் திரும்பி 10 மீ நடந்தால், அவர் புறப்பட்ட இடத்திலிருந்து எந்த திசையில் உள்ளார்?", options: ["வடக்கு", "கிழக்கு", "தெற்கு", "மேற்கு"], correctAnswer: 1, explanation: "1. வடக்கு 10 மீ\n2. வலது 5 மீ (கிழக்கு)\n3. வலது 10 மீ (தெற்கு)\nதொடக்க இடத்திலிருந்து நேர் கிழக்கே 5 மீ தொலைவில் உள்ளார். எனவே திசை = கிழக்கு." },
       { id: "psy-2", topic: "direction", day: 1, question: "ஒருவர் தனது வீட்டிலிருந்து தெற்கு நோக்கி 4 கிமீ நடந்து, பின் இடதுபுறம் திரும்பி 3 கிமீ நடக்கிறார் எனில், தொடக்கப் புள்ளியிலிருந்து உள்ள குறைந்தபட்ச தூரம் யாது?", options: ["5 கிமீ", "7 கிமீ", "6 கிமீ", "4.5 கிமீ"], correctAnswer: 0, explanation: "பித்தாகரஸ் தேற்றம்: √(4² + 3²) = √(16 + 9) = √25 = 5 கிமீ." },
       { id: "psy-3", topic: "direction", day: 1, question: "சூரிய உதயத்தின் போது ரவி ஒரு கம்பத்தை நோக்கி நிற்கிறார். கம்பத்தின் நிழல் அவரது வலதுபுறம் விழுகிறது எனில், ரவி நோக்கும் திசை யாது?", options: ["வடக்கு", "தெற்கு", "கிழக்கு", "மேற்கு"], correctAnswer: 1, explanation: "காலையில் நிழல் மேற்கில் விழும். நிழல் வலதுபுறம் இருக்க வேண்டுமானால் அவர் தெற்கு நோக்கி நிற்க வேண்டும்." },
@@ -234,8 +243,17 @@
       { id: "psy-9", topic: "direction", day: 1, question: "ஒரு பெண் தெற்கு நோக்கி 12 மீ ஓடி, பின் கிழக்கு நோக்கி 5 மீ ஓடினால், புறப்பட்ட இடத்திலிருந்து உள்ள தூரம் மற்றும் திசை யாது?", options: ["13 மீ, தென்கிழக்கு", "13 மீ, தென்மேற்கு", "17 மீ, தென்கிழக்கு", "15 மீ, கிழக்கு"], correctAnswer: 0, explanation: "தூரம் = √(12² + 5²) = √169 = 13 மீ. திசை = தென்கிழக்கு." },
       { id: "psy-10", topic: "direction", day: 1, question: "ஒருவர் வடக்கே 5 கிமீ நடந்து, வலது திரும்பி 3 கிமீ, மீண்டும் வலது திரும்பி 5 கிமீ நடந்தால், புறப்பட்ட இடத்திலிருந்து எவ்வளவு தூரத்தில் உள்ளார்?", options: ["3 கிமீ", "5 கிமீ", "8 கிமீ", "13 கிமீ"], correctAnswer: 0, explanation: "வடக்கே 5 சென்று மீண்டும் தெற்கே 5 வந்துவிட்டதால் எஞ்சிய தூரம் 3 கிமீ (கிழக்கு)." },
 
-      // Chemistry Air
-      { id: "chem-1", topic: "air", day: 1, question: "வளிமண்டல காற்றில் அதிக அளவில் காணப்படும் வாயு எது?", options: ["ஆக்ஸிஜன்", "நைட்ரஜன்", "கார்பன் டை ஆக்சைடு", "ஆர்கான்"], correctAnswer: 1, explanation: "காற்றில் நைட்ரஜன் வாயு சுமார் 78.08% அதிக அளவில் உள்ளது." }
+      // ================= Chemistry: Air & Gases (காற்று & வாயுக்கள்) =================
+      { id: "chem-1", topic: "air", day: 1, question: "பூமியின் வளிமண்டல காற்றில் அதிக அளவில் காணப்படும் வாயு எது?", options: ["ஆக்ஸிஜன்", "நைட்ரஜன்", "கார்பன் டை ஆக்சைடு", "ஆர்கான்"], correctAnswer: 1, explanation: "காற்றில் நைட்ரஜன் வாயு சுமார் 78.08% அதிக அளவில் உள்ளது." },
+      { id: "chem-2", topic: "air", day: 1, question: "சூரியனிலிருந்து வரும் தீங்கு விளைவிக்கும் UV கதிர்களை உறிஞ்சும் வளிமண்டல அடுக்கு எது?", options: ["ட்ரோபோஸ்பியர்", "ஸ்ட்ரேடோஸ்பியர் (Stratosphere)", "மீசோஸ்பியர்", "தெர்மோஸ்பியர்"], correctAnswer: 1, explanation: "ஸ்ட்ரேடோஸ்பியர் அடுக்கில் ஓசோன் படலம் (O3) புற ஊதாக் கதிர்களை உறிஞ்சுகிறது." },
+      { id: "chem-3", topic: "air", day: 1, question: "சுண்ணாம்பு நீரை (Lime Water) பால் போல் வெண்மையாக மாற்றும் வாயு எது?", options: ["ஆக்ஸிஜன்", "கார்பன் டை ஆக்சைடு (CO2)", "நைட்ரஜன் டை ஆக்சைடு", "சல்ஃபர் டை ஆக்சைடு"], correctAnswer: 1, explanation: "கார்பன் டை ஆக்சைடு வாயு சுண்ணாம்பு நீருடன் வினைபுரிந்து கால்சியம் கார்பனேட் உருவாக்குகிறது." },
+      { id: "chem-4", topic: "air", day: 1, question: "வானிலை மாற்றங்கள் மற்றும் மழைப் பொழிவு நிகழும் வளிமண்டல அடுக்கு எது?", options: ["ட்ரோபோஸ்பியர் (Troposphere)", "ஸ்ட்ரேடோஸ்பியர்", "மீசோஸ்பியர்", "எக்ஸோஸ்பியர்"], correctAnswer: 0, explanation: "பூமிக்கு மிக அருகில் உள்ள ட்ரோபோஸ்பியர் அடுக்கிலேயே வானிலை மாற்றங்கள் நிகழ்கின்றன." },
+      { id: "chem-5", topic: "air", day: 1, question: "அமில மழைக்கு (Acid Rain) முதன்மைக் காரணமான வாயுக்கள் எவை?", options: ["கார்பன் மோனாக்சைடு மற்றும் மீத்தேன்", "சல்ஃபர் டை ஆக்சைடு (SO2) மற்றும் நைட்ரஜன் ஆக்சைடுகள்", "ஆக்ஸிஜன் மற்றும் நைட்ரஜன்", "குளோரோ புளோரோ கார்பன்"], correctAnswer: 1, explanation: "SO2 மற்றும் நைட்ரஜன் ஆக்சைடுகள் மழைநீருடன் வினைபுரிந்து அமில மழையை உண்டாக்குகின்றன." },
+      { id: "chem-6", topic: "air", day: 1, question: "தீயணைப்பான்களில் (Fire Extinguishers) தீயை அணைக்க பயன்படும் முதன்மை வாயு எது?", options: ["ஆக்ஸிஜன்", "கார்பன் டை ஆக்சைடு (CO2)", "ஹைட்ரஜன்", "ஹீலியம்"], correctAnswer: 1, explanation: "கார்பன் டை ஆக்சைடு காற்றை விட கனமானது, ஆக்ஸிஜன் தொடர்பைத் துண்டித்து தீயை அணைக்கிறது." },
+      { id: "chem-7", topic: "air", day: 1, question: "பசுமை இல்ல விளைவுக்கு (Greenhouse Effect) மிக அதிக பங்களிப்பை வழங்கும் முதன்மை காரணி எது?", options: ["கார்பன் டை ஆக்சைடு", "மீத்தேன்", "நைட்ரஸ் ஆக்சைடு", "நீராவி (Water Vapour)"], correctAnswer: 3, explanation: "இயற்கையான பசுமை இல்ல விளைவுக்கு அதிக பங்களிப்பது நீராவியாகும் (36-70%)." },
+      { id: "chem-8", topic: "air", day: 1, question: "விமானங்கள் பறப்பதற்கு மிகவும் ஏதுவான அமைதியான வளிமண்டல அடுக்கு எது?", options: ["ட்ரோபோஸ்பியர்", "ஸ்ட்ரேடோஸ்பியர் (Stratosphere)", "மீசோஸ்பியர்", "தெர்மோஸ்பியர்"], correctAnswer: 1, explanation: "ஸ்ட்ரேடோஸ்பியரில் மேகங்கள் மற்றும் கொந்தளிப்பு இல்லாததால் விமானங்கள் பறக்க உகந்தது." },
+      { id: "chem-9", topic: "air", day: 1, question: "காற்று என்பது ஒரு:", options: ["தனிமம் (Element)", "சேர்மம் (Compound)", "கலவை (Mixture)", "அலோகம் (Non-metal)"], correctAnswer: 2, explanation: "காற்றில் பல்வேறு வாயுக்கள் இயற்பியல் ரீதியாக இணைந்துள்ளதால் காற்று ஒரு படித்தான கலவை ஆகும்." },
+      { id: "chem-10", topic: "air", day: 1, question: "மின்விளக்குகளில் (Electric Bulbs) டங்ஸ்டன் இழை ஆவியாகாமல் தடுக்க நிரப்பப்படும் வாயு எது?", options: ["நைட்ரஜன் மற்றும் ஆர்கான்", "ஹீலியம்", "நியான்", "ஆக்ஸிஜன்"], correctAnswer: 0, explanation: "டங்ஸ்டன் இழையின் ஆயுளை அதிகரிக்க ஆர்கான் மற்றும் நைட்ரஜன் மந்த வாயுக்கள் நிரப்பப்படுகின்றன." }
     ];
 
     /* =========================================================================
@@ -280,13 +298,77 @@
     }
 
     /* =========================================================================
-       4. MAIN REACT APP COMPONENT (NEAT & CLEAN UI)
+       4. MAIN REACT APP COMPONENT (INTERACTIVE 5-LEVEL PROGRESSION)
        ========================================================================= */
+    const LEVELS_META = [
+      {
+        level: 1,
+        titleTamil: "நிலை 1: அடிப்படை வினாக்கள் & விதிகள்",
+        titleEnglish: "Level 1: Foundation & Core Rules",
+        difficulty: "அடிப்படை (Easy)",
+        badge: "Foundation",
+        questionCount: 10,
+        durationMinutes: 10,
+        description: "அடிப்படை சூத்திரங்கள், முக்கிய விதிகள் மற்றும் நேரடி வினாக்கள்."
+      },
+      {
+        level: 2,
+        titleTamil: "நிலை 2: நடுத்தர பயன்பாட்டு வினாக்கள்",
+        titleEnglish: "Level 2: Moderate Applications",
+        difficulty: "நடுத்தரம் (Moderate)",
+        badge: "Concepts",
+        questionCount: 10,
+        durationMinutes: 10,
+        description: "பயிற்சிக் கணக்குகள், 2-படி தீர்வுகள் மற்றும் கருத்து வினாக்கள்."
+      },
+      {
+        level: 3,
+        titleTamil: "நிலை 3: தந்திரமான & குறுக்குவழி வினாக்கள்",
+        titleEnglish: "Level 3: Tricky & Shortcut Speed Math",
+        difficulty: "தந்திரமானது (Tricky)",
+        badge: "Tricky Core",
+        questionCount: 10,
+        durationMinutes: 12,
+        description: "SI தேர்வில் கேட்கப்படும் ட்ரிக்கியான வினாக்கள் மற்றும் Shortcut முறைகள்."
+      },
+      {
+        level: 4,
+        titleTamil: "நிலை 4: உயர் கடினத்தன்மை வினாக்கள்",
+        titleEnglish: "Level 4: Advanced High-Difficulty Challenge",
+        difficulty: "கடினம் (Hard)",
+        badge: "Advanced",
+        questionCount: 10,
+        durationMinutes: 15,
+        description: "சிக்கலான கணக்குகள், தீவிர யோசனை தேவைப்படும் வினாக்கள்."
+      },
+      {
+        level: 5,
+        titleTamil: "நிலை 5: SI இறுதி மாதிரி முழுத் தேர்வு",
+        titleEnglish: "Level 5: Master SI Exam Simulation",
+        difficulty: "தேர்வுத்தரம் (Master SI)",
+        badge: "Grand Master",
+        questionCount: 10,
+        durationMinutes: 15,
+        description: "TNUSRB SI அசல் தேர்வுத் தரம் வாய்ந்த இறுதி மாதிரித் தேர்வு."
+      }
+    ];
+
     function App() {
-      const [currentView, setCurrentView] = useState("home"); // "home" | "topic" | "test" | "result" | "progress"
+      const [currentView, setCurrentView] = useState("home"); // "home" | "topic" | "levels" | "test" | "result" | "progress"
       const [activeTopicId, setActiveTopicId] = useState("simplification");
       const [activeDay, setActiveDay] = useState(1);
+      const [activeLevel, setActiveLevel] = useState(1);
       
+      // LocalStorage for Level Progress
+      const [completedLevels, setCompletedLevels] = useState(() => {
+        try {
+          const raw = localStorage.getItem("si_completed_levels");
+          return raw ? JSON.parse(raw) : {};
+        } catch(e) {
+          return {};
+        }
+      });
+
       // Test states
       const [testState, setTestState] = useState("instructions");
       const [currentQIndex, setCurrentQIndex] = useState(0);
@@ -297,8 +379,29 @@
       const [secondsLeft, setSecondsLeft] = useState(600);
       const [timerRunning, setTimerRunning] = useState(false);
       const [lastResult, setLastResult] = useState(null);
+      const [showExitModal, setShowExitModal] = useState(false);
 
-      // Get questions
+      // Save levels to localStorage
+      const recordLevelCompletion = (topicId, day, lvl, scoreNum, total) => {
+        const key = `${topicId}-${day}-${lvl}`;
+        const newLevels = {
+          ...completedLevels,
+          [key]: { score: scoreNum, total, percentage: Math.round((scoreNum / total) * 100), date: new Date().toISOString() }
+        };
+        setCompletedLevels(newLevels);
+        try {
+          localStorage.setItem("si_completed_levels", JSON.stringify(newLevels));
+        } catch(e) {}
+      };
+
+      // Check if a level is unlocked
+      const isLevelUnlocked = (topicId, day, lvl) => {
+        if (lvl <= 1) return true;
+        const prevKey = `${topicId}-${day}-${lvl - 1}`;
+        return !!completedLevels[prevKey];
+      };
+
+      // Get questions for active level
       const currentQuestions = useMemo(() => {
         let pool = [];
         if (activeTopicId === "simplification") pool = SIMPLIFICATION_DATA;
@@ -306,9 +409,11 @@
         else if (activeTopicId === "special-series") pool = SPECIAL_SERIES_DATA;
         else pool = OTHER_SUBJECTS_DATA.filter(q => q.topic === activeTopicId);
 
-        const dayQs = pool.filter(q => q.day === activeDay);
-        return dayQs.length > 0 ? dayQs : pool.slice(0, 10);
-      }, [activeTopicId, activeDay]);
+        // Level-based questions
+        const dayQs = pool.filter(q => q.day === (activeLevel || activeDay));
+        if (dayQs.length > 0) return dayQs;
+        return pool.slice(0, 10);
+      }, [activeTopicId, activeDay, activeLevel]);
 
       // Timer
       useEffect(() => {
@@ -326,11 +431,13 @@
         return () => clearInterval(interval);
       }, [timerRunning]);
 
-      const navigateTo = (view, topicId = null, day = null) => {
+      const navigateTo = (view, topicId = null, day = null, level = null) => {
         if (topicId) setActiveTopicId(topicId);
-        if (day) setActiveDay(day);
+        if (day !== null) setActiveDay(day);
+        if (level !== null) setActiveLevel(level);
         setCurrentView(view);
         setTestState("instructions");
+        setShowExitModal(false);
         window.scrollTo({ top: 0, behavior: "smooth" });
       };
 
@@ -371,9 +478,14 @@
 
       const finishTest = () => {
         setTimerRunning(false);
+        const finalScore = score + (selectedOption === currentQuestions[currentQIndex]?.correctAnswer && !isAnswerRevealed ? 1 : 0);
+        
+        recordLevelCompletion(activeTopicId, activeDay, activeLevel, score, currentQuestions.length);
+
         setLastResult({
           topicId: activeTopicId,
           day: activeDay,
+          level: activeLevel,
           score,
           total: currentQuestions.length,
           percentage: Math.round((score / currentQuestions.length) * 100)
@@ -406,7 +518,7 @@
                 <div>
                   <div className="flex items-center space-x-2">
                     <span className="font-extrabold text-base sm:text-lg tracking-tight">SI TEST</span>
-                    <span className="bg-blue-500/20 text-blue-300 text-[10px] px-2 py-0.5 rounded-full font-bold">TNSURB</span>
+                    <span className="bg-blue-500/20 text-blue-300 text-[10px] px-2 py-0.5 rounded-full font-bold">5 LEVELS</span>
                   </div>
                   <p className="text-[11px] text-slate-400">தமிழ்நாடு SI தேர்வு பயிற்சி</p>
                 </div>
@@ -439,32 +551,16 @@
             {currentView === "home" && (
               <div className="space-y-8 animate-fadeIn">
                 
-                {/* Hero Header with 12-Hour Rotating Motivational Quote */}
+                {/* Hero Header */}
                 <div className="text-center max-w-2xl mx-auto py-2">
                   <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
                     தமிழில் தினசரி <span className="text-blue-600">SI தேர்வு பயிற்சி</span>
                   </h1>
                   
-                  {/* Dynamic 12-Hour Quote Banner */}
+                  {/* Motivation Banner */}
                   <div className="mt-4 bg-gradient-to-r from-blue-50 via-indigo-50 to-amber-50 border border-blue-200/70 p-4 sm:p-5 rounded-2xl shadow-sm text-center">
                     <p className="text-sm sm:text-base text-slate-800 font-medium leading-relaxed">
-                      💬 {(() => {
-                        const quotes = [
-                          { line1: "இன்று புத்தகம் திறக்குற அந்த 1 மணி நேரம்…", line2: "நாளைக்கு உன் வாழ்க்கையை திறக்குற சாவியா இருக்கலாம்." },
-                          { line1: "வாய்ப்பு வரும்னு காத்திருக்காதே…", line2: "நீ தயாரா இருந்தா வாய்ப்பு வந்ததும் பிடிச்சுக்கலாம்." },
-                          { line1: "உன் வாழ்க்கையை மாற்ற யாராவது வருவாங்கன்னு காத்திருக்காதே…", line2: "நீயே உன் வாழ்க்கையை மாற்ற ஆரம்பிச்சுடு." },
-                          { line1: "கனவு பெரியதா இருந்தா பரவாயில்லை…", line2: "அதுக்காக தினமும் கொடுக்குற உழைப்பு அதைவிட பெரியதா இருக்கணும்." },
-                          { line1: "ஒரு நாள் motivation-ல வாழ்க்கை மாறாது…", line2: "தினமும் கொஞ்சம் கொஞ்சமா உன்னை நீ மாற்றிக்கிட்டே இரு." },
-                          { line1: "சத்தம் போட்டு கனவு காணாதே… அமைதியா உழை.", line2: "ஒருநாள் உன் RESULT தான் உனக்காக சத்தம் போடும்." }
-                        ];
-                        const slot = Math.floor(Date.now() / (12 * 60 * 60 * 1000));
-                        const q = quotes[slot % quotes.length];
-                        return (
-                          <span>
-                            {q.line1} <strong className="text-blue-700 block sm:inline font-extrabold">{q.line2}</strong> 🚔🔥
-                          </span>
-                        );
-                      })()}
+                      💬 இன்று புத்தகம் திறக்குற அந்த 1 மணி நேரம்… <strong className="text-blue-700 font-extrabold">நாளைக்கு உன் வாழ்க்கையை திறக்குற சாவியா இருக்கலாம்!</strong> 🚔🔥
                     </p>
                   </div>
                 </div>
@@ -474,9 +570,9 @@
                   <div className="mb-4">
                     <h2 className="text-xl sm:text-2xl font-bold text-slate-900 flex items-center space-x-2">
                       <span>🧮</span>
-                      <span>கணிதம் — Mathematics</span>
+                      <span>கணிதம் — Mathematics (5 Levels System)</span>
                     </h2>
-                    <p className="text-xs text-slate-500">எளிமைப்படுத்துதல், இலாபம் & நட்டம், சிறப்புத் தொடர் வினாக்கள்</p>
+                    <p className="text-xs text-slate-500">ஒவ்வொரு நாளும் 5 நிலைகளில் முந்தைய level முடித்து அடுத்த level-ஐ unlock செய்யும் பயிற்சி</p>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -541,20 +637,22 @@
             {/* ================= 2. TOPIC 10-DAY SCHEDULE VIEW ================= */}
             {currentView === "topic" && (
               <div className="space-y-6 animate-fadeIn">
-                <button
-                  onClick={() => navigateTo("home")}
-                  className="inline-flex items-center space-x-1.5 text-xs sm:text-sm font-bold text-slate-600 hover:text-blue-600"
-                >
-                  <span>←</span>
-                  <span>முகப்புக்கு திரும்பு</span>
-                </button>
+                <div className="flex items-center justify-between">
+                  <button
+                    onClick={() => navigateTo("home")}
+                    className="inline-flex items-center space-x-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-xs sm:text-sm font-bold text-slate-700 hover:text-blue-600 hover:border-blue-300 shadow-sm transition-all"
+                  >
+                    <span>←</span>
+                    <span>முகப்புக்கு திரும்பு</span>
+                  </button>
+                </div>
 
                 <div className="bg-slate-900 text-white rounded-2xl p-6 shadow-sm">
                   <div className="flex items-center space-x-3 mb-1">
                     <span className="text-3xl">{currentTopic.icon}</span>
                     <h1 className="text-2xl sm:text-3xl font-extrabold">{currentTopic.nameTamil}</h1>
                   </div>
-                  <p className="text-xs sm:text-sm text-slate-400">{currentTopic.nameEnglish} — 10-நாள் தினசரி தேர்வு அட்டவணை</p>
+                  <p className="text-xs sm:text-sm text-slate-400">{currentTopic.nameEnglish} — 10-நாள் தினசரி 5 நிலைகள் பயிற்சி</p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
@@ -566,16 +664,16 @@
                       <div>
                         <div className="flex justify-between items-center mb-1">
                           <span className="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">நாள் {d}</span>
-                          <span className="text-[10px] text-slate-400">10 வினாக்கள்</span>
+                          <span className="text-[10px] font-bold text-purple-600 bg-purple-50 px-1.5 py-0.5 rounded">5 Levels 🔓</span>
                         </div>
                         <p className="text-xs text-slate-500 my-2 font-medium">{getFormattedTamilDate(d - 1)}</p>
                       </div>
 
                       <button
-                        onClick={() => navigateTo("test", activeTopicId, d)}
+                        onClick={() => navigateTo("levels", activeTopicId, d)}
                         className="w-full py-2 rounded-lg bg-slate-900 hover:bg-blue-600 text-white text-xs font-bold transition-colors mt-2"
                       >
-                        தொடங்கு →
+                        5 நிலைகளைக் காண்க →
                       </button>
                     </div>
                   ))}
@@ -583,25 +681,144 @@
               </div>
             )}
 
-            {/* ================= 3. TEST VIEW ================= */}
+            {/* ================= 3. 5-LEVEL SELECTION VIEW ================= */}
+            {currentView === "levels" && (
+              <div className="space-y-6 animate-fadeIn">
+                {/* Back Button */}
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <button
+                    onClick={() => navigateTo("topic", activeTopicId)}
+                    className="inline-flex items-center space-x-2 px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-xs sm:text-sm font-bold text-slate-700 hover:text-blue-600 hover:border-blue-300 shadow-sm transition-all"
+                  >
+                    <span>←</span>
+                    <span>நாள் அட்டவணைக்குத் திரும்பு</span>
+                  </button>
+                  <span className="text-xs font-bold text-blue-700 bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-200">
+                    {currentTopic?.nameTamil} &gt; நாள் {activeDay} (5 Levels)
+                  </span>
+                </div>
+
+                {/* Banner */}
+                <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-xl">
+                  <div className="inline-flex items-center space-x-2 bg-blue-500/20 border border-blue-400/30 px-3 py-1 rounded-full text-blue-300 text-xs font-bold mb-2">
+                    <span>🚔</span>
+                    <span>TNUSRB SI 5-STAGE PROGRESSION</span>
+                  </div>
+                  <h1 className="text-2xl sm:text-3xl font-black">
+                    நாள் {activeDay} : 5-நிலை தொடர் பயிற்சி (Sequential Unlocking)
+                  </h1>
+                  <p className="text-xs sm:text-sm text-indigo-200 mt-2 max-w-2xl leading-relaxed">
+                    Level 1 எப்போதும் திறந்திருக்கும். ஒவ்வொரு Level-ஐயும் முடித்தவுடன் அடுத்த Level தானாகவே Unlock ஆகும்!
+                  </p>
+                </div>
+
+                {/* Levels Cards Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {LEVELS_META.map(lvl => {
+                    const unlocked = isLevelUnlocked(activeTopicId, activeDay, lvl.level);
+                    const lvlResult = completedLevels[`${activeTopicId}-${activeDay}-${lvl.level}`];
+                    const isCompleted = !!lvlResult;
+
+                    return (
+                      <div
+                        key={lvl.level}
+                        className={`rounded-3xl p-6 border transition-all flex flex-col justify-between ${
+                          isCompleted
+                            ? "bg-emerald-50/60 border-emerald-300 shadow-sm"
+                            : unlocked
+                            ? "bg-white border-blue-300 shadow-md hover:border-blue-500 hover:shadow-lg"
+                            : "bg-slate-100 border-slate-200 opacity-75 cursor-not-allowed"
+                        }`}
+                      >
+                        <div>
+                          <div className="flex items-center justify-between mb-3">
+                            <span className={`text-xs font-black px-3 py-1 rounded-xl border ${
+                              isCompleted
+                                ? "bg-emerald-100 text-emerald-800 border-emerald-300"
+                                : unlocked
+                                ? "bg-blue-100 text-blue-800 border-blue-200"
+                                : "bg-slate-200 text-slate-500 border-slate-300"
+                            }`}>
+                              {isCompleted ? "✅ LEVEL " + lvl.level : unlocked ? "🔓 LEVEL " + lvl.level : "🔒 LEVEL " + lvl.level}
+                            </span>
+                            <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">
+                              {lvl.badge}
+                            </span>
+                          </div>
+
+                          <h3 className="text-lg font-black text-slate-900 mb-1">{lvl.titleTamil}</h3>
+                          <p className="text-xs font-semibold text-slate-500 mb-3">{lvl.titleEnglish}</p>
+                          <p className="text-xs text-slate-600 leading-relaxed mb-4">{lvl.description}</p>
+                        </div>
+
+                        <div>
+                          <div className="bg-slate-50 rounded-xl p-3 border border-slate-200 mb-3 flex items-center justify-between text-xs font-bold text-slate-700">
+                            <span>🎯 {lvl.questionCount} வினாக்கள்</span>
+                            <span>⏱ {lvl.durationMinutes} நிமிடம்</span>
+                            <span className="text-blue-600">{lvl.difficulty.split(' ')[0]}</span>
+                          </div>
+
+                          {isCompleted && (
+                            <div className="mb-3 bg-emerald-100 border border-emerald-300 text-emerald-900 p-2 rounded-xl text-xs font-bold text-center">
+                              மதிப்பெண்: {lvlResult.score} / {lvl.questionCount} ({lvlResult.percentage}%)
+                            </div>
+                          )}
+
+                          {!unlocked && (
+                            <div className="mb-3 bg-amber-50 border border-amber-200 text-amber-800 p-2 rounded-xl text-[11px] font-semibold text-center">
+                              🔒 Level {lvl.level - 1}-ஐ முடித்தவுடன் இது திறக்கப்படும்
+                            </div>
+                          )}
+
+                          <button
+                            disabled={!unlocked}
+                            onClick={() => unlocked && navigateTo("test", activeTopicId, activeDay, lvl.level)}
+                            className={`w-full py-2.5 px-4 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center space-x-2 transition-all ${
+                              isCompleted
+                                ? "bg-emerald-600 hover:bg-emerald-700 text-white"
+                                : unlocked
+                                ? "bg-blue-600 hover:bg-blue-700 text-white shadow"
+                                : "bg-slate-300 text-slate-500 cursor-not-allowed"
+                            }`}
+                          >
+                            <span>{isCompleted ? "மீண்டும் பயிற்சி செய்" : unlocked ? "Level-ஐத் தொடங்கு →" : "பூட்டப்பட்டுள்ளது 🔒"}</span>
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* ================= 4. TEST VIEW ================= */}
             {currentView === "test" && (
               <div className="max-w-2xl mx-auto py-4 animate-fadeIn">
                 {testState === "instructions" ? (
                   <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
-                    <div className="border-b border-slate-100 pb-4">
-                      <span className="text-xs font-bold text-blue-600 uppercase">தேர்வு தொடக்கம்</span>
-                      <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mt-1">
-                        {currentTopic?.nameTamil} — நாள் {activeDay}
-                      </h2>
-                      <p className="text-xs text-slate-500 mt-1">📅 {getFormattedTamilDate(activeDay - 1)} • ⏱ 10 நிமிடங்கள்</p>
+                    <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+                      <div>
+                        <span className="text-xs font-bold text-blue-600 uppercase">தேர்வு தொடக்கம்</span>
+                        <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mt-1">
+                          {currentTopic?.nameTamil} — நாள் {activeDay} (Level {activeLevel})
+                        </h2>
+                        <p className="text-xs text-slate-500 mt-1">📅 {getFormattedTamilDate(activeDay - 1)} • ⏱ 10 நிமிடங்கள்</p>
+                      </div>
+                      <button
+                        onClick={() => navigateTo("levels", activeTopicId, activeDay)}
+                        className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-xs font-bold text-slate-700"
+                      >
+                        ← நிலைகளுக்குத் திரும்பு
+                      </button>
                     </div>
 
                     <div>
                       <h3 className="text-sm font-bold text-slate-800 mb-3">விதிமுறைகள்:</h3>
                       <ul className="space-y-2 text-xs sm:text-sm text-slate-600">
-                        <li>• 10 கொள்குறி வினாக்கள் (MCQ).</li>
+                        <li>• {currentQuestions.length} கொள்குறி வினாக்கள் (MCQ).</li>
                         <li>• சரியான பதில் கிளிக் செய்தவுடன் உடனடி விளக்கம் காட்டப்படும்.</li>
                         <li>• தவறான பதில் கொடுத்தாலும் சரியான பதிலும் விளக்கமும் காட்டப்படும்.</li>
+                        <li>• இந்த Level-ஐ முடித்தவுடன் அடுத்த Level திறக்கப்படும்!</li>
                       </ul>
                     </div>
 
@@ -609,21 +826,57 @@
                       onClick={startQuiz}
                       className="w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm sm:text-base shadow transition-colors"
                     >
-                      🚔 தேர்வை தொடங்குகிறேன் →
+                      🚔 Level {activeLevel} தேர்வை தொடங்குகிறேன் →
                     </button>
                   </div>
                 ) : (
                   <div className="space-y-5">
                     {/* Quiz Top Bar */}
                     <div className="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
-                      <span className="font-bold text-xs sm:text-sm text-slate-800">
-                        {currentTopic?.nameTamil} • நாள் {activeDay}
-                      </span>
+                      <div className="flex items-center space-x-3">
+                        <button
+                          onClick={() => setShowExitModal(true)}
+                          className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs font-bold text-slate-700"
+                          title="தேர்விலிருந்து வெளியேறு"
+                        >
+                          ← பின்செல்
+                        </button>
+                        <span className="font-bold text-xs sm:text-sm text-slate-800">
+                          {currentTopic?.nameTamil} • Level {activeLevel}
+                        </span>
+                      </div>
                       <div className="flex items-center space-x-3 text-xs sm:text-sm font-bold">
                         <span className="text-blue-600">மதிப்பெண்: {score}</span>
                         <span className="font-mono bg-slate-100 px-2 py-0.5 rounded border">⏱ {formatTime(secondsLeft)}</span>
                       </div>
                     </div>
+
+                    {/* Exit Confirmation Modal */}
+                    {showExitModal && (
+                      <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 animate-fadeIn">
+                        <div className="bg-white rounded-3xl p-6 sm:p-7 max-w-sm w-full border border-slate-200 shadow-2xl space-y-4 text-center">
+                          <span className="text-3xl block">⚠️</span>
+                          <h3 className="text-lg font-bold text-slate-900">தேர்விலிருந்து வெளியேறவா?</h3>
+                          <p className="text-xs text-slate-600 leading-relaxed">
+                            தற்போது வெளியேறினால் உங்கள் தேர்வு மதிப்பெண்கள் சேமிக்கப்படாது.
+                          </p>
+                          <div className="flex space-x-2 pt-2">
+                            <button
+                              onClick={() => setShowExitModal(false)}
+                              className="flex-1 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs"
+                            >
+                              தொடர்க
+                            </button>
+                            <button
+                              onClick={() => navigateTo("levels", activeTopicId, activeDay)}
+                              className="flex-1 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs"
+                            >
+                              வெளியேறு
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
 
                     {/* Progress Bar */}
                     <div>
@@ -685,7 +938,6 @@
                     {/* Feedback & Solution Banner */}
                     {isAnswerRevealed && (
                       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden animate-fadeIn">
-                        {/* Custom Dialog Header */}
                         <div className={`p-4 text-white font-extrabold text-sm sm:text-base ${
                           selectedOption === currentQuestions[currentQIndex].correctAnswer ? "bg-emerald-600" : "bg-rose-600"
                         }`}>
@@ -695,7 +947,6 @@
                           </div>
                         </div>
 
-                        {/* Explanation Text */}
                         <div className="p-4 sm:p-5 bg-slate-50 space-y-3">
                           <div className="text-xs sm:text-sm font-semibold text-slate-700 bg-white p-3 rounded-lg border border-slate-200">
                             <strong>சரியான விடை:</strong> {["A", "B", "C", "D"][currentQuestions[currentQIndex].correctAnswer]} — {currentQuestions[currentQIndex].options[currentQuestions[currentQIndex].correctAnswer]}
@@ -722,13 +973,21 @@
               </div>
             )}
 
-            {/* ================= 4. RESULT VIEW ================= */}
+            {/* ================= 5. RESULT VIEW ================= */}
             {currentView === "result" && lastResult && (
               <div className="max-w-md mx-auto py-6 animate-fadeIn">
                 <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm text-center space-y-5">
                   <span className="text-4xl block">🎉</span>
-                  <h2 className="text-2xl font-black text-slate-900">தேர்வு முடிந்தது!</h2>
+                  <h2 className="text-2xl font-black text-slate-900">
+                    நிலை {lastResult.level} தேர்வு முடிந்தது!
+                  </h2>
                   
+                  {lastResult.level < 5 && (
+                    <div className="bg-emerald-50 border border-emerald-300 text-emerald-900 p-3 rounded-xl text-xs font-bold">
+                      🔓 வாழ்த்துகள்! அடுத்த நிலை (Level {lastResult.level + 1}) Unlock செய்யப்பட்டுள்ளது!
+                    </div>
+                  )}
+
                   <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 grid grid-cols-2 gap-3">
                     <div>
                       <span className="text-[11px] text-slate-500 font-bold uppercase block">மதிப்பெண்</span>
@@ -741,8 +1000,22 @@
                   </div>
 
                   <div className="space-y-2 pt-2">
+                    {lastResult.level < 5 && (
+                      <button
+                        onClick={() => navigateTo("test", activeTopicId, activeDay, lastResult.level + 1)}
+                        className="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 text-white rounded-xl text-xs sm:text-sm font-bold shadow transition-colors"
+                      >
+                        🔓 அடுத்த Level {lastResult.level + 1} தொடங்கு →
+                      </button>
+                    )}
                     <button
-                      onClick={() => navigateTo("test", activeTopicId, activeDay)}
+                      onClick={() => navigateTo("levels", activeTopicId, activeDay)}
+                      className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition-colors"
+                    >
+                      📋 Levels அட்டவணை
+                    </button>
+                    <button
+                      onClick={() => navigateTo("test", activeTopicId, activeDay, lastResult.level)}
                       className="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl text-xs font-bold border transition-colors"
                     >
                       🔄 மீண்டும் முயற்சி செய்
@@ -758,7 +1031,7 @@
               </div>
             )}
 
-            {/* ================= 5. PROGRESS VIEW ================= */}
+            {/* ================= 6. PROGRESS VIEW ================= */}
             {currentView === "progress" && (
               <div className="max-w-3xl mx-auto py-6 animate-fadeIn space-y-5">
                 <button
@@ -783,10 +1056,10 @@
                           <div key={t.id} className="flex justify-between items-center text-xs p-2 bg-slate-50 rounded-lg">
                             <span className="font-semibold text-slate-700">{t.nameTamil}</span>
                             <button
-                              onClick={() => navigateTo("topic", t.id)}
+                              onClick={() => navigateTo("levels", t.id, 1)}
                               className="px-3 py-1 bg-slate-900 hover:bg-blue-600 text-white rounded-lg font-bold"
                             >
-                              பயிற்சி →
+                              5 Levels பயிற்சி →
                             </button>
                           </div>
                         ))}

@@ -857,5 +857,578 @@ export const specialSeriesQuestions = [
       tamil: "முதல் n ஒற்றைப்படை இயல் எண்களின் கூடுதல் எப்போதும் n² ஆகும்.\n\nசரியான விடை = n²."
     },
     difficulty: "hard"
+  },
+
+  // ================= DAY 7: Arithmetic Progression (AP) Advanced =================
+  {
+    id: "ss-d7-q1",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 7,
+    questionNumber: 1,
+    question: "7, 13, 19, ..., 205 என்ற கூட்டுத் தொடரில் உள்ள மொத்த உறுப்புகளின் எண்ணிக்கை யாது?",
+    options: ["32", "33", "34", "35"],
+    correctAnswer: 2, // 34
+    explanation: {
+      tamil: "n = [(l − a) / d] + 1\na = 7, l = 205, d = 6\nn = [(205 − 7) / 6] + 1 = (198 / 6) + 1 = 33 + 1 = 34.\n\nசரியான விடை = 34."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d7-q2",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 7,
+    questionNumber: 2,
+    question: "ஒரு கூட்டுத் தொடரின் 9-வது உறுப்பின் 9 மடங்கும், 15-வது உறுப்பின் 15 மடங்கும் சமம் எனில், அதன் 24-வது உறுப்பு யாது?",
+    options: ["0", "1", "9", "24"],
+    correctAnswer: 0, // 0
+    explanation: {
+      tamil: "விதி: m · T_m = n · T_n எனில் T_(m+n) = 0 ஆகும்.\nஇங்கு 9 · T_9 = 15 · T_15 எனில் T_(9+15) = T_24 = 0.\n\nசரியான விடை = 0."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d7-q3",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 7,
+    questionNumber: 3,
+    question: "100 முதல் 200 வரை உள்ள எண்களில் 3-ஆல் வகுபடும் அனைத்து இயல் எண்களின் கூடுதல் என்ன?",
+    options: ["4,850", "4,950", "5,050", "5,150"],
+    correctAnswer: 1, // 4950
+    explanation: {
+      tamil: "தொடர்: 102, 105, ..., 198\na = 102, l = 198, d = 3\nn = [(198 − 102)/3] + 1 = (96/3) + 1 = 33\nகூடுதல் S_n = (n/2)(a + l) = (33/2)(102 + 198) = (33/2) × 300 = 33 × 150 = 4,950."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d7-q4",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 7,
+    questionNumber: 4,
+    question: "3 + 6 + 9 + ... + 96 என்ற தொடரின் கூடுதல் என்ன?",
+    options: ["1,536", "1,584", "1,600", "1,632"],
+    correctAnswer: 1, // 1584
+    explanation: {
+      tamil: "3(1 + 2 + 3 + ... + 32) = 3 × [(32 × 33)/2] = 3 × (16 × 33) = 3 × 528 = 1,584.\n\nசரியான விடை = 1,584."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d7-q5",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 7,
+    questionNumber: 5,
+    question: "ஒரு கூட்டுத் தொடரின் முதல் n உறுப்புகளின் கூடுதல் S_n = 3n² + 5n எனில் அதன் பொது வித்தியாசம் (d) என்ன?",
+    options: ["3", "5", "6", "8"],
+    correctAnswer: 2, // 6
+    explanation: {
+      tamil: "S_n = An² + Bn எனில் பொது வித்தியாசம் d = 2A ஆகும்.\nஇங்கு A = 3 => d = 2 × 3 = 6.\n(சரிபார்ப்பு: S_1 = 8 = T_1, S_2 = 22 => T_2 = 22 − 8 = 14 => d = 14 − 8 = 6)."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d7-q6",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 7,
+    questionNumber: 6,
+    question: "3, 7, 11, ..., 407 என்ற கூட்டுத் தொடரின் கடைசிக்கு முந்தைய உறுப்பு யாது?",
+    options: ["399", "401", "403", "405"],
+    correctAnswer: 2, // 403
+    explanation: {
+      tamil: "பொது வித்தியாசம் d = 7 − 3 = 4.\nகடைசி உறுப்பு l = 407.\nகடைசிக்கு முந்தைய உறுப்பு = 407 − 4 = 403."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d7-q7",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 7,
+    questionNumber: 7,
+    question: "முதல் 40 இயல் எண்களின் சராசரி என்ன?",
+    options: ["20", "20.5", "21", "21.5"],
+    correctAnswer: 1, // 20.5
+    explanation: {
+      tamil: "முதல் n இயல் எண்களின் சராசரி = (n + 1) / 2 = (40 + 1) / 2 = 41 / 2 = 20.5."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d7-q8",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 7,
+    questionNumber: 8,
+    question: "ஒரு கூட்டுத் தொடரில் T_4 = 14 மற்றும் T_8 = 30 எனில் முதல் உறுப்பு (a) யாது?",
+    options: ["2", "3", "4", "5"],
+    correctAnswer: 0, // 2
+    explanation: {
+      tamil: "T_8 − T_4 = 4d = 30 − 14 = 16 => d = 4.\nT_4 = a + 3d = 14 => a + 12 = 14 => a = 2."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d7-q9",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 7,
+    questionNumber: 9,
+    question: "101 + 102 + 103 + ... + 200 இன் மதிப்பு யாது?",
+    options: ["14,950", "15,050", "15,150", "15,250"],
+    correctAnswer: 1, // 15050
+    explanation: {
+      tamil: "S = Σ(200) − Σ(100) = [(200 × 201)/2] − [(100 × 101)/2] = 20,100 − 5,050 = 15,050."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d7-q10",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 7,
+    questionNumber: 10,
+    question: "2 + 4 + 6 + ... + 100 இன் கூடுதல் யாது?",
+    options: ["2,450", "2,500", "2,550", "2,600"],
+    correctAnswer: 2, // 2550
+    explanation: {
+      tamil: "2(1 + 2 + ... + 50) = 2 × [(50 × 51)/2] = 50 × 51 = 2,550."
+    },
+    difficulty: "hard"
+  },
+
+  // ================= DAY 8: Geometric Progression (GP) & Infinite Series =================
+  {
+    id: "ss-d8-q1",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 8,
+    questionNumber: 1,
+    question: "1, 2, 4, 8, 16, ... என்ற பெருக்குத் தொடரின் 10-வது உறுப்பு யாது?",
+    options: ["256", "512", "1,024", "2,048"],
+    correctAnswer: 1, // 512
+    explanation: {
+      tamil: "T_n = a · r^(n−1)\na = 1, r = 2, n = 10\nT_10 = 1 × 2^9 = 512.\n\nசரியான விடை = 512."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d8-q2",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 8,
+    questionNumber: 2,
+    question: "1 + 1/2 + 1/4 + 1/8 + ... ∞ என்ற முடிவிலி பெருக்குத் தொடரின் கூடுதல் யாது?",
+    options: ["1.5", "2", "2.5", "∞"],
+    correctAnswer: 1, // 2
+    explanation: {
+      tamil: "முடிவிலி தொடர் கூடுதல் S_∞ = a / (1 − r)\na = 1, r = 1/2\nS_∞ = 1 / (1 − 1/2) = 1 / (1/2) = 2."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d8-q3",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 8,
+    questionNumber: 3,
+    question: "3, 9, 27, 81, ... என்ற பெருக்குத் தொடரின் முதல் 6 உறுப்புகளின் கூடுதல் யாது?",
+    options: ["729", "1,092", "1,093", "2,186"],
+    correctAnswer: 1, // 1092
+    explanation: {
+      tamil: "S_n = a(r^n − 1) / (r − 1)\na = 3, r = 3, n = 6\nS_6 = 3(3^6 − 1) / (3 − 1) = 3(729 − 1) / 2 = 3(728) / 2 = 3 × 364 = 1,092."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d8-q4",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 8,
+    questionNumber: 4,
+    question: "ஒரு பெருக்குத் தொடரின் முதல் உறுப்பு 5 மற்றும் பொது விகிதம் 3 எனில் அதன் 5-வது உறுப்பு யாது?",
+    options: ["135", "405", "1,215", "3,645"],
+    correctAnswer: 1, // 405
+    explanation: {
+      tamil: "T_5 = 5 × 3^(5−1) = 5 × 3^4 = 5 × 81 = 405."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d8-q5",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 8,
+    questionNumber: 5,
+    question: "9 + 99 + 999 + ... n உறுப்புகள் வரை கூடுதல் காண்க:",
+    options: [
+      "(10/9)(10^n − 1) − n",
+      "(10/9)(10^n − 1) + n",
+      "(1/9)(10^n − 1) − n",
+      "10^n − 1"
+    ],
+    correctAnswer: 0, // (10/9)(10^n − 1) − n
+    explanation: {
+      tamil: "9 = 10−1, 99 = 100−1, 999 = 1000−1...\nகூடுதல் = (10 + 10² + ... + 10^n) − n = [10(10^n − 1)/9] − n."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d8-q6",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 8,
+    questionNumber: 6,
+    question: "256, 128, 64, 32, ... என்ற தொடரின் பொது விகிதம் (r) என்ன?",
+    options: ["2", "1/2", "−1/2", "4"],
+    correctAnswer: 1, // 1/2
+    explanation: {
+      tamil: "r = T_2 / T_1 = 128 / 256 = 1/2."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d8-q7",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 8,
+    questionNumber: 7,
+    question: "ஒரு பந்து 100 மீ உயரத்திலிருந்து கீழே போடப்பட்டு, ஒவ்வொரு முறையும் முந்தைய உயரத்தில் 4/5 பங்கு எழும்பினால், அது ஓய்வுக்கு வரும் வரை பயணிக்கும் மொத்த தூரம் யாது?",
+    options: ["500 மீ", "800 மீ", "900 மீ", "1,000 மீ"],
+    correctAnswer: 2, // 900 மீ
+    explanation: {
+      tamil: "மொத்த தூரம் = H × [(1 + r) / (1 − r)] = 100 × [(1 + 4/5) / (1 − 4/5)] = 100 × (9/5 / 1/5) = 100 × 9 = 900 மீ."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d8-q8",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 8,
+    questionNumber: 8,
+    question: "4, x, 36 ஆகியவை பெருக்குத் தொடரில் (GP) அமைந்தால் x-ன் நேர்மறை மதிப்பு என்ன?",
+    options: ["8", "12", "16", "20"],
+    correctAnswer: 1, // 12
+    explanation: {
+      tamil: "GP-ல் x² = a · c => x² = 4 × 36 = 144 => x = √144 = 12."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d8-q9",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 8,
+    questionNumber: 9,
+    question: "1/3 + 1/9 + 1/27 + ... ∞ இன் மதிப்பு யாது?",
+    options: ["1/4", "1/3", "1/2", "1"],
+    correctAnswer: 2, // 1/2
+    explanation: {
+      tamil: "S_∞ = a / (1 − r) = (1/3) / (1 − 1/3) = (1/3) / (2/3) = 1/2."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d8-q10",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 8,
+    questionNumber: 10,
+    question: "1 + 2 + 4 + 8 + ... + 256 இன் கூடுதல் யாது?",
+    options: ["511", "512", "513", "1,023"],
+    correctAnswer: 0, // 511
+    explanation: {
+      tamil: "2^0 + 2^1 + ... + 2^8 = 2^(8+1) − 1 = 2^9 − 1 = 512 − 1 = 511."
+    },
+    difficulty: "hard"
+  },
+
+  // ================= DAY 9: Double Difference & Complex Patterns =================
+  {
+    id: "ss-d9-q1",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 9,
+    questionNumber: 1,
+    question: "விடுபட்ட எண் காண்க: 2, 3, 10, 29, 66, ?",
+    options: ["125", "127", "130", "135"],
+    correctAnswer: 1, // 127
+    explanation: {
+      tamil: "அமைப்பு: n³ + 2\n0³+2 = 2, 1³+2 = 3, 2³+2 = 10, 3³+2 = 29, 4³+2 = 66, 5³+2 = 125 + 2 = 127.\n\nசரியான விடை = 127."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d9-q2",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 9,
+    questionNumber: 2,
+    question: "விடுபட்ட எண் யாது? 6, 13, 28, 59, ?",
+    options: ["118", "120", "122", "124"],
+    correctAnswer: 2, // 122
+    explanation: {
+      tamil: "×2 + 1, ×2 + 2, ×2 + 3, ×2 + 4\n59 × 2 + 4 = 118 + 4 = 122.\n\nசரியான விடை = 122."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d9-q3",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 9,
+    questionNumber: 3,
+    question: "விடுபட்ட எண் காண்க: 0, 6, 24, 60, 120, 210, ?",
+    options: ["290", "336", "343", "504"],
+    correctAnswer: 1, // 336
+    explanation: {
+      tamil: "n³ − n அமைப்பு:\n1³−1=0, 2³−2=6, 3³−3=24, 4³−4=60, 5³−5=120, 6³−6=210, 7³−7 = 343 − 7 = 336.\n\nசரியான விடை = 336."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d9-q4",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 9,
+    questionNumber: 4,
+    question: "விடுபட்ட எண் யாது? 3, 5, 9, 17, 33, ?",
+    options: ["49", "65", "67", "71"],
+    correctAnswer: 1, // 65
+    explanation: {
+      tamil: "வித்தியாசம்: 2, 4, 8, 16, 32\n33 + 32 = 65 (அல்லது 2^n + 1 அமைப்பு).\n\nசரியான விடை = 65."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d9-q5",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 9,
+    questionNumber: 5,
+    question: "விடுபட்ட எண் காண்க: 2, 5, 9, 19, 37, ?",
+    options: ["73", "75", "77", "81"],
+    correctAnswer: 1, // 75
+    explanation: {
+      tamil: "×2 + 1, ×2 − 1, ×2 + 1, ×2 − 1, ×2 + 1\n37 × 2 + 1 = 74 + 1 = 75.\n\nசரியான விடை = 75."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d9-q6",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 9,
+    questionNumber: 6,
+    question: "மாறான எண்ணைக் காண்க: 1, 4, 9, 16, 23, 36, 49",
+    options: ["9", "16", "23", "36"],
+    correctAnswer: 2, // 23
+    explanation: {
+      tamil: "அனைத்தும் சரியான வர்க்கங்கள் (1², 2², 3², 4², 5²=25, 6², 7²). 25க்கு பதிலாக 23 உள்ளது.\n\nசரியான விடை = 23."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d9-q7",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 9,
+    questionNumber: 7,
+    question: "விடுபட்ட எண் காண்க: 4, 7, 12, 19, 28, ?",
+    options: ["37", "39", "41", "43"],
+    correctAnswer: 1, // 39
+    explanation: {
+      tamil: "வித்தியாசம்: +3, +5, +7, +9, +11 (ஒற்றைப்படை எண்கள்)\n28 + 11 = 39.\n\nசரியான விடை = 39."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d9-q8",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 9,
+    questionNumber: 8,
+    question: "விடுபட்ட எண் யாது? 11, 13, 17, 19, 23, 29, 31, ?",
+    options: ["33", "35", "37", "39"],
+    correctAnswer: 2, // 37
+    explanation: {
+      tamil: "தொடர்ச்சியான பகா எண்கள் (Prime Numbers): 31-க்கு அடுத்த பகா எண் = 37."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d9-q9",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 9,
+    questionNumber: 9,
+    question: "விடுபட்ட எண் காண்க: 5, 9, 17, 29, 45, ?",
+    options: ["60", "65", "69", "73"],
+    correctAnswer: 1, // 65
+    explanation: {
+      tamil: "வித்தியாசம்: +4, +8, +12, +16, +20 (4-ன் மடங்குகள்)\n45 + 20 = 65.\n\nசரியான விடை = 65."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d9-q10",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 9,
+    questionNumber: 10,
+    question: "விடுபட்ட எண் காண்க: 1, 1, 2, 3, 5, 8, 13, 21, ?",
+    options: ["29", "34", "38", "42"],
+    correctAnswer: 1, // 34
+    explanation: {
+      tamil: "ஃபிபனாச்சி தொடர் (Fibonacci Series): முந்தைய இரு எண்களின் கூடுதல்\n13 + 21 = 34.\n\nசரியான விடை = 34."
+    },
+    difficulty: "hard"
+  },
+
+  // ================= DAY 10: Grand SI Master Series =================
+  {
+    id: "ss-d10-q1",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 10,
+    questionNumber: 1,
+    question: "1 + 2 + 3 + ... + n = 66 எனில் n-ன் மதிப்பு யாது?",
+    options: ["10", "11", "12", "13"],
+    correctAnswer: 1, // 11
+    explanation: {
+      tamil: "n(n+1)/2 = 66 => n(n+1) = 132 => 11 × 12 = 132 => n = 11.\n\nசரியான விடை = 11."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d10-q2",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 10,
+    questionNumber: 2,
+    question: "1³ + 2³ + 3³ + ... + k³ = 44100 எனில் 1 + 2 + 3 + ... + k இன் மதிப்பு யாது?",
+    options: ["200", "210", "220", "230"],
+    correctAnswer: 1, // 210
+    explanation: {
+      tamil: "Σk³ = (Σk)²\n44100 = (Σk)² => Σk = √44100 = 210.\n\nசரியான விடை = 210."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d10-q3",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 10,
+    questionNumber: 3,
+    question: "2² + 4² + 6² + ... + 20² இன் மதிப்பு யாது?",
+    options: ["1,440", "1,540", "1,640", "1,740"],
+    correctAnswer: 1, // 1540
+    explanation: {
+      tamil: "2²(1² + 2² + ... + 10²) = 4 × [(10 × 11 × 21)/6] = 4 × 385 = 1,540.\n\nசரியான விடை = 1,540."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d10-q4",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 10,
+    questionNumber: 4,
+    question: "1 + 2 + 3 + ... + 50 + 49 + ... + 2 + 1 இன் மதிப்பு யாது?",
+    options: ["2,450", "2,500", "2,550", "2,600"],
+    correctAnswer: 1, // 2500
+    explanation: {
+      tamil: "அதிகபட்ச எண் n = 50 எனில் கூடுதல் n² = 50² = 2,500.\n\nசரியான விடை = 2,500."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d10-q5",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 10,
+    questionNumber: 5,
+    question: "முதல் 15 ஒற்றைப்படை இயல் எண்களின் கூடுதல் என்ன?",
+    options: ["210", "225", "240", "255"],
+    correctAnswer: 1, // 225
+    explanation: {
+      tamil: "சூத்திரம்: n² = 15² = 225.\n\nசரியான விடை = 225."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d10-q6",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 10,
+    questionNumber: 6,
+    question: "விடுபட்ட எழுத்துத் தொடர் காண்க: AZ, BY, CX, DW, ?",
+    options: ["EU", "EV", "FU", "FV"],
+    correctAnswer: 1, // EV
+    explanation: {
+      tamil: "எதிர் எழுத்துக்கள் (Opposite Pairs): A-Z, B-Y, C-X, D-W, E-V.\n\nசரியான விடை = EV."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d10-q7",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 10,
+    questionNumber: 7,
+    question: "விடுபட்ட எண் காண்க: 2, 6, 12, 20, 30, 42, ?",
+    options: ["52", "54", "56", "58"],
+    correctAnswer: 2, // 56
+    explanation: {
+      tamil: "n(n+1) தொடர்: 1×2=2, 2×3=6, 3×4=12, 4×5=20, 5×6=30, 6×7=42, 7×8 = 56.\n\nசரியான விடை = 56."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d10-q8",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 10,
+    questionNumber: 8,
+    question: "விடுபட்ட எண் யாது? 8, 27, 125, 343, ?",
+    options: ["512", "729", "1,331", "1,728"],
+    correctAnswer: 2, // 1331
+    explanation: {
+      tamil: "பகா எண்களின் கனங்கள் (Cubes of Prime Numbers): 2³=8, 3³=27, 5³=125, 7³=343, 11³ = 1,331.\n\nசரியான விடை = 1,331."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d10-q9",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 10,
+    questionNumber: 9,
+    question: "ஒரு கூட்டுத் தொடரில் முதல் உறுப்பு a = 5 மற்றும் 10-வது உறுப்பு l = 41 எனில் முதல் 10 உறுப்புகளின் கூடுதல் யாது?",
+    options: ["210", "220", "230", "240"],
+    correctAnswer: 2, // 230
+    explanation: {
+      tamil: "S_n = (n/2)(a + l) = (10/2)(5 + 41) = 5 × 46 = 230.\n\nசரியான விடை = 230."
+    },
+    difficulty: "hard"
+  },
+  {
+    id: "ss-d10-q10",
+    subject: "mathematics",
+    topic: "special-series",
+    day: 10,
+    questionNumber: 10,
+    question: "6 + 12 + 18 + ... + 600 என்ற தொடரில் உள்ள மொத்த உறுப்புகள் எத்தனை?",
+    options: ["90", "95", "100", "105"],
+    correctAnswer: 2, // 100
+    explanation: {
+      tamil: "n = [(600 − 6)/6] + 1 = (594/6) + 1 = 99 + 1 = 100.\n\nசரியான விடை = 100."
+    },
+    difficulty: "hard"
   }
 ];
