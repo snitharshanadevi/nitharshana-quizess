@@ -1,0 +1,102 @@
+[
+  {
+    "id": "simp-l2-01",
+    "topic": "simplification",
+    "level": 2,
+    "difficulty": "Moderate",
+    "question": "[(18 - 6) × 4] ÷ (12 - 4) + 15 = ?",
+    "options": ["21", "18", "24", "19"],
+    "correctAnswer": 0,
+    "explanation": "[(12) × 4] ÷ 8 + 15 = 48 ÷ 8 + 15 = 6 + 15 = 21."
+  },
+  {
+    "id": "simp-l2-02",
+    "topic": "simplification",
+    "level": 2,
+    "difficulty": "Moderate",
+    "question": "√(0.0064) + √(0.0144) - √(0.0025) = ?",
+    "options": ["0.15", "0.19", "0.25", "0.12"],
+    "correctAnswer": 0,
+    "explanation": "√0.0064 = 0.08, √0.0144 = 0.12, √0.0025 = 0.05.\n0.08 + 0.12 - 0.05 = 0.20 - 0.05 = 0.15."
+  },
+  {
+    "id": "simp-l2-03",
+    "topic": "simplification",
+    "level": 2,
+    "difficulty": "Moderate",
+    "question": "450-ன் 40% + 280-ன் 25% = ?",
+    "options": ["250", "240", "260", "275"],
+    "correctAnswer": 0,
+    "explanation": "450 × 0.40 = 180.\n280 × 0.25 = 70.\n180 + 70 = 250."
+  },
+  {
+    "id": "simp-l2-04",
+    "topic": "simplification",
+    "level": 2,
+    "difficulty": "Moderate",
+    "question": "2 1/2 + 3 1/4 - 1 1/2 = ?",
+    "options": ["4 1/4", "3 3/4", "4 1/2", "3 1/4"],
+    "correctAnswer": 0,
+    "explanation": "(2 - 1 + 3) + (1/2 - 1/2 + 1/4) = 4 + 1/4 = 4 1/4."
+  },
+  {
+    "id": "simp-l2-05",
+    "topic": "simplification",
+    "level": 2,
+    "difficulty": "Moderate",
+    "question": "(67 × 67 - 33 × 33) ÷ 100 = ?",
+    "options": ["34", "100", "67", "33"],
+    "correctAnswer": 0,
+    "explanation": "a² - b² = (a + b)(a - b)\n(67 + 33)(67 - 33) = 100 × 34.\n(100 × 34) ÷ 100 = 34."
+  },
+  {
+    "id": "simp-l2-06",
+    "topic": "simplification",
+    "level": 2,
+    "difficulty": "Moderate",
+    "question": "3.5 × 2.4 ÷ 0.7 + 1.8 = ?",
+    "options": ["13.8", "12.5", "14.2", "11.6"],
+    "correctAnswer": 0,
+    "explanation": "(3.5 ÷ 0.7) × 2.4 + 1.8 = 5 × 2.4 + 1.8 = 12 + 1.8 = 13.8."
+  },
+  {
+    "id": "simp-l2-07",
+    "topic": "simplification",
+    "level": 2,
+    "difficulty": "Moderate",
+    "question": "(2/3 × 9/4) + (5/8 ÷ 15/16) = ?",
+    "options": ["13/6", "7/6", "5/3", "11/6"],
+    "correctAnswer": 0,
+    "explanation": "(2/3 × 9/4) = 3/2.\n(5/8 × 16/15) = 2/3.\n3/2 + 2/3 = (9 + 4) / 6 = 13/6."
+  },
+  {
+    "id": "simp-l2-08",
+    "topic": "simplification",
+    "level": 2,
+    "difficulty": "Moderate",
+    "question": "∛512 + ∛216 - ∛64 = ?",
+    "options": ["10", "12", "8", "14"],
+    "correctAnswer": 0,
+    "explanation": "∛512 = 8, ∛216 = 6, ∛64 = 4.\n8 + 6 - 4 = 10."
+  },
+  {
+    "id": "simp-l2-09",
+    "topic": "simplification",
+    "level": 2,
+    "difficulty": "Moderate",
+    "question": "80-ன் 12.5% + 64-ன் 37.5% = ?",
+    "options": ["34", "30", "36", "38"],
+    "correctAnswer": 0,
+    "explanation": "12.5% = 1/8 => 80 × 1/8 = 10.\n37.5% = 3/8 => 64 × 3/8 = 24.\n10 + 24 = 34."
+  },
+  {
+    "id": "simp-l2-10",
+    "topic": "simplification",
+    "level": 2,
+    "difficulty": "Moderate",
+    "question": "[(48 ÷ 12)³ - 14] ÷ 5 = ?",
+    "options": ["10", "12", "8", "15"],
+    "correctAnswer": 0,
+    "explanation": "48 ÷ 12 = 4.\n4³ = 64.\n(64 - 14) ÷ 5 = 50 ÷ 5 = 10."
+  }
+]

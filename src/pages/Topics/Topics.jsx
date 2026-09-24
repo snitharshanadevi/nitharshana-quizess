@@ -6,9 +6,9 @@
  */
 
 import React, { useState, useEffect } from "react";
-import { DailyScheduleCard } from "../components/DailyScheduleCard.jsx";
-import { TopicCard } from "../components/TopicCard.jsx";
-import { quizService } from "../services/quizService.js";
+import { DailyScheduleCard } from "../../components/DailyScheduleCard.jsx";
+import { TopicCard } from "../../components/TopicCard.jsx";
+import { quizService } from "../../services/quizService.js";
 
 export function Home({ onSelectTopic, navigateTo }) {
   const [subjectsList, setSubjectsList] = useState([]);
