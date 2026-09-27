@@ -5,14 +5,14 @@
  */
 
 import React, { useState, useEffect } from "react";
-import { Header } from "./components/Header.jsx";
+import { Header } from "../components/Header.jsx";
 import { Home } from "./pages/Home.jsx";
 import { TopicPage } from "./pages/TopicPage.jsx";
-import { DayTestPage } from "./pages/DayTestPage.jsx";
-import { LevelSelectionView } from "./components/LevelSelectionView.jsx";
-import { ResultCard } from "./components/ResultCard.jsx";
-import { ProgressPage } from "./pages/ProgressPage.jsx";
-import { quizService } from "./services/quizService.js";
+import { DayTestPage } from "../pages/DayTestPage.jsx";
+import { LevelSelectionView } from "../components/LevelSelectionView.jsx";
+import { ResultCard } from "../components/ResultCard.jsx";
+import { ProgressPage } from "../pages/ProgressPage.jsx";
+import { quizService } from "../services/quizService.js";
 
 export function App() {
   const [currentView, setCurrentView] = useState("home"); // "home" | "topic" | "levels" | "test" | "result" | "progress"
