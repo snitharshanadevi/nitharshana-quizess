@@ -4,12 +4,16 @@
  * Supports progressive 5-Level sequential unlocking for Day 1 and Day 2.
  */
 
-import { subjects, dailySchedule } from "../data/subjects.js";
-import { simplificationQuestions } from "../data/simplification.js";
-import { profitLossQuestions } from "../data/profitLoss.js";
-import { specialSeriesQuestions, specialSeriesLevelMeta } from "../data/specialSeries.js";
-import { otherSubjectsQuestions } from "../data/otherSubjects.js";
-import { day2LevelsMeta, day2Questions } from "../data/day2Levels.js";
+import { subjects, dailySchedule } from "../data/metadata/subjects.js";
+import {
+  simplificationQuestions,
+  profitLossQuestions,
+  specialSeriesQuestions,
+  specialSeriesLevelMeta,
+  otherSubjectsQuestions,
+  day2LevelsMeta,
+  day2Questions
+} from "../data/questions/index.js";
 import { loadProgress, saveTestResult as persistResult, isLevelUnlocked, saveLevelResult as persistLevelResult, getLevelResult } from "../utils/storageUtils.js";
 import { getDateForDay } from "../utils/dateUtils.js";
 
