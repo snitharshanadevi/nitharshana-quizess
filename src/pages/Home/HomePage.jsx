@@ -58,9 +58,7 @@ export function HomePage({ onSelectTopic, navigateTo }) {
           <span>projectA EXAM PREPARATION PLATFORM</span>
         </div>
         
-        <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-4">
-          தமிழில் தினசரி <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-amber-500">முழு மாதிரித் தேர்வுப் பயிற்சி</span>
-        </h1>
+        
 
         {/* 12-Hour Dynamic Motivational Quote Banner */}
         <div className="bg-gradient-to-r from-blue-50 via-indigo-50 to-amber-50 border border-blue-200/70 rounded-2xl p-4 sm:p-5 shadow-sm text-center">

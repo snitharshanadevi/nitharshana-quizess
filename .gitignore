@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Temporary chrome profile & test files
+chrome-profile
+dumped-dom*.html
+test-*.html
