@@ -1,3 +1,1 @@
-export { DayTestPage } from "./DayTestPage.jsx";
-export default DayTestPage;
-
+export { DayTestPage, DayTestPage as default } from "./DayTestPage.jsx";

@@ -1,3 +1,1 @@
-export { ResultPage, ResultCard } from "./ResultPage.jsx";
-export default ResultPage;
-
+export { ResultPage, ResultCard, ResultPage as default } from "./ResultPage.jsx";

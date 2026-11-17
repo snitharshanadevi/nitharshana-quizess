@@ -1,3 +1,1 @@
-export { TopicPage } from "./TopicPage.jsx";
-export default TopicPage;
-
+export { TopicPage, TopicPage as default } from "./TopicPage.jsx";

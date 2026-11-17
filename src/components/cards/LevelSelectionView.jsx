@@ -7,10 +7,11 @@
 
 import React from "react";
 
-export function LevelSelectionView({ topic, day, levels, onSelectLevel, onBack }) {
-  const completedCount = levels.filter(l => l.isCompleted).length;
-  const totalScore = levels.reduce((sum, l) => sum + (l.score || 0), 0);
-  const totalPossible = levels.reduce((sum, l) => sum + l.questionCount, 0);
+export function LevelSelectionView({ topic, day, levels = [], onSelectLevel, onBack }) {
+  const safeLevels = Array.isArray(levels) ? levels : [];
+  const completedCount = safeLevels.filter(l => l.isCompleted).length;
+  const totalScore = safeLevels.reduce((sum, l) => sum + (l.score || 0), 0);
+  const totalPossible = safeLevels.reduce((sum, l) => sum + (l.questionCount || 0), 0);
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 animate-fadeIn">
@@ -54,12 +55,12 @@ export function LevelSelectionView({ topic, day, levels, onSelectLevel, onBack }
           <div className="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20 text-center shrink-0 min-w-[220px]">
             <span className="text-xs text-indigo-200 block font-semibold">முடித்த நிலைகள் (Progress)</span>
             <div className="text-2xl sm:text-3xl font-black text-amber-300 my-1">
-              {completedCount} / 5 <span className="text-sm font-medium text-white">Levels</span>
+              {completedCount} / {safeLevels.length || 6} <span className="text-sm font-medium text-white">Levels</span>
             </div>
             <div className="w-full bg-white/20 rounded-full h-2 mt-2 overflow-hidden">
               <div
                 className="bg-amber-400 h-full rounded-full transition-all duration-500"
-                style={{ width: `${(completedCount / 5) * 100}%` }}
+                style={{ width: `${(completedCount / (safeLevels.length || 6)) * 100}%` }}
               ></div>
             </div>
             {totalScore > 0 && (
@@ -75,13 +76,13 @@ export function LevelSelectionView({ topic, day, levels, onSelectLevel, onBack }
       <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4 mb-8 flex items-center space-x-3 text-blue-900 text-xs sm:text-sm font-medium">
         <span className="text-xl">💡</span>
         <span>
-          <strong>வரிசை முறை திறப்பு (Sequential Unlock):</strong> Level 1 எப்போதும் திறந்திருக்கும். Level 1-ஐ முடித்ததும் Level 2 திறக்கப்படும். இதேபோல் 5 நிலைகளையும் முடித்து SI தேர்வில் முழு வெற்றி பெறுங்கள்!
+          <strong>வரிசை முறை திறப்பு (Sequential Unlock):</strong> Level 1 எப்போதும் திறந்திருக்கும். Level 1-ஐ முடித்ததும் அடுத்த நிலை திறக்கப்படும். அனைத்து நிலைகளையும் முடித்து SI தேர்வில் முழு வெற்றி பெறுங்கள்!
         </span>
       </div>
 
-      {/* 5 Levels Grid */}
+      {/* Levels Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {levels.map((lvl) => {
+        {safeLevels.map((lvl) => {
           const isUnlocked = lvl.isUnlocked;
           const isCompleted = lvl.isCompleted;
 

@@ -27,7 +27,7 @@ export function ResultCard({
   const percentage = Math.round((score / totalQuestions) * 100);
   const wrongCount = totalQuestions - score;
   const isLevelTest = !!level;
-  const isLastLevel = level === 5;
+  const isLastLevel = level >= 6;
 
   // Rank determination
   let rankTitle = "SI தேர்ச்சி தயார்";

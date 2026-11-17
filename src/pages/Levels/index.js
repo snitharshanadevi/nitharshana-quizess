@@ -1,3 +1,1 @@
-export { LevelsPage, LevelSelectionView } from "./LevelsPage.jsx";
-export default LevelsPage;
-
+export { LevelsPage, LevelSelectionView, LevelsPage as default } from "./LevelsPage.jsx";

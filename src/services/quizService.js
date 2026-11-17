@@ -8,6 +8,10 @@ import { subjects, dailySchedule } from "../data/metadata/subjects.js";
 import {
   simplificationQuestions,
   profitLossQuestions,
+  simpleInterestQuestions,
+  compoundInterestQuestions,
+  percentageQuestions,
+  psychologyQuestions,
   specialSeriesQuestions,
   specialSeriesLevelMeta,
   otherSubjectsQuestions,
@@ -17,7 +21,7 @@ import {
 import { loadProgress, saveTestResult as persistResult, isLevelUnlocked, saveLevelResult as persistLevelResult, getLevelResult } from "../utils/storageUtils.js";
 import { getDateForDay } from "../utils/dateUtils.js";
 
-// Standard 5-Level Structure for Day 1
+// Standard 6-Level Structure for SI Assessment
 export const day1LevelsMeta = [
   {
     level: 1,
@@ -25,8 +29,8 @@ export const day1LevelsMeta = [
     titleEnglish: "Level 1: Foundation & Core Rules",
     difficulty: "அடிப்படை (Easy)",
     badge: "Foundation",
-    questionCount: 10,
-    durationMinutes: 10,
+    questionCount: 30,
+    durationMinutes: 20,
     description: "அடிப்படை சூத்திரங்கள், முக்கிய விதிகள் மற்றும் நேரடி வினாக்கள்."
   },
   {
@@ -35,18 +39,18 @@ export const day1LevelsMeta = [
     titleEnglish: "Level 2: Moderate Applications",
     difficulty: "நடுத்தரம் (Moderate)",
     badge: "Concepts",
-    questionCount: 10,
-    durationMinutes: 10,
+    questionCount: 30,
+    durationMinutes: 20,
     description: "பயிற்சிக் கணக்குகள், 2-படி தீர்வுகள் மற்றும் கருத்து வினாக்கள்."
   },
   {
     level: 3,
-    titleTamil: "நிலை 3: தந்திரமான & குறுக்குவழி வினாக்கள்",
-    titleEnglish: "Level 3: Tricky & Shortcut Speed Math",
+    titleTamil: "நிலை 3: தந்திரமான & தேர்வு மாதிரி வினாக்கள்",
+    titleEnglish: "Level 3: Tricky & Standard SI",
     difficulty: "தந்திரமானது (Tricky)",
     badge: "Tricky Core",
-    questionCount: 10,
-    durationMinutes: 12,
+    questionCount: 30,
+    durationMinutes: 25,
     description: "போட்டித் தேர்வில் கேட்கப்படும் ட்ரிக்கியான வினாக்கள் மற்றும் Shortcut முறைகள்."
   },
   {
@@ -55,19 +59,29 @@ export const day1LevelsMeta = [
     titleEnglish: "Level 4: Advanced High-Difficulty Challenge",
     difficulty: "கடினம் (Hard)",
     badge: "Advanced",
-    questionCount: 10,
-    durationMinutes: 15,
+    questionCount: 30,
+    durationMinutes: 25,
     description: "சிக்கலான கணக்குகள், தீவிர யோசனை தேவைப்படும் வினாக்கள்."
   },
   {
     level: 5,
-    titleTamil: "நிலை 5: மாஸ்டர் இறுதி மாதிரி முழுத் தேர்வு",
+    titleTamil: "நிலை 5: மாஸ்டர் மாதிரி முழுத் தேர்வு",
     titleEnglish: "Level 5: Master Exam Simulation",
     difficulty: "தேர்வுத்தரம் (Master)",
     badge: "Grand Master",
-    questionCount: 10,
-    durationMinutes: 15,
-    description: "முழு தேர்வுத் தரம் வாய்ந்த இறுதி மாதிரித் தேர்வு."
+    questionCount: 30,
+    durationMinutes: 30,
+    description: "முழு தேர்வுத் தரம் வாய்ந்த மாதிரித் தேர்வு மற்றும் தேர்வுப் பொறிகள்."
+  },
+  {
+    level: 6,
+    titleTamil: "நிலை 6: ஜீனியஸ் SI அதிதீவிர மாதிரிச் சவால்",
+    titleEnglish: "Level 6: Genius SI Master Challenge",
+    difficulty: "அதிதீவிரம் (Genius)",
+    badge: "Genius SI",
+    questionCount: 30,
+    durationMinutes: 30,
+    description: "உயர் கடினத்தன்மை, வேகக் கணித உத்திகள் மற்றும் முழுமையான SI சவால்."
   }
 ];
 
@@ -98,11 +112,18 @@ export const quizService = {
   },
 
   /**
-   * Check if a specific day or topic has structured 5 levels
+   * Check if a specific day or topic has structured 6 levels
    */
   hasLevels(topicId, day) {
+    const multiLevelTopics = [
+      "profit-loss", "simple-interest", "compound-interest", "percentage", "special-series",
+      "direction", "blood-relations", "coding-decoding", "ranking-ordering", "analogy",
+      "odd-one-out", "math-operations", "seating-arrangement", "syllogism-statements", "alpha-numeric-series"
+    ];
+    if (multiLevelTopics.includes(topicId)) {
+      return true;
+    }
     const dayNum = parseInt(day, 10);
-    if (topicId === "special-series") return true;
     return dayNum === 1 || dayNum === 2;
   },
 
@@ -155,7 +176,15 @@ export const quizService = {
       let hasLevels = false;
       let questionCount = topic.questionsPerDay || 10;
 
-      if (topicId === "special-series") {
+      if (["profit-loss", "simple-interest", "compound-interest", "percentage"].includes(topicId)) {
+        hasLevels = true;
+        difficulty = "6 Levels (180 வினாக்கள்)";
+        questionCount = "180 (6 Levels × 30)";
+      } else if (["direction", "blood-relations", "coding-decoding", "ranking-ordering", "analogy", "odd-one-out", "math-operations", "seating-arrangement", "syllogism-statements", "alpha-numeric-series"].includes(topicId)) {
+        hasLevels = true;
+        difficulty = "6 Levels (30 வினாக்கள்)";
+        questionCount = "30 (6 Levels)";
+      } else if (topicId === "special-series") {
         hasLevels = true;
         difficulty = "5 Levels (125 வினாக்கள்)";
         questionCount = "125 (5 Levels × 25)";
@@ -225,8 +254,28 @@ export const quizService = {
       case "profit-loss":
         allTopicQuestions = profitLossQuestions;
         break;
-      case "preposition":
+      case "simple-interest":
+        allTopicQuestions = simpleInterestQuestions;
+        break;
+      case "compound-interest":
+        allTopicQuestions = compoundInterestQuestions;
+        break;
+      case "percentage":
+        allTopicQuestions = percentageQuestions;
+        break;
       case "direction":
+      case "blood-relations":
+      case "coding-decoding":
+      case "ranking-ordering":
+      case "analogy":
+      case "odd-one-out":
+      case "math-operations":
+      case "seating-arrangement":
+      case "syllogism-statements":
+      case "alpha-numeric-series":
+        allTopicQuestions = psychologyQuestions.filter(q => q.topic === topicId);
+        break;
+      case "preposition":
       case "air":
         allTopicQuestions = otherSubjectsQuestions.filter(q => q.topic === topicId);
         break;
@@ -234,16 +283,10 @@ export const quizService = {
         allTopicQuestions = [];
     }
 
-    // Progressive 5-Level Questions
+    // Progressive 6-Level Questions
     if (levelNum) {
-      let levelQuestions = allTopicQuestions.filter(q => q.level === levelNum || q.day === levelNum);
-      if (levelQuestions.length >= 10) {
-        return levelQuestions.slice(0, 10);
-      }
-      // Unique slice based on level offset so zero duplicates occur
-      const start = ((levelNum - 1) * 10) % Math.max(allTopicQuestions.length, 1);
-      const sliced = allTopicQuestions.slice(start, start + 10);
-      if (sliced.length > 0) return sliced;
+      let levelQuestions = allTopicQuestions.filter(q => q.level === levelNum);
+      if (levelQuestions.length > 0) return levelQuestions;
     }
 
     // Standard Single-Day filter

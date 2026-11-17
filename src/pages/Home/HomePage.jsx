@@ -9,12 +9,14 @@ import React, { useState, useEffect } from "react";
 import { DailyScheduleCard } from "../../components/cards/DailyScheduleCard.jsx";
 import { TopicCard } from "../../components/cards/TopicCard.jsx";
 import { quizService } from "../../services/quizService.js";
+import { subjects, dailySchedule } from "../../data/metadata/subjects.js";
+import { loadProgress } from "../../utils/storageUtils.js";
 import { getActiveQuote } from "../../data/metadata/quotes.js";
 
 export function HomePage({ onSelectTopic, navigateTo }) {
-  const [subjectsList, setSubjectsList] = useState([]);
-  const [schedule, setSchedule] = useState([]);
-  const [userProgress, setUserProgress] = useState(null);
+  const [subjectsList, setSubjectsList] = useState(subjects);
+  const [schedule, setSchedule] = useState(dailySchedule);
+  const [userProgress, setUserProgress] = useState(loadProgress);
   const [selectedSubjectFilter, setSelectedSubjectFilter] = useState("all");
 
   useEffect(() => {

@@ -5,20 +5,39 @@
  */
 
 import React, { useState, useEffect } from "react";
-import { Header } from "../components/Header.jsx";
-import { Home } from "./pages/Home.jsx";
-import { TopicPage } from "./pages/TopicPage.jsx";
-import { DayTestPage } from "../pages/DayTestPage.jsx";
-import { LevelSelectionView } from "../components/LevelSelectionView.jsx";
-import { ResultCard } from "../components/ResultCard.jsx";
-import { ProgressPage } from "../pages/ProgressPage.jsx";
+import { Header, LevelSelectionView, ResultCard } from "../components/index.js";
+import { Home, TopicPage, DayTestPage, ProgressPage } from "../pages/index.js";
 import { quizService } from "../services/quizService.js";
 
+const parseHash = () => {
+  if (typeof window === "undefined") return { view: "home", topicId: "simplification", day: 1, level: 1 };
+  const hash = window.location.hash.replace("#/", "");
+  if (!hash || hash === "home") return { view: "home", topicId: "simplification", day: 1, level: 1 };
+  if (hash === "progress") return { view: "progress", topicId: "simplification", day: 1, level: 1 };
+  if (hash.startsWith("topic/")) {
+    const [, t] = hash.split("/");
+    return { view: "topic", topicId: t || "simplification", day: 1, level: 1 };
+  }
+  if (hash.startsWith("levels/")) {
+    const [, t, d] = hash.split("/");
+    return { view: "levels", topicId: t || "simplification", day: parseInt(d, 10) || 1, level: 1 };
+  }
+  if (hash.startsWith("test/")) {
+    const parts = hash.split("/");
+    const t = parts[1] || "simplification";
+    const d = parseInt(parts[2], 10) || 1;
+    const l = parts[3] ? parseInt(parts[3], 10) : 1;
+    return { view: "test", topicId: t, day: d, level: l };
+  }
+  return { view: "home", topicId: "simplification", day: 1, level: 1 };
+};
+
 export function App() {
-  const [currentView, setCurrentView] = useState("home"); // "home" | "topic" | "levels" | "test" | "result" | "progress"
-  const [activeTopicId, setActiveTopicId] = useState("simplification");
-  const [activeDay, setActiveDay] = useState(1);
-  const [activeLevel, setActiveLevel] = useState(1);
+  const initial = parseHash();
+  const [currentView, setCurrentView] = useState(initial.view); // "home" | "topic" | "levels" | "test" | "result" | "progress"
+  const [activeTopicId, setActiveTopicId] = useState(initial.topicId);
+  const [activeDay, setActiveDay] = useState(initial.day);
+  const [activeLevel, setActiveLevel] = useState(initial.level);
   const [dayLevelsList, setDayLevelsList] = useState([]);
   const [activeTopicObj, setActiveTopicObj] = useState(null);
   const [lastResultData, setLastResultData] = useState(null);
@@ -148,7 +167,7 @@ export function App() {
   // Handler for next level test
   const handleNextLevelTest = () => {
     const nextLvl = (lastResultData?.level || 1) + 1;
-    if (nextLvl <= 5) {
+    if (nextLvl <= 6) {
       navigateTo("test", activeTopicId, activeDay, nextLvl);
     } else {
       navigateTo("levels", activeTopicId, activeDay);

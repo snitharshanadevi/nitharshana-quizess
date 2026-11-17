@@ -1,3 +1,1 @@
-export { ProgressPage } from "./ProgressPage.jsx";
-export default ProgressPage;
-
+export { ProgressPage, ProgressPage as default } from "./ProgressPage.jsx";
