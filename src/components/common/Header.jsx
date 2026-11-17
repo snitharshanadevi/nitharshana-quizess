@@ -30,7 +30,7 @@ export function Header({ currentView, navigateTo, isMuted, setIsMuted }) {
             <div>
               <div className="flex items-center space-x-2">
                 <span className="font-extrabold text-base sm:text-xl tracking-tight text-white">
-                  projectA
+                   TNSURB (SI) Practice   
                 </span>
                 <span className="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] sm:text-xs px-2 py-0.5 rounded-full font-semibold">
                   PRO

@@ -55,7 +55,7 @@ export function HomePage({ onSelectTopic, navigateTo }) {
       <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
         <div className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-200/80 px-4 py-1.5 rounded-full text-blue-800 text-xs sm:text-sm font-bold mb-4 shadow-sm">
           <span>⚡</span>
-          <span>projectA EXAM PREPARATION PLATFORM</span>
+          <span>TNSURB (SI) EXAM PREPARATION PLATFORM</span>
         </div>
         
         
